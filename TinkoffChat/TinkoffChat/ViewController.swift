@@ -10,52 +10,59 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var switchState = LogsSwitcher.switchState(switchOn: true)
+    
+    override func viewDidLoad() {
+        if switchState{
+        } else {
+            print("Root view is not visible: \(#function)")
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        if Bundle.main.object(forInfoDictionaryKey: "CompilerLogsOn") as! String == "False"{
+        if switchState{
         } else {
-            print(#function)
+            print("Root view is not visible: \(#function)")
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        if Bundle.main.object(forInfoDictionaryKey: "CompilerLogsOn") as! String == "False"{
+        if switchState{
         } else {
-            print(#function)
+            print("Root view is not visible: \(#function)")
         }
     }
     
     override func viewWillLayoutSubviews() {
-        if Bundle.main.object(forInfoDictionaryKey: "CompilerLogsOn") as! String == "False"{
+        if switchState{
         } else {
-            print(#function)
+            print("Root view is not visible: \(#function)")
         }
     }
     
     override func viewDidLayoutSubviews() {
-        if Bundle.main.object(forInfoDictionaryKey: "CompilerLogsOn") as! String == "False"{
+        if switchState{
         } else {
-            print(#function)
+            print("Root view is visible: \(#function)")
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        if Bundle.main.object(forInfoDictionaryKey: "CompilerLogsOn") as! String == "False"{
+        if switchState{
         } else {
-            print(#function)
+            print("Root view is visible: \(#function)")
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        if Bundle.main.object(forInfoDictionaryKey: "CompilerLogsOn") as! String == "False"{
+        if switchState{
         } else {
-            print(#function)
+            print("Root view is not visible: \(#function)")
         }
     }
-
-
 }
 
