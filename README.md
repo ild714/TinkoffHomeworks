@@ -1,4 +1,3 @@
 # TinkoffHomework
 Для включения или отключения логов необходимо выполнить следущий шаг: 
-- В AppDelegate и ViewController в строке с классом LogsSwitcher задать входное значение для метода witchState(switchOn: Bool). 
-- Параметр true (предназначен для включении логов), а параметр false(предназначен для выключение логов).
+- В AppDelegate и ViewController в строке с классом LogsSwitcher задать входное значение для метода witchState(switchOn: Bool).  Параметр true (предназначен для включении логов), а параметр false(предназначен для выключение логов).
