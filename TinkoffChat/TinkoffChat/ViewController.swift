@@ -9,60 +9,37 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    var switchState = LogsSwitcher.switchState(switchOn: true)
     
     override func viewDidLoad() {
-        if switchState{
-        } else {
-            print("Root view is not visible: \(#function)")
-        }
+        LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        if switchState{
-        } else {
-            print("Root view is not visible: \(#function)")
-        }
+        LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        if switchState{
-        } else {
-            print("Root view is not visible: \(#function)")
-        }
+        LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
     }
     
     override func viewWillLayoutSubviews() {
-        if switchState{
-        } else {
-            print("Root view is not visible: \(#function)")
-        }
+        LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
     }
     
     override func viewDidLayoutSubviews() {
-        if switchState{
-        } else {
-            print("Root view is visible: \(#function)")
-        }
+        LogsSwitcher.printLogs(function: #function, additionText: "Root view is visible: ")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        if switchState{
-        } else {
-            print("Root view is visible: \(#function)")
-        }
+        LogsSwitcher.printLogs(function: #function, additionText: "Root view is visible: ")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        if switchState{
-        } else {
-            print("Root view is not visible: \(#function)")
-        }
+        LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
     }
 }
 

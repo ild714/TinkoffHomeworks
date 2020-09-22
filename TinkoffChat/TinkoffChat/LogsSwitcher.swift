@@ -9,19 +9,16 @@
 import Foundation
 
 class LogsSwitcher {
-    static func switchState(_ dictionaryKey: String = "CompilerLogsOn",switchOn: Bool) -> Bool{
-        
-        var switchString: String = "False"
-        
-        if switchOn {
-        } else {
-            switchString = "True"
-        }
-        
-        if Bundle.main.object(forInfoDictionaryKey: dictionaryKey) as? String == switchString {
-            return true
-        } else {
-            return false
+    
+    static var state = true
+    
+    static func switchState(switchOn: Bool){
+        self.state = switchOn
+    }
+    
+    static func printLogs(function:String, additionText: String = ""){
+        if state == true {
+            print("\(additionText)\(function)")
         }
     }
 }
