@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        LogsSwitcher.switchState(switchOn: false)
+        LogsSwitcher.switchState(switchOn: false)
         LogsSwitcher.printLogs(function: #function, additionText: "Application is not <Not running>: ")
         
         return true

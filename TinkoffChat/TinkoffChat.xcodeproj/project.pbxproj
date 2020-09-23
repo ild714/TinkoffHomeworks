@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		74309ABF25123B52009AF510 /* LogsSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74309ABE25123B52009AF510 /* LogsSwitcher.swift */; };
+		74C6DC48251B548B00B64690 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6DC47251B548B00B64690 /* StringExtension.swift */; };
 		74FB99D0250D39ED00478286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FB99CF250D39ED00478286 /* AppDelegate.swift */; };
 		74FB99D4250D39ED00478286 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FB99D3250D39ED00478286 /* ViewController.swift */; };
 		74FB99D7250D39ED00478286 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FB99D5250D39ED00478286 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		74309ABE25123B52009AF510 /* LogsSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsSwitcher.swift; sourceTree = "<group>"; };
+		74C6DC47251B548B00B64690 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		74FB99CC250D39ED00478286 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74FB99CF250D39ED00478286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74FB99D3250D39ED00478286 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +43,6 @@
 			isa = PBXGroup;
 			children = (
 				74FB99CE250D39ED00478286 /* TinkoffChat */,
-				74FB99CD250D39ED00478286 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,6 +52,7 @@
 				74FB99CC250D39ED00478286 /* TinkoffChat.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		74FB99CE250D39ED00478286 /* TinkoffChat */ = {
@@ -59,10 +61,12 @@
 				74FB99CF250D39ED00478286 /* AppDelegate.swift */,
 				74FB99D3250D39ED00478286 /* ViewController.swift */,
 				74309ABE25123B52009AF510 /* LogsSwitcher.swift */,
+				74C6DC47251B548B00B64690 /* StringExtension.swift */,
 				74FB99D5250D39ED00478286 /* Main.storyboard */,
 				74FB99D8250D39F000478286 /* Assets.xcassets */,
 				74FB99DA250D39F000478286 /* LaunchScreen.storyboard */,
 				74FB99DD250D39F000478286 /* Info.plist */,
+				74FB99CD250D39ED00478286 /* Products */,
 			);
 			path = TinkoffChat;
 			sourceTree = "<group>";
@@ -138,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74C6DC48251B548B00B64690 /* StringExtension.swift in Sources */,
 				74FB99D4250D39ED00478286 /* ViewController.swift in Sources */,
 				74309ABF25123B52009AF510 /* LogsSwitcher.swift in Sources */,
 				74FB99D0250D39ED00478286 /* AppDelegate.swift in Sources */,
@@ -285,13 +290,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2NR48U86L7;
 				INFOPLIST_FILE = TinkoffChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff1.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -303,13 +309,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2NR48U86L7;
 				INFOPLIST_FILE = TinkoffChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff1.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
