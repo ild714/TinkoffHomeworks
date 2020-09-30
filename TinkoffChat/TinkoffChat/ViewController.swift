@@ -49,8 +49,7 @@ class ViewController: UIViewController{
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        //Свойство frame не будет распечатано, так как мы используем storyboard и приложение не производит инициализацию напрямую через даннай класс.
-//        print(editButton.frame)
+        //Кнопка инициализируется после загрузки storyboard
     }
     
     override func viewDidLoad() {
@@ -59,6 +58,23 @@ class ViewController: UIViewController{
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeTapped))
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
         
+
+        imageView.layer.cornerRadius = imageView.bounds.width / 2.0
+        imageView.layer.backgroundColor = UIColor(red: 0.894, green: 0.908, blue: 0.17, alpha: 1).cgColor
+        
+        editButton.setTitleColor(UIColor(red: 0, green: 0.478, blue: 1, alpha: 1), for: .normal)
+        
+        labelDetails.lineBreakMode = .byWordWrapping
+        labelDetails.numberOfLines = 0
+        labelDetails.text = "UX/UI designer, web-designer\nMoscow, Russia"
+        
+        saveButton.layer.backgroundColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1).cgColor
+        saveButton.layer.cornerRadius = 14
+
+        initialsLabel.textColor = UIColor(red: 0.212, green: 0.216, blue: 0.22, alpha: 1)
+        initialsLabel.text = fullName.text.initialsGetter()
+        
+        //Frame из выбранного в сториборд устройстве
         print(editButton.frame)
     }
     
@@ -78,12 +94,13 @@ class ViewController: UIViewController{
             
         }))
         alertController.addAction(UIAlertAction(title: "Take a picture", style: .default, handler: { (_) in
-            #if targetEnvironment(simulator)
-                print("Run on real device")
-            #else
+
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
                 picker.sourceType = UIImagePickerController.SourceType.camera
                 self.present(picker,animated: true)
-            #endif
+            } else {
+                print("Run on real device")
+            }
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -103,7 +120,8 @@ class ViewController: UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
-        //   Значения отличаются, так как на этапе ViewDidLoad представление не было добавлено в иерахию представлений. Соответственно после вызова viewDidAppear представление добавляется в иерархию и отображает корректные значения для frame.
+
+        //Frame из симулятора
         print(editButton.frame)
     }
     
