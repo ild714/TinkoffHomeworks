@@ -23,8 +23,7 @@ class ViewController: UIViewController{
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        //Свойство frame не будет распечатано, так как мы используем storyboard и приложение не производит инициализацию напрямую через даннай класс.
-//        print(editButton.frame)
+        //Кнопка инициализируется после загрузки storyboard
     }
     
     override func viewDidLoad() {
@@ -46,6 +45,7 @@ class ViewController: UIViewController{
         initialsLabel.textColor = UIColor(red: 0.212, green: 0.216, blue: 0.22, alpha: 1)
         initialsLabel.text = fullName.text.initialsGetter()
         
+        //Frame из выбранного в сториборд устройстве
         print(editButton.frame)
     }
     
@@ -61,8 +61,12 @@ class ViewController: UIViewController{
             
         }))
         alertController.addAction(UIAlertAction(title: "Take a picture", style: .default, handler: { (_) in
-            picker.sourceType = UIImagePickerController.SourceType.camera
-            self.present(picker,animated: true)
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                picker.sourceType = UIImagePickerController.SourceType.camera
+                self.present(picker,animated: true)
+            } else {
+                print("Run on real device")
+            }
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -78,7 +82,8 @@ class ViewController: UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
-        //   Значения отличаются, так как на этапе ViewDidLoad представление не было добавлено в иерахию представлений. Соответственно после вызова viewDidAppear представление добавляется в иерархию и отображает корректные значения для frame.
+
+        //Frame из симулятора
         print(editButton.frame)
     }
     
