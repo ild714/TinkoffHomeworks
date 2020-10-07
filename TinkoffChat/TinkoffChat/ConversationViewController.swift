@@ -13,7 +13,7 @@ struct MessageCellModel {
     let isIncoming: Bool
 }
 
-class ConversationViewController: UIViewController {
+class ConversationViewController: UIViewController,ThemeManagerProtocol {
     
     var titleName: String? = nil
     let chatMessages = [MessageCellModel(text: "What is the most popular news in Japan?", isIncoming: true),                                     MessageCellModel(text: "Do you know it?", isIncoming: true),
@@ -22,7 +22,7 @@ class ConversationViewController: UIViewController {
     
     private let cellIdentifier = String(describing: MessageConversationTableViewCell.self)
     
-    private lazy var tableView : UITableView = {
+    lazy var tableView : UITableView = {
         let tableView = UITableView(frame: view.frame, style: .plain)
         tableView.register(MessageConversationTableViewCell.self, forCellReuseIdentifier:cellIdentifier)
         tableView.separatorStyle = .none
@@ -62,6 +62,25 @@ class ConversationViewController: UIViewController {
         let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: String(describing: self)) as? ConversationViewController
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        ThemeManager.changeTheme(viewController: self)
+        
+//        let defaults = UserDefaults.standard
+//        if let savedTypeTheme = defaults.object(forKey: "ThemeType") as? String{
+//            if savedTypeTheme == "Night"{
+//                changeThemeToNight()
+//            }
+//        }
+    }
+    
+//    func changeThemeToNight() {
+//
+//        self.view.backgroundColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
+//        self.tableView.backgroundColor = .black
+//    }
 
 }
 

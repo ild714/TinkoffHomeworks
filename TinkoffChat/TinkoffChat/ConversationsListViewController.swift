@@ -8,26 +8,34 @@
 
 import UIKit
 
-class ConversationsListViewController: UIViewController {
+class ConversationsListViewController: UIViewController,ThemePickerDelegate,ThemeManagerProtocol {
+    //1
+        func themeViewController(closure: () -> ThemesViewController) {
+            let defaults = UserDefaults.standard
+            defaults.set(closure().typeOfTheme.rawValue,forKey: "ThemeType")
+        }
+    
+    
+    //2
+//    func themeViewController(closure: (ThemeType) -> (), typeOfTheme: ThemeType) {
+//        closure(typeOfTheme)
+//    }
+    
+    @IBOutlet weak var settingButton: UIBarButtonItem!
+    @IBOutlet weak var profileButton: UIBarButtonItem!
+    
+    //2
+//    let defaults = UserDefaults.standard
+    
+    var backgroundColorOfOnlineCell = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
+    var backgroundColorOfofflineCell = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+    var nameLabelColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    var messageLabelColor = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
 
     var safeArea: UILayoutGuide!
     let headerTitles = ["Online","History"]
     var peopleSort: [TypesMessages] = []
     
-    struct TypesMessages {
-        let type: String
-        let persons: [Person]
-    }
-    
-    struct Person {
-        let name: String
-        let message: String
-        let date: Date
-        let isOnline: Bool
-        let hasUnreadMessages: Bool
-    }
-    
-    var peoples = [TypesMessages(type: "online", persons: [Person(name: "Morris Henry", message: "Reprehenderit mollit excepteur labore deserunt officia laboris eiusmod cillum eu duis", date: Date(), isOnline: true, hasUnreadMessages: true),Person(name: "Ronald Henry", message: "An suas viderer pro. Vis cu magna altera, ex his vivendo atomorum.", date: Date(), isOnline: true, hasUnreadMessages: false),Person(name: "Grey Henry", message: "", date: Date(), isOnline: true, hasUnreadMessages: true),Person(name: "David Djons", message: "", date: Date(), isOnline: true, hasUnreadMessages: false),Person(name: "Henry Kelvin", message: "Reprehenderit mollit excepteur labore deserunt officia laboris eiusmod cillum eu duis", date: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date(), isOnline: true, hasUnreadMessages: true),Person(name: "Dan Mark", message: "An suas viderer pro. Vis cu magna altera, ex his vivendo atomorum.", date: Calendar.current.date(byAdding: .day, value: -5, to: Date()) ?? Date(), isOnline: true, hasUnreadMessages: false),Person(name: "Cris Roberson", message: "", date: Date(), isOnline: true, hasUnreadMessages: true),Person(name: "Roberto Carloson", message: "", date: Date(), isOnline: true, hasUnreadMessages: false),Person(name: "Cris Karter", message: "", date: Date(), isOnline: true, hasUnreadMessages: true),Person(name: "Dan Haris", message: "", date: Date(), isOnline: true, hasUnreadMessages: false)]),TypesMessages(type: "offline", persons: [Person(name: "Mark Deik", message: "Dolore veniam Lorem occaecat veniam irure laborum est amet.", date: Date(), isOnline: true, hasUnreadMessages: true),Person(name: "Robert Martin", message: "", date: Date(), isOnline: true, hasUnreadMessages: false),Person(name: "Ben Mark", message: "", date: Date(), isOnline: true, hasUnreadMessages: true),Person(name: "Djon Moris", message: "", date: Date(), isOnline: true, hasUnreadMessages: false),Person(name: "Kris Karter", message: "", date: Date(), isOnline: true, hasUnreadMessages: true),Person(name: "Mike Carloson", message: "Dolore veniam Lorem occaecat veniam irure laborum est amet.", date: Date(), isOnline: true, hasUnreadMessages: false),Person(name: "Daik Hink", message: "", date: Date(), isOnline: true, hasUnreadMessages: true),Person(name: "Mister Harry", message: "", date: Date(), isOnline: true, hasUnreadMessages: false),Person(name: "Vait Djons", message: "Dolore veniam Lorem occaecat veniam irure laborum est amet.", date: Date(), isOnline: true, hasUnreadMessages: true),Person(name: "Morris Robens", message: "", date: Date(), isOnline: true, hasUnreadMessages: false)])]
     
     static func storyboardInstance() -> ConversationsListViewController? {
         let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
@@ -36,7 +44,7 @@ class ConversationsListViewController: UIViewController {
     
     private let cellIdentifier = String(describing: CustomTableViewCell.self)
     
-    private lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView(frame: view.frame, style: .plain)
         tableView.register(UINib(nibName: String(describing: CustomTableViewCell.self), bundle: nil), forCellReuseIdentifier: cellIdentifier)
         tableView.dataSource = self
@@ -48,41 +56,38 @@ class ConversationsListViewController: UIViewController {
         super.loadView()
         
         safeArea = view.layoutMarginsGuide
-        
         setupTableView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var arrayPersons: [Person] = []
-        for typeMessage in peoples {
-            if typeMessage.type == "online"{
-                peopleSort.append(typeMessage)
-            } else {
-                for person in typeMessage.persons {
-                    
-                    if person.message != ""{
-                        arrayPersons.append(person)
-                    }
-                }
-                 peopleSort.append(TypesMessages(type: "offline", persons: arrayPersons))
-            }
-        }
+        peopleSort = SortedPeople.returnPeople()
         
         title = "Tinkoff Chat"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
+    
     @IBAction func showProfileInfo(_ sender: Any) {
         
-        if let viewController = ViewController.storyboardInstance(){
+        if let profileViewController = ProfileViewController.storyboardInstance(){
             let navigationController = UINavigationController()
-            navigationController.viewControllers = [viewController]
+            navigationController.viewControllers = [profileViewController]
             present(navigationController, animated: true, completion: nil)
         }
     }
     
+    @IBAction func showThemesSettings(_ sender: Any) {
+        if let themesViewController = ThemesViewController.storyboardInstance(){
+            themesViewController.delegate = self
+//            2
+//            themesViewController.closure = {(typeTheme: ThemeType) in
+//                self.defaults.set(typeTheme.rawValue,forKey: "ThemeType")
+//            }
+        navigationController?.pushViewController(themesViewController, animated: true)
+        }
+    }
     
     func setupTableView(){
         view.addSubview(tableView)
@@ -98,12 +103,20 @@ class ConversationsListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        ThemeManager.changeTheme(viewController: self)
+        
         if let index = self.tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: index, animated: true)
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        ThemeManager.changeThemeForFooter(viewController: self,view: view)
+    }
 }
 
+// MARK: - ConversationsListViewController dataSource methods
 extension ConversationsListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         peopleSort.count
@@ -125,9 +138,11 @@ extension ConversationsListViewController: UITableViewDataSource {
         cell.configure(with:.init(name: person.name, message: person.message, date: person.date, isOnline: person.isOnline, hasUnreadMessages: person.hasUnreadMessages))
             
         if type.type == "online" {
-            cell.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
+            cell.backgroundColor = backgroundColorOfOnlineCell
+            cell.nameLabel.textColor = nameLabelColor
+            cell.messageLabel.textColor = messageLabelColor
         } else {
-            cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+            cell.backgroundColor = backgroundColorOfofflineCell
         }
         
         return cell
@@ -143,6 +158,7 @@ extension ConversationsListViewController: UITableViewDataSource {
     
 }
 
+// MARK: - ConversationsListViewController delegate methods
 extension ConversationsListViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let type = peopleSort[indexPath.section]

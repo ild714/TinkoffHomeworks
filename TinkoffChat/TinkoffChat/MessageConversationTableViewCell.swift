@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageConversationTableViewCell: UITableViewCell,ConfigurableView {
+class MessageConversationTableViewCell: UITableViewCell,ConfigurableView,ThemeManagerProtocol {
 
     let messageLabel = UILabel()
     let bubbleBackgroundView = UIView()
@@ -31,6 +31,7 @@ class MessageConversationTableViewCell: UITableViewCell,ConfigurableView {
         bubbleBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
+//
         let constraints = [
             messageLabel.topAnchor.constraint(equalTo: topAnchor,constant: 20),
             messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -20),
@@ -40,7 +41,6 @@ class MessageConversationTableViewCell: UITableViewCell,ConfigurableView {
             bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor,constant: 10),
             bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor,constant: -10),
             bubbleBackgroundView.bottomAnchor.constraint(equalTo:  messageLabel.bottomAnchor,constant: 10)
-            
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -52,7 +52,9 @@ class MessageConversationTableViewCell: UITableViewCell,ConfigurableView {
     }
     
     func configure(with model: MessageCellModel) {
-        bubbleBackgroundView.backgroundColor = model.isIncoming ? UIColor(red: 223, green: 223, blue: 223) : UIColor(red: 220, green: 247, blue: 197)
+        
+        ThemeManager.changeTheme(viewController: self, model: model)
+        
         self.messageLabel.text = model.text
         
         if model.isIncoming {
