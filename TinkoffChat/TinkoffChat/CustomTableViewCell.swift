@@ -20,6 +20,7 @@ struct Model {
     let date: Date
     let isOnline: Bool
     let hasUnreadMessages: Bool
+    let typeOfMessage: String
 }
 
 class CustomTableViewCell: UITableViewCell,ConfigurableView {
@@ -34,6 +35,7 @@ class CustomTableViewCell: UITableViewCell,ConfigurableView {
     }
     @IBOutlet weak var imageIcon: UIImageView!{
         didSet{
+            print(imageIcon.bounds.width / 2.0)
             imageIcon.layer.cornerRadius = imageIcon.bounds.width / 2.0
         }
     }
@@ -42,6 +44,12 @@ class CustomTableViewCell: UITableViewCell,ConfigurableView {
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         var dateString: String = ""
+        
+        if model.typeOfMessage == "online" {
+            self.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
+        } else {
+            self.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        }
         
         let dayAgo = Calendar.current.date(byAdding: .day, value: -1, to: Date())
         if model.date < dayAgo! {

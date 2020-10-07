@@ -122,13 +122,13 @@ extension ConversationsListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(with:.init(name: person.name, message: person.message, date: person.date, isOnline: person.isOnline, hasUnreadMessages: person.hasUnreadMessages))
+        cell.configure(with:.init(name: person.name, message: person.message, date: person.date, isOnline: person.isOnline, hasUnreadMessages: person.hasUnreadMessages,typeOfMessage: type.type))
             
-        if type.type == "online" {
-            cell.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
-        } else {
-            cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        }
+//        if type.type == "online" {
+//            cell.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
+//        } else {
+//            cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+//        }
         
         return cell
     }
