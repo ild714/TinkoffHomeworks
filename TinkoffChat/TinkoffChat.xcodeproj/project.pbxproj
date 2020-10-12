@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		74309ABF25123B52009AF510 /* LogsSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74309ABE25123B52009AF510 /* LogsSwitcher.swift */; };
+		74446EB72523BEBF006EB0E8 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74446EB62523BEBF006EB0E8 /* ColorExtension.swift */; };
+		7491D2C42523727F008FACB9 /* InputConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7491D2C22523727F008FACB9 /* InputConversationTableViewCell.swift */; };
+		7491D2C52523727F008FACB9 /* InputConversationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7491D2C32523727F008FACB9 /* InputConversationTableViewCell.xib */; };
+		7491D2CB2523AAE1008FACB9 /* MessageConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7491D2CA2523AAE1008FACB9 /* MessageConversationTableViewCell.swift */; };
+		749C0CE725212D7C00D1857E /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C0CE625212D7C00D1857E /* ConversationsListViewController.swift */; };
+		749C0CEB252135A700D1857E /* ConversationsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749C0CEA252135A700D1857E /* ConversationsListViewController.storyboard */; };
+		749C0CF22521D7C800D1857E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C0CF02521D7C800D1857E /* CustomTableViewCell.swift */; };
+		749C0CF32521D7C800D1857E /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 749C0CF12521D7C800D1857E /* CustomTableViewCell.xib */; };
+		749C0CF525221D9A00D1857E /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C0CF425221D9A00D1857E /* ConversationViewController.swift */; };
+		749C0CF72522201100D1857E /* ConversationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749C0CF62522201100D1857E /* ConversationViewController.storyboard */; };
+		74A0FBE3252DE115005E9392 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0FBE2252DE115005E9392 /* RootViewController.swift */; };
+		74C6DC48251B548B00B64690 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6DC47251B548B00B64690 /* StringExtension.swift */; };
 		74FB99D0250D39ED00478286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FB99CF250D39ED00478286 /* AppDelegate.swift */; };
 		74FB99D4250D39ED00478286 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FB99D3250D39ED00478286 /* ViewController.swift */; };
 		74FB99D7250D39ED00478286 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FB99D5250D39ED00478286 /* Main.storyboard */; };
@@ -17,6 +29,18 @@
 
 /* Begin PBXFileReference section */
 		74309ABE25123B52009AF510 /* LogsSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsSwitcher.swift; sourceTree = "<group>"; };
+		74446EB62523BEBF006EB0E8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		7491D2C22523727F008FACB9 /* InputConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputConversationTableViewCell.swift; sourceTree = "<group>"; };
+		7491D2C32523727F008FACB9 /* InputConversationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputConversationTableViewCell.xib; sourceTree = "<group>"; };
+		7491D2CA2523AAE1008FACB9 /* MessageConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConversationTableViewCell.swift; sourceTree = "<group>"; };
+		749C0CE625212D7C00D1857E /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
+		749C0CEA252135A700D1857E /* ConversationsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationsListViewController.storyboard; sourceTree = "<group>"; };
+		749C0CF02521D7C800D1857E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		749C0CF12521D7C800D1857E /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		749C0CF425221D9A00D1857E /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		749C0CF62522201100D1857E /* ConversationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationViewController.storyboard; sourceTree = "<group>"; };
+		74A0FBE2252DE115005E9392 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		74C6DC47251B548B00B64690 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		74FB99CC250D39ED00478286 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74FB99CF250D39ED00478286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74FB99D3250D39ED00478286 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				74FB99CE250D39ED00478286 /* TinkoffChat */,
-				74FB99CD250D39ED00478286 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,18 +74,32 @@
 				74FB99CC250D39ED00478286 /* TinkoffChat.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		74FB99CE250D39ED00478286 /* TinkoffChat */ = {
 			isa = PBXGroup;
 			children = (
+				74A0FBE2252DE115005E9392 /* RootViewController.swift */,
 				74FB99CF250D39ED00478286 /* AppDelegate.swift */,
 				74FB99D3250D39ED00478286 /* ViewController.swift */,
-				74309ABE25123B52009AF510 /* LogsSwitcher.swift */,
 				74FB99D5250D39ED00478286 /* Main.storyboard */,
+				749C0CE625212D7C00D1857E /* ConversationsListViewController.swift */,
+				749C0CEA252135A700D1857E /* ConversationsListViewController.storyboard */,
+				749C0CF02521D7C800D1857E /* CustomTableViewCell.swift */,
+				749C0CF12521D7C800D1857E /* CustomTableViewCell.xib */,
+				749C0CF425221D9A00D1857E /* ConversationViewController.swift */,
+				749C0CF62522201100D1857E /* ConversationViewController.storyboard */,
+				7491D2C22523727F008FACB9 /* InputConversationTableViewCell.swift */,
+				7491D2C32523727F008FACB9 /* InputConversationTableViewCell.xib */,
+				7491D2CA2523AAE1008FACB9 /* MessageConversationTableViewCell.swift */,
 				74FB99D8250D39F000478286 /* Assets.xcassets */,
+				74446EB62523BEBF006EB0E8 /* ColorExtension.swift */,
+				74309ABE25123B52009AF510 /* LogsSwitcher.swift */,
+				74C6DC47251B548B00B64690 /* StringExtension.swift */,
 				74FB99DA250D39F000478286 /* LaunchScreen.storyboard */,
 				74FB99DD250D39F000478286 /* Info.plist */,
+				74FB99CD250D39ED00478286 /* Products */,
 			);
 			path = TinkoffChat;
 			sourceTree = "<group>";
@@ -125,8 +162,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				749C0CF72522201100D1857E /* ConversationViewController.storyboard in Resources */,
 				74FB99DC250D39F000478286 /* LaunchScreen.storyboard in Resources */,
 				74FB99D9250D39F000478286 /* Assets.xcassets in Resources */,
+				749C0CEB252135A700D1857E /* ConversationsListViewController.storyboard in Resources */,
+				749C0CF32521D7C800D1857E /* CustomTableViewCell.xib in Resources */,
+				7491D2C52523727F008FACB9 /* InputConversationTableViewCell.xib in Resources */,
 				74FB99D7250D39ED00478286 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +179,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				749C0CF525221D9A00D1857E /* ConversationViewController.swift in Sources */,
+				7491D2CB2523AAE1008FACB9 /* MessageConversationTableViewCell.swift in Sources */,
+				749C0CF22521D7C800D1857E /* CustomTableViewCell.swift in Sources */,
+				74A0FBE3252DE115005E9392 /* RootViewController.swift in Sources */,
+				74C6DC48251B548B00B64690 /* StringExtension.swift in Sources */,
+				749C0CE725212D7C00D1857E /* ConversationsListViewController.swift in Sources */,
 				74FB99D4250D39ED00478286 /* ViewController.swift in Sources */,
+				7491D2C42523727F008FACB9 /* InputConversationTableViewCell.swift in Sources */,
 				74309ABF25123B52009AF510 /* LogsSwitcher.swift in Sources */,
 				74FB99D0250D39ED00478286 /* AppDelegate.swift in Sources */,
+				74446EB72523BEBF006EB0E8 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,13 +334,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2NR48U86L7;
 				INFOPLIST_FILE = TinkoffChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff1.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -303,13 +353,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2NR48U86L7;
 				INFOPLIST_FILE = TinkoffChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff1.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -10,7 +10,7 @@ import Foundation
 
 class LogsSwitcher {
     
-    static var state = true
+    static var state = false
     
     static func switchState(switchOn: Bool){
         self.state = switchOn
