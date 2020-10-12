@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController,ThemeManagerProtocol{
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
         
         //Frame из выбранного в сториборд устройстве
-        print(editButton.frame)
+//        print(editButton.frame)
     }
     
     @objc func closeTapped(){
@@ -115,7 +115,7 @@ class ProfileViewController: UIViewController,ThemeManagerProtocol{
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
 
         //Frame из симулятора
-        print(editButton.frame)
+//        print(editButton.frame)
     }
     
     override func viewWillLayoutSubviews() {

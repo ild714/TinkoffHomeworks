@@ -97,10 +97,6 @@ class ThemeManager {
     }
     
     private static func changeThemeToNight(viewController:ConversationsListViewController) {
-        viewController.backgroundColorOfOnlineCell = UIColor.black
-        viewController.backgroundColorOfofflineCell = UIColor.black
-        viewController.messageLabelColor = .gray
-        viewController.nameLabelColor = .white
         viewController.navigationController?.navigationBar.barTintColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
         viewController.settingButton.tintColor = settingColor
         viewController.profileButton.tintColor = profileColor
@@ -111,10 +107,6 @@ class ThemeManager {
     }
     
     private static func changeThemeToClassic(viewController:ConversationsListViewController){
-        viewController.backgroundColorOfOnlineCell = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
-        viewController.backgroundColorOfofflineCell = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        viewController.messageLabelColor = .gray
-        viewController.nameLabelColor = .black
         viewController.navigationController?.navigationBar.barTintColor = .white
         viewController.settingButton.tintColor = .black
         viewController.profileButton.tintColor = .black

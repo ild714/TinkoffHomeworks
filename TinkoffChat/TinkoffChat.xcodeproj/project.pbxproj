@@ -20,6 +20,7 @@
 		749C0CF72522201100D1857E /* ConversationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749C0CF62522201100D1857E /* ConversationViewController.storyboard */; };
 		74A0FBDF252DC484005E9392 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0FBDE252DC484005E9392 /* ThemeManager.swift */; };
 		74A0FBE1252DC92E005E9392 /* SortedPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0FBE0252DC92E005E9392 /* SortedPeople.swift */; };
+		74A0FBE3252DE115005E9392 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0FBE2252DE115005E9392 /* RootViewController.swift */; };
 		74C6DC48251B548B00B64690 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6DC47251B548B00B64690 /* StringExtension.swift */; };
 		74FB99D0250D39ED00478286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FB99CF250D39ED00478286 /* AppDelegate.swift */; };
 		74FB99D4250D39ED00478286 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FB99D3250D39ED00478286 /* ProfileViewController.swift */; };
@@ -42,6 +43,7 @@
 		749C0CF62522201100D1857E /* ConversationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationViewController.storyboard; sourceTree = "<group>"; };
 		74A0FBDE252DC484005E9392 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		74A0FBE0252DC92E005E9392 /* SortedPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedPeople.swift; sourceTree = "<group>"; };
+		74A0FBE2252DE115005E9392 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		74C6DC47251B548B00B64690 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		74FB99CC250D39ED00478286 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74FB99CF250D39ED00478286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			children = (
 				74A0FBE0252DC92E005E9392 /* SortedPeople.swift */,
 				74A0FBDE252DC484005E9392 /* ThemeManager.swift */,
+				74A0FBE2252DE115005E9392 /* RootViewController.swift */,
 				74FB99CF250D39ED00478286 /* AppDelegate.swift */,
 				74FB99D3250D39ED00478286 /* ProfileViewController.swift */,
 				74FB99D5250D39ED00478286 /* ProfileViewController.storyboard */,
@@ -185,6 +188,7 @@
 				749C0CF525221D9A00D1857E /* ConversationViewController.swift in Sources */,
 				7491D2CB2523AAE1008FACB9 /* MessageConversationTableViewCell.swift in Sources */,
 				749C0CF22521D7C800D1857E /* CustomTableViewCell.swift in Sources */,
+				74A0FBE3252DE115005E9392 /* RootViewController.swift in Sources */,
 				74C6DC48251B548B00B64690 /* StringExtension.swift in Sources */,
 				749C0CE725212D7C00D1857E /* ConversationsListViewController.swift in Sources */,
 				74FB99D4250D39ED00478286 /* ProfileViewController.swift in Sources */,

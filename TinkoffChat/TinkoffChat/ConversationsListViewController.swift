@@ -15,7 +15,6 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
             defaults.set(closure().typeOfTheme.rawValue,forKey: "ThemeType")
         }
     
-    
     //2
 //    func themeViewController(closure: (ThemeType) -> (), typeOfTheme: ThemeType) {
 //        closure(typeOfTheme)
@@ -26,21 +25,10 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
     
     //2
 //    let defaults = UserDefaults.standard
-    
-    var backgroundColorOfOnlineCell = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
-    var backgroundColorOfofflineCell = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-    var nameLabelColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-    var messageLabelColor = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
 
     var safeArea: UILayoutGuide!
     let headerTitles = ["Online","History"]
     var peopleSort: [TypesMessages] = []
-    
-    
-    static func storyboardInstance() -> ConversationsListViewController? {
-        let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: String(describing: self)) as? ConversationsListViewController
-    }
     
     private let cellIdentifier = String(describing: CustomTableViewCell.self)
     
@@ -110,9 +98,9 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
-        ThemeManager.changeThemeForFooter(viewController: self,view: view)
+    static func storyboardInstance() -> ConversationsListViewController? {
+        let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: String(describing: self)) as? ConversationsListViewController
     }
 }
 
@@ -135,15 +123,7 @@ extension ConversationsListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(with:.init(name: person.name, message: person.message, date: person.date, isOnline: person.isOnline, hasUnreadMessages: person.hasUnreadMessages))
-            
-        if type.type == "online" {
-            cell.backgroundColor = backgroundColorOfOnlineCell
-            cell.nameLabel.textColor = nameLabelColor
-            cell.messageLabel.textColor = messageLabelColor
-        } else {
-            cell.backgroundColor = backgroundColorOfofflineCell
-        }
+        cell.configure(with:.init(name: person.name, message: person.message, date: person.date, isOnline: person.isOnline, hasUnreadMessages: person.hasUnreadMessages,typeOfMessage: type.type))
         
         return cell
     }
@@ -155,6 +135,10 @@ extension ConversationsListViewController: UITableViewDataSource {
         return nil
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        ThemeManager.changeThemeForFooter(viewController: self,view: view)
+    }
     
 }
 
