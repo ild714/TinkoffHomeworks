@@ -68,16 +68,16 @@ class ThemeManager {
     }
     
     private static func changeThemeForProfileViewController(viewController:ProfileViewController){
-                viewController.view.backgroundColor = .black
-                viewController.editButton.backgroundColor = .black
-                viewController.editButton.setTitleColor(.white, for: .normal)
-                viewController.fullName.backgroundColor = .black
-                viewController.fullName.textColor = .white
-                viewController.labelDetails.backgroundColor = .black
-                viewController.labelDetails.textColor = .white
-                viewController.saveButton.backgroundColor = UIColor(red: 0.106, green: 0.106, blue: 0.106, alpha: 1)
-                viewController.saveButton.setTitleColor(.white, for: .normal)
-                viewController.navigationController?.navigationBar.barTintColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
+        viewController.view.backgroundColor = .black
+        
+        viewController.nameTextField.backgroundColor = .lightGray
+        viewController.detailsTextView.backgroundColor = .lightGray
+        viewController.detailsTextView.layer.cornerRadius = 5
+        viewController.nameTextField.textColor = .black
+        viewController.detailsTextView.textColor = .black
+        viewController.editButton.backgroundColor = .black
+        viewController.editButton.setTitleColor(.none, for: .normal)
+        viewController.navigationController?.navigationBar.barTintColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
     }
     
     static func changeThemeForFooter(viewController:ConversationsListViewController,view: UIView){

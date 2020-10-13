@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTV-EY-3DR">
-                                <rect key="frame" x="10" y="63" width="300" height="57"/>
+                                <rect key="frame" x="10" y="60" width="300" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="800" constant="300" id="ATl-NB-edq"/>
                                     <constraint firstAttribute="width" secondItem="aTV-EY-3DR" secondAttribute="height" multiplier="100:19" id="ULN-wS-F6g"/>
@@ -29,11 +29,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Tw-oO-uw9">
-                                <rect key="frame" x="127.5" y="140" width="65" height="41"/>
+                                <rect key="frame" x="120" y="137" width="80" height="50.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0Tw-oO-uw9" secondAttribute="height" multiplier="65:41" id="Xtu-BV-QvM"/>
                                     <constraint firstAttribute="height" priority="800" constant="24" id="h7F-Js-Hnt"/>
-                                    <constraint firstAttribute="width" priority="800" constant="65" id="mZB-ZA-lwD"/>
+                                    <constraint firstAttribute="width" priority="850" constant="80" id="mZB-ZA-lwD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                 <state key="normal" title="Classic">
@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIf-Rx-3PU">
-                                <rect key="frame" x="10" y="379" width="300" height="57"/>
+                                <rect key="frame" x="10" y="385.5" width="300" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="800" constant="57" id="XJa-Ko-0N0"/>
                                     <constraint firstAttribute="width" secondItem="JIf-Rx-3PU" secondAttribute="height" multiplier="100:19" id="ckg-MH-IPr"/>
@@ -56,7 +56,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaG-9z-AwR">
-                                <rect key="frame" x="10" y="221" width="300" height="57"/>
+                                <rect key="frame" x="10" y="227.5" width="300" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="800" constant="57" id="0dT-LW-TzC"/>
                                     <constraint firstAttribute="width" priority="800" constant="300" id="imx-fB-HeJ"/>
@@ -67,7 +67,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whT-VY-sVg">
-                                <rect key="frame" x="127.5" y="298" width="65" height="41"/>
+                                <rect key="frame" x="127.5" y="304.5" width="65" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="800" constant="65" id="2gV-El-FOu"/>
                                     <constraint firstAttribute="width" secondItem="whT-VY-sVg" secondAttribute="height" multiplier="65:41" id="sas-Hg-RpX"/>
@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfC-5b-ivR">
-                                <rect key="frame" x="127.5" y="456" width="65" height="41"/>
+                                <rect key="frame" x="127.5" y="462.5" width="65" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="800" constant="41" id="1oA-HD-wd8"/>
                                     <constraint firstAttribute="width" priority="800" constant="65" id="6xm-AJ-Jty"/>
@@ -113,7 +113,7 @@
                             <constraint firstItem="hWS-zF-fwU" firstAttribute="bottom" secondItem="bfC-5b-ivR" secondAttribute="bottom" priority="800" constant="71" id="ewA-Jk-mWJ"/>
                             <constraint firstItem="bfC-5b-ivR" firstAttribute="top" secondItem="JIf-Rx-3PU" secondAttribute="bottom" constant="20" id="j9e-UG-6fH"/>
                             <constraint firstItem="0Tw-oO-uw9" firstAttribute="centerX" secondItem="DvO-vm-5kb" secondAttribute="centerX" id="p3x-BI-EVL"/>
-                            <constraint firstItem="aTV-EY-3DR" firstAttribute="top" relation="lessThanOrEqual" secondItem="hWS-zF-fwU" secondAttribute="top" constant="162" id="rL0-D7-EjV"/>
+                            <constraint firstItem="aTV-EY-3DR" firstAttribute="top" secondItem="hWS-zF-fwU" secondAttribute="top" constant="60" id="rL0-D7-EjV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hWS-zF-fwU"/>
                     </view>
