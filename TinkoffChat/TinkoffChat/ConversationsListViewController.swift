@@ -8,24 +8,11 @@
 
 import UIKit
 
-class ConversationsListViewController: UIViewController,ThemePickerDelegate,ThemeManagerProtocol {
-    //1
-        func themeViewController(closure: () -> ThemesViewController) {
-            let defaults = UserDefaults.standard
-            defaults.set(closure().typeOfTheme.rawValue,forKey: "ThemeType")
-        }
-    
-    
-    //2
-//    func themeViewController(closure: (ThemeType) -> (), typeOfTheme: ThemeType) {
-//        closure(typeOfTheme)
-//    }
-    
+class ConversationsListViewController: UIViewController {
+
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var profileButton: UIBarButtonItem!
     
-    //2
-//    let defaults = UserDefaults.standard
     
     var backgroundColorOfOnlineCell = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
     var backgroundColorOfofflineCell = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
@@ -65,7 +52,6 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
         peopleSort = SortedPeople.returnPeople()
         
         title = "Tinkoff Chat"
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     
@@ -80,12 +66,8 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
     
     @IBAction func showThemesSettings(_ sender: Any) {
         if let themesViewController = ThemesViewController.storyboardInstance(){
-            themesViewController.delegate = self
-//            2
-//            themesViewController.closure = {(typeTheme: ThemeType) in
-//                self.defaults.set(typeTheme.rawValue,forKey: "ThemeType")
-//            }
-        navigationController?.pushViewController(themesViewController, animated: true)
+            
+            navigationController?.pushViewController(themesViewController, animated: true)
         }
     }
     
@@ -102,8 +84,7 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        ThemeManager.changeTheme(viewController: self)
+         ThemeManager().changeTheme(viewController: self, type: Theme.current)
         
         if let index = self.tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: index, animated: true)
@@ -112,7 +93,7 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
-        ThemeManager.changeThemeForFooter(viewController: self,view: view)
+        ThemeManager().changeThemeForFooter(viewController: self,view: view)
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageConversationTableViewCell: UITableViewCell,ConfigurableView,ThemeManagerProtocol {
+class MessageConversationTableViewCell: UITableViewCell,ConfigurableView {
 
     let messageLabel = UILabel()
     let bubbleBackgroundView = UIView()
@@ -31,7 +31,6 @@ class MessageConversationTableViewCell: UITableViewCell,ConfigurableView,ThemeMa
         bubbleBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
-//
         let constraints = [
             messageLabel.topAnchor.constraint(equalTo: topAnchor,constant: 20),
             messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -20),
@@ -46,14 +45,13 @@ class MessageConversationTableViewCell: UITableViewCell,ConfigurableView,ThemeMa
         NSLayoutConstraint.activate(constraints)
         
         leadingConstraints = messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 25)
-        
         trailingConstraints = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -25)
         
     }
     
     func configure(with model: MessageCellModel) {
         
-        ThemeManager.changeTheme(viewController: self, model: model)
+        ThemeManager().changeTheme(viewController: self, type: Theme.current, model: model)
         
         self.messageLabel.text = model.text
         

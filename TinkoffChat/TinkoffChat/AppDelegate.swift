@@ -24,8 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LogsSwitcher.printLogs(function: #function, additionText: "Application moved from <Not running> to <Inactive>: ")
         
-        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        Theme.current.apply()
         
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         if let conversationsListViewController = ConversationsListViewController.storyboardInstance(){
             
             let storyboard: UIStoryboard = UIStoryboard(name: "ConversationsListViewController", bundle: nil)

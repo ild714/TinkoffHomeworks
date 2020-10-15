@@ -67,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				74FB99CE250D39ED00478286 /* TinkoffChat */,
+				AD4DA7101401535E65FF7215 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +106,13 @@
 				74FB99CD250D39ED00478286 /* Products */,
 			);
 			path = TinkoffChat;
+			sourceTree = "<group>";
+		};
+		AD4DA7101401535E65FF7215 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,7 +353,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff1.TinkoffChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -364,7 +372,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff1.TinkoffChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

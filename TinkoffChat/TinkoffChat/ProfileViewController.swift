@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController,ThemeManagerProtocol{
+class ProfileViewController: UIViewController{
     
     let imageViewColor = UIColor(red: 0.894, green: 0.908, blue: 0.17, alpha: 1).cgColor
     let editButtonColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1)
@@ -106,8 +106,7 @@ class ProfileViewController: UIViewController,ThemeManagerProtocol{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
-        
-        ThemeManager.changeTheme(viewController: self)
+         ThemeManager().changeTheme(viewController: self, type: Theme.current)
     }
     
     override func viewDidAppear(_ animated: Bool) {
