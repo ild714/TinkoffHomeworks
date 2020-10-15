@@ -22,7 +22,7 @@ class ConversationViewController: UIViewController {
     
     private let cellIdentifier = String(describing: MessageConversationTableViewCell.self)
     
-    private lazy var tableView : UITableView = {
+    lazy var tableView : UITableView = {
         let tableView = UITableView(frame: view.frame, style: .plain)
         tableView.register(MessageConversationTableViewCell.self, forCellReuseIdentifier:cellIdentifier)
         tableView.separatorStyle = .none
@@ -62,7 +62,13 @@ class ConversationViewController: UIViewController {
         let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: String(describing: self)) as? ConversationViewController
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        ThemeManager().changeTheme(viewController: self, type: Theme.current)
+    }
+    
 }
 
 extension ConversationViewController: UITableViewDataSource{

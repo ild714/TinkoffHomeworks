@@ -23,8 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LogsSwitcher.printLogs(function: #function, additionText: "Application moved from <Not running> to <Inactive>: ")
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        
+
         RootViewController.createRootViewController(window:window)
         
         return true

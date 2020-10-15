@@ -40,19 +40,19 @@ class MessageConversationTableViewCell: UITableViewCell,ConfigurableView {
             bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor,constant: 10),
             bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor,constant: -10),
             bubbleBackgroundView.bottomAnchor.constraint(equalTo:  messageLabel.bottomAnchor,constant: 10)
-            
         ]
         
         NSLayoutConstraint.activate(constraints)
         
         leadingConstraints = messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 25)
-        
         trailingConstraints = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -25)
         
     }
     
     func configure(with model: MessageCellModel) {
-        bubbleBackgroundView.backgroundColor = model.isIncoming ? UIColor(red: 223, green: 223, blue: 223) : UIColor(red: 220, green: 247, blue: 197)
+        
+        ThemeManager().changeTheme(viewController: self, type: Theme.current, model: model)
+        
         self.messageLabel.text = model.text
         
         if model.isIncoming {
