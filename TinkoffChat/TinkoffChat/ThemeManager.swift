@@ -58,12 +58,11 @@ class ThemeManager:ThemePickerDelegate {
     
     private func changeThemeVCNight(viewController:ThemesViewController){
         viewController.navigationController?.navigationBar.barTintColor = .lightGray
-        viewController.navigationController?.navigationBar.tintColor = .white
     }
     
     private func changeThemeVCDay(viewController:ThemesViewController){
         viewController.navigationController?.navigationBar.barTintColor = .white
-        viewController.navigationController?.navigationBar.tintColor = .black
+        viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     }
     
     private func changeThemeForMessageConversationTableViewCellNight(cell:MessageConversationTableViewCell,model:MessageCellModel?){
