@@ -8,9 +8,8 @@
 
 import UIKit
 
-
 protocol ThemePickerDelegate: class {
-    func changeTheme<T>(viewController:T,type: Theme,model: MessageCellModel?)
+    func changeTheme<T>(viewController: T, type: Theme, model: Message?)
 }
 
 class ThemesViewController: UIViewController {

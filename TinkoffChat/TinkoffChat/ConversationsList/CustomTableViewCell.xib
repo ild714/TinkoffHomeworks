@@ -18,23 +18,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vU8-WS-jLA">
-                        <rect key="frame" x="14" y="12" width="334" height="66"/>
+                        <rect key="frame" x="25" y="12" width="323" height="66"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="zDh-uB-09b">
-                                <rect key="frame" x="0.0" y="9" width="48" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="4Ye-yd-d5r"/>
-                                    <constraint firstAttribute="width" constant="48" id="RQk-gj-77O"/>
-                                </constraints>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="WNM-qe-zQ1">
-                                <rect key="frame" x="58" y="0.5" width="276" height="65"/>
+                                <rect key="frame" x="0.0" y="0.0" width="323" height="66"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="0Gi-JG-3Zg">
-                                        <rect key="frame" x="0.0" y="0.0" width="276" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="19"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="245" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTZ-YF-FLh">
-                                                <rect key="frame" x="0.0" y="0.0" width="177" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="139.5" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="WTZ-YF-FLh" secondAttribute="height" multiplier="59:8" id="7vm-IL-9eF"/>
                                                     <constraint firstAttribute="width" priority="500" constant="177" id="lw9-l6-V0A"/>
@@ -44,16 +37,16 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" verticalHuggingPriority="245" horizontalCompressionResistancePriority="748" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="YSN-dR-GIT">
-                                                <rect key="frame" x="207" y="0.0" width="69" height="24"/>
+                                                <rect key="frame" x="169.5" y="0.0" width="153.5" height="19"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5r-mT-bin">
-                                                        <rect key="frame" x="0.0" y="0.0" width="54" height="24"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138.5" height="19"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="icons8-more-than-24" translatesAutoresizingMaskIntoConstraints="NO" id="Ox8-wi-mor">
-                                                        <rect key="frame" x="56" y="0.0" width="13" height="24"/>
+                                                        <rect key="frame" x="140.5" y="0.0" width="13" height="19"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="13" id="ijU-hj-z5F"/>
@@ -63,8 +56,8 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh8-oT-nUM">
-                                        <rect key="frame" x="0.0" y="30" width="276" height="35"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh8-oT-nUM">
+                                        <rect key="frame" x="0.0" y="25" width="323" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sh8-oT-nUM" secondAttribute="height" multiplier="283:36" id="2OD-1l-XSQ"/>
                                             <constraint firstAttribute="height" priority="500" constant="36" id="XEt-fr-rZ9"/>
@@ -82,14 +75,13 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="vU8-WS-jLA" secondAttribute="trailing" constant="8" id="62q-hL-PA0"/>
                     <constraint firstItem="vU8-WS-jLA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="7oh-3k-Odv"/>
-                    <constraint firstItem="vU8-WS-jLA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="bBL-wm-pQm"/>
+                    <constraint firstItem="vU8-WS-jLA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="bBL-wm-pQm"/>
                     <constraint firstAttribute="bottom" secondItem="vU8-WS-jLA" secondAttribute="bottom" constant="11" id="fYE-XV-PjE"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateLabel" destination="V5r-mT-bin" id="DDn-K3-Gda"/>
-                <outlet property="imageIcon" destination="zDh-uB-09b" id="heb-sl-lOa"/>
                 <outlet property="messageLabel" destination="sh8-oT-nUM" id="kKq-Pf-2Ov"/>
                 <outlet property="nameLabel" destination="WTZ-YF-FLh" id="wws-sI-BXg"/>
             </connections>
@@ -98,6 +90,5 @@
     </objects>
     <resources>
         <image name="icons8-more-than-24" width="24" height="24"/>
-        <image name="person" width="200" height="200"/>
     </resources>
 </document>

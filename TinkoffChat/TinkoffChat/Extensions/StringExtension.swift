@@ -9,12 +9,12 @@
 import Foundation
 
 extension Optional where Wrapped == String {
-    func initialsGetter() -> String{
+    func initialsGetter() -> String {
         if let text = self {
             
             let formatter = PersonNameComponentsFormatter()
             
-            if let components = formatter.personNameComponents(from: text){
+            if let components = formatter.personNameComponents(from: text) {
                 formatter.style = .abbreviated
                 return formatter.string(from: components)
             } else {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController{
+class ProfileViewController: UIViewController {
     
     let imageViewColor = UIColor(red: 0.894, green: 0.908, blue: 0.17, alpha: 1).cgColor
     let editButtonColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1)
@@ -16,13 +16,13 @@ class ProfileViewController: UIViewController{
     let initialsLabelColor = UIColor(red: 0.212, green: 0.216, blue: 0.22, alpha: 1)
     
     @IBOutlet weak var imageView: UIImageView! {
-        didSet{
+        didSet {
             imageView.layer.cornerRadius = imageView.bounds.width / 2.0
             imageView.layer.backgroundColor = imageViewColor
         }
     }
     @IBOutlet weak var editButton: UIButton! {
-        didSet{
+        didSet {
             editButton.setTitleColor(editButtonColor, for: .normal)
         }
     }
@@ -35,13 +35,13 @@ class ProfileViewController: UIViewController{
         }
     }
     @IBOutlet weak var saveButton: UIButton! {
-        didSet{
+        didSet {
             saveButton.layer.backgroundColor = saveButtonColor
             saveButton.layer.cornerRadius = 14
         }
     }
     @IBOutlet weak var initialsLabel: UILabel! {
-        didSet{
+        didSet {
             initialsLabel.textColor = initialsLabelColor
             let text: String? = "Marina Dudarenko"
             initialsLabel.text = text.initialsGetter()
@@ -67,7 +67,7 @@ class ProfileViewController: UIViewController{
 //        print(editButton.frame)
     }
     
-    @objc func closeTapped(){
+    @objc func closeTapped() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -80,22 +80,22 @@ class ProfileViewController: UIViewController{
         
         alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
 
-            if UIImagePickerController.isSourceTypeAvailable(.camera){
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 picker.sourceType = UIImagePickerController.SourceType.camera
-                self.present(picker,animated: true)
+                self.present(picker, animated: true)
             } else {
                 print("Run on real device")
             }
         }))
         
         alertController.addAction(UIAlertAction(title: "Photo Gallery", style: .default, handler: { (_) in
-            self.present(picker,animated: true)
+            self.present(picker, animated: true)
             
         }))
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        present(alertController,animated: true)
+        present(alertController, animated: true)
     }
     
     static func storyboardInstance() -> ProfileViewController? {
@@ -139,9 +139,9 @@ class ProfileViewController: UIViewController{
 }
 
 // MARK: - UIViewController delegate methods
-extension ProfileViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else {return}
         
         self.initialsLabel.text = ""
@@ -151,4 +151,3 @@ extension ProfileViewController : UIImagePickerControllerDelegate & UINavigation
     }
     
 }
-

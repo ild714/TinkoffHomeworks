@@ -12,11 +12,11 @@ class LogsSwitcher {
     
     static var state = false
     
-    static func switchState(switchOn: Bool){
+    static func switchState(switchOn: Bool) {
         self.state = switchOn
     }
     
-    static func printLogs(function:String, additionText: String = ""){
+    static func printLogs(function: String, additionText: String = "") {
         if state == true {
             print("\(additionText)\(function)")
         }
