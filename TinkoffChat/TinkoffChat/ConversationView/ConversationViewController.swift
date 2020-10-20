@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseFirestore
 
-class ConversationViewController: UIViewController{
+class ConversationViewController: UIViewController {
     
     var channelId: String = ""
     var messages = [Message]()
