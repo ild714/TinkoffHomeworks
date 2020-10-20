@@ -35,7 +35,6 @@ class MessagesFireStore {
         }
     }
     
-    
     func addMessage(message: String, id: String) {
         var ref: DocumentReference?
         ref = db.collection("channels").document(id).collection("messages").addDocument(data: [

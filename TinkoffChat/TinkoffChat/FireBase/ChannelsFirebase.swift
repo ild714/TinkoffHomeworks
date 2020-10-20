@@ -35,25 +35,6 @@ class ChannelsFireStore {
         }
     }
     
-//    func loadChannels(completed: @escaping () -> Void) {
-//        db.collection("channels").addSnapshotListener { (dataSnapshot, error) in
-//            guard error == nil else {
-//                print(error?.localizedDescription ?? "error")
-//                return completed()
-//            }
-//            self.channelsArray = []
-//            if let dataSnapshot = dataSnapshot {
-//                for document in dataSnapshot.documents {
-//                    let chanel = Channel(dictionary: document.data(), id: document.documentID)
-//                    if let chanel = chanel {
-//                        self.channelsArray.append(chanel)
-//                    }
-//                }
-//            }
-//            completed()
-//        }
-//    }
-    
     func addChannel(name: String) {
         var ref: DocumentReference?
         ref = db.collection("channels").addDocument(data: [
@@ -66,6 +47,5 @@ class ChannelsFireStore {
                 print("Document added with Id: \(ref!.documentID)")
             }
         }
-//        completed()
     }
 }

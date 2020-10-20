@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class ConversationsListViewController: UIViewController {
     
-    var nameLabelColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    var nameLabelColor = UIColor(red: 0,green: 0, blue: 0, alpha: 1)
     var messageLabelColor = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
 
     var db: Firestore!

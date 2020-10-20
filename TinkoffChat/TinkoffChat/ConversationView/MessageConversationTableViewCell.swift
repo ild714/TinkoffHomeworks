@@ -18,6 +18,8 @@ class MessageConversationTableViewCell: UITableViewCell {
     var trailingConstraints: NSLayoutConstraint!
     var leadingConstraintsName: NSLayoutConstraint!
     var trailingConstraintsName: NSLayoutConstraint!
+    var topToNameMessage: NSLayoutConstraint!
+    var topToMessageLabel: NSLayoutConstraint!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -47,7 +49,6 @@ class MessageConversationTableViewCell: UITableViewCell {
             
             bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -10),
             bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 10),
-            bubbleBackgroundView.topAnchor.constraint(equalTo: nameMessage.topAnchor, constant: -10),
             bubbleBackgroundView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 10)
         ]
         
@@ -57,6 +58,8 @@ class MessageConversationTableViewCell: UITableViewCell {
         trailingConstraints = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
         leadingConstraintsName = nameMessage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25)
         trailingConstraintsName = nameMessage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
+        topToNameMessage = bubbleBackgroundView.topAnchor.constraint(equalTo: nameMessage.topAnchor, constant: -10)
+        topToMessageLabel = bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -10)
     }
     
     func configure(with model: Message) {
@@ -69,8 +72,10 @@ class MessageConversationTableViewCell: UITableViewCell {
             leadingConstraints.isActive = false
             trailingConstraintsName.isActive = true
             leadingConstraintsName.isActive = false
-            nameMessage.text = model.senderName
+            nameMessage.isHidden = true
+            topToMessageLabel.isActive = true
         } else {
+            topToNameMessage.isActive = true
             nameMessage.text = model.senderName
             leadingConstraints.isActive = true
             trailingConstraints.isActive = false
