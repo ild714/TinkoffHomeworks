@@ -40,11 +40,10 @@ class MessageConversationTableViewCell: UITableViewCell {
         
         let constraints = [
             nameMessage.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-//            nameMessage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-//            nameMessage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
+
             messageLabel.topAnchor.constraint(equalTo: nameMessage.bottomAnchor, constant: 10),
             messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: (self.bounds.width / 4.0) * 2.5),
+            messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: (self.frame.size.width / 4) * 2.5 ),
             messageLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 160),
             
             bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -10),
@@ -55,6 +54,7 @@ class MessageConversationTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(constraints)
         
         leadingConstraints = messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25)
+        
         trailingConstraints = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
         leadingConstraintsName = nameMessage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25)
         trailingConstraintsName = nameMessage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)

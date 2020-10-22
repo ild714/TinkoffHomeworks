@@ -108,6 +108,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		74171F1725406C6C00746E9E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74FB99D8250D39F000478286 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		74171F1825406C9000746E9E /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				74FB99DD250D39F000478286 /* Info.plist */,
+				745FA314253F65F900443306 /* GoogleService-Info.plist */,
+				745FA312253F65E300443306 /* Podfile.lock */,
+				74FB99DA250D39F000478286 /* LaunchScreen.storyboard */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		7449624B253DDDFC006D894D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,7 +136,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		7449624C253DDE16006D894D /* ConversationsList */ = {
+		7449624C253DDE16006D894D /* ConversationsListViewController */ = {
 			isa = PBXGroup;
 			children = (
 				749C0CE625212D7C00D1857E /* ConversationsListViewController.swift */,
@@ -125,16 +144,16 @@
 				749C0CF02521D7C800D1857E /* CustomTableViewCell.swift */,
 				749C0CF12521D7C800D1857E /* CustomTableViewCell.xib */,
 			);
-			path = ConversationsList;
+			path = ConversationsListViewController;
 			sourceTree = "<group>";
 		};
-		7449624D253DDE64006D894D /* ProfileView */ = {
+		7449624D253DDE64006D894D /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
 				74FB99D3250D39ED00478286 /* ProfileViewController.swift */,
 				74FB99D5250D39ED00478286 /* ProfileViewController.storyboard */,
 			);
-			path = ProfileView;
+			path = ProfileViewController;
 			sourceTree = "<group>";
 		};
 		7449624E253DDE7A006D894D /* FireBase */ = {
@@ -146,27 +165,27 @@
 			path = FireBase;
 			sourceTree = "<group>";
 		};
-		7449624F253DDE94006D894D /* ThemesView */ = {
+		7449624F253DDE94006D894D /* ThemesViewController */ = {
 			isa = PBXGroup;
 			children = (
 				74842040252B2EC900C2278D /* ThemesViewController.swift */,
 				7484203E252B2EA100C2278D /* ThemesViewController.storyboard */,
 				74A0FBDE252DC484005E9392 /* ThemeManager.swift */,
 			);
-			path = ThemesView;
+			path = ThemesViewController;
 			sourceTree = "<group>";
 		};
-		74496250253DDEC4006D894D /* ConversationView */ = {
+		74496250253DDEC4006D894D /* ConversationViewController */ = {
 			isa = PBXGroup;
 			children = (
 				749C0CF425221D9A00D1857E /* ConversationViewController.swift */,
 				749C0CF62522201100D1857E /* ConversationViewController.storyboard */,
 				7491D2CA2523AAE1008FACB9 /* MessageConversationTableViewCell.swift */,
 			);
-			path = ConversationView;
+			path = ConversationViewController;
 			sourceTree = "<group>";
 		};
-		74496251253DDF06006D894D /* Configurations */ = {
+		74496251253DDF06006D894D /* LiveSycleConfigs */ = {
 			isa = PBXGroup;
 			children = (
 				74A0FBE2252DE115005E9392 /* RootViewController.swift */,
@@ -174,7 +193,7 @@
 				74309ABE25123B52009AF510 /* LogsSwitcher.swift */,
 				74496253253E1E5D006D894D /* MessagesIdCreator.swift */,
 			);
-			path = Configurations;
+			path = LiveSycleConfigs;
 			sourceTree = "<group>";
 		};
 		74496252253DDF27006D894D /* Extensions */ = {
@@ -207,19 +226,16 @@
 		74FB99CE250D39ED00478286 /* TinkoffChat */ = {
 			isa = PBXGroup;
 			children = (
+				74171F1825406C9000746E9E /* Configs */,
+				74171F1725406C6C00746E9E /* Resources */,
 				74496252253DDF27006D894D /* Extensions */,
-				74496251253DDF06006D894D /* Configurations */,
-				74496250253DDEC4006D894D /* ConversationView */,
-				7449624F253DDE94006D894D /* ThemesView */,
+				74496251253DDF06006D894D /* LiveSycleConfigs */,
+				74496250253DDEC4006D894D /* ConversationViewController */,
+				7449624F253DDE94006D894D /* ThemesViewController */,
 				7449624E253DDE7A006D894D /* FireBase */,
-				7449624D253DDE64006D894D /* ProfileView */,
-				7449624C253DDE16006D894D /* ConversationsList */,
+				7449624D253DDE64006D894D /* ProfileViewController */,
+				7449624C253DDE16006D894D /* ConversationsListViewController */,
 				7449624B253DDDFC006D894D /* Models */,
-				74FB99D8250D39F000478286 /* Assets.xcassets */,
-				74FB99DA250D39F000478286 /* LaunchScreen.storyboard */,
-				745FA312253F65E300443306 /* Podfile.lock */,
-				745FA314253F65F900443306 /* GoogleService-Info.plist */,
-				74FB99DD250D39F000478286 /* Info.plist */,
 				74FB99CD250D39ED00478286 /* Products */,
 			);
 			path = TinkoffChat;
@@ -538,7 +554,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
-				INFOPLIST_FILE = TinkoffChat/Info.plist;
+				INFOPLIST_FILE = TinkoffChat/Configs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -559,7 +575,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=*]" = "";
-				INFOPLIST_FILE = TinkoffChat/Info.plist;
+				INFOPLIST_FILE = TinkoffChat/Configs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
