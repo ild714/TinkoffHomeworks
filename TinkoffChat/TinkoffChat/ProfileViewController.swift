@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController,ThemeManagerProtocol{
     let saveButtonColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1).cgColor
     let initialsLabelColor = UIColor(red: 0.212, green: 0.216, blue: 0.22, alpha: 1)
     var placeholder = "Write profile infromations"
+    var gcdDataManager: GCDDataManager?
+    
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
@@ -77,20 +79,16 @@ class ProfileViewController: UIViewController,ThemeManagerProtocol{
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func GCDButtonTapped(_ sender: Any) {
+    @IBAction func saveDataProfile(_ sender: UIButton) {
         emptyPhoto()
-        let gcdReader = GCDDataManager()
-        gcdReader.writeData(viewController: self)
-    }
-    
-    @IBAction func OperationButtonTapped(_ sender: Any) {
-        emptyPhoto()
-        let operations = OperationDataManager()
-        if let writeOPeration: ProfileWriteDataOperation = operations.returnOperation(typeOfoperation: .writeOperation) {
-            let operationQueue = OperationQueue.main
-            writeOPeration.viewController = self
-            operationQueue.addOperation(writeOPeration)
+        if sender == self.gcdButton {
+            gcdDataManager = GCDDataManager(dataForProfile: [ProfileDetail(fileDirectory: "name", previous: "", typeDocument: .txt, text: self.nameTextField.text ?? "", image: nil),ProfileDetail(fileDirectory: "details", previous: "", typeDocument: .txt, text: self.detailsTextView.text, image: nil),ProfileDetail(fileDirectory: "image", previous: "", typeDocument: .photo,image: self.imageView.image ?? UIImage()),ProfileDetail(fileDirectory: "initials", previous: "", typeDocument: .txt, text: self.initialsLabel.text, image: nil)])
+            gcdDataManager?.delegate = self
+            gcdDataManager?.writeData()
+        } else {
+            print("error with getting data from UI")
         }
+        
     }
     
     static func storyboardInstance() -> ProfileViewController? {
@@ -106,19 +104,9 @@ class ProfileViewController: UIViewController,ThemeManagerProtocol{
         
         detailsTextView.textColor = .black
         
-        //1
-        if let gcd: GCDDataManager = MultithreadingDataManager.multithreadPicker(type: .gcd){
-            gcd.readData(viewController: self)
-        }
-        
-        //2
-//        if let operations: OperationDataManager = MultithreadingDataManager.multithreadPicker(type: .operation){
-//            if let readOPeration: ProfileReadDataOperation = operations.returnOperation(typeOfoperation: .readOperation) {
-//                let operationQueue = OperationQueue.main
-//                readOPeration.viewController = self
-//                operationQueue.addOperation(readOPeration)
-//            }
-//        }
+        gcdDataManager = GCDDataManager(dataForProfile: [ProfileDetail(fileDirectory: "name", previous: "", typeDocument: .txt, text: self.nameTextField.text ?? "", image: nil),ProfileDetail(fileDirectory: "details", previous: "", typeDocument: .txt, text: self.detailsTextView.text, image: nil),ProfileDetail(fileDirectory: "image", previous: "", typeDocument: .photo,image: self.imageView.image ?? UIImage()),ProfileDetail(fileDirectory: "initials", previous: "", typeDocument: .txt, text: self.initialsLabel.text, image: nil)])
+        gcdDataManager?.delegate = self
+        gcdDataManager?.readData()
     }
     
     func emptyPhoto(){
@@ -183,3 +171,74 @@ extension ProfileViewController: UITextFieldDelegate{
     }
 }
 
+// MARK: - UIMultithreadingDelegate
+extension ProfileViewController: UIMultithreadingDelegate{
+    func getSavingData(data: [ProfileDetail]?) {
+        if let data = data {
+            for detail in data {
+                if detail.fileDirectory == "name"{
+                    self.nameTextField.text = detail.text
+                } else if detail.fileDirectory == "details"{
+                    self.detailsTextView.text = detail.text
+                } else if detail.fileDirectory == "image"{
+                    self.imageView.image = detail.image
+                } else {
+                    self.initialsLabel.text = detail.text
+                }
+            }
+        } else {
+            let ac = UIAlertController(title: "Ошибка", message: "Не удалось сохранить данные или извлечь данные", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(ac,animated: true)
+        }
+    }
+    
+    func savingSuccess() {
+        let ac = UIAlertController(title: "Данные сохранены", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(ac,animated: true)
+    }
+    
+    func enableTexts() {
+        self.nameTextField.isEnabled = false
+        self.detailsTextView.isEditable = false
+    }
+    
+    func errorWithSavingFile() {
+        let ac = UIAlertController(title: "Ошибка", message: "Не удалось сохранить данные", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        ac.addAction(UIAlertAction(title: "Повтороить", style: .default, handler: {_ in
+            self.saveDataProfile(self.gcdButton)
+        }))
+        
+        self.present(ac,animated: true)
+    }
+    
+    func errorWithReadingFile() {
+        let ac = UIAlertController(title: "Ошибка", message: "Не удалось считать данные с диска", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(ac,animated: true)
+    }
+    
+    func stopActivityIndicator() {
+        self.activityIndicator.isHidden = true
+        self.activityIndicator.stopAnimating()
+    }
+    
+    func startActivityIndicator() {
+        self.activityIndicator.startAnimating()
+        self.activityIndicator.isHidden = false
+    }
+    
+    func disableButtons() {
+        self.gcdButton.isEnabled = false
+        self.operationButton.isEnabled = false
+    }
+    
+    func enableButtons(){
+        self.gcdButton.isEnabled = true
+        self.operationButton.isEnabled = true
+    }
+}

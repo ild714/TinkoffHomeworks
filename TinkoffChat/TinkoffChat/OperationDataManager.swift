@@ -62,9 +62,9 @@ class ProfileWriteDataOperation: Operation{
                     isProfileChanged = false
                 } else {
                     
-                    DispatchQueue.main.async {
-                        ActivityIndicator.startAnimation(viewController: viewController)
-                    }
+//                    DispatchQueue.main.async {
+//                        ActivityIndicator.startAnimation(viewController: viewController)
+//                    }
                     
                     if namePrevious != text{
                         try text?.write(to: fileName, atomically: false, encoding: .utf8)
@@ -93,11 +93,11 @@ class ProfileWriteDataOperation: Operation{
             }
             catch{
                 DispatchQueue.main.async {
-                    let ac = UIAlertController(title: "Данные сохранены", message: "Не удалось сохранить данные", preferredStyle: .alert)
-                    ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    ac.addAction(UIAlertAction(title: "Повтороить", style: .default, handler: viewController.GCDButtonTapped(_:)))
-                    
-                    viewController.present(ac,animated: true)
+//                    let ac = UIAlertController(title: "Данные сохранены", message: "Не удалось сохранить данные", preferredStyle: .alert)
+//                    ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                    ac.addAction(UIAlertAction(title: "Повтороить", style: .default, handler: viewController.GCDButtonTapped(_:)))
+//
+//                    viewController.present(ac,animated: true)
                 }
                 print("error with saving file")
             }
@@ -112,7 +112,7 @@ class ProfileWriteDataOperation: Operation{
             
             viewController.nameTextField.isEnabled = false
             viewController.detailsTextView.isEditable = false
-            ActivityIndicator.stopAnimation(viewController: viewController)
+//            ActivityIndicator.stopAnimation(viewController: viewController)
             
             if isProfileChanged == false{
                 return
@@ -187,7 +187,7 @@ class ProfileReadDataOperation: Operation{
     }
 }
 
-class OperationDataManager:Multithreading{
+class OperationDataManager{
     
     enum Operation{
         case readOperation

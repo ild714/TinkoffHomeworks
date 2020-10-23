@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		74309ABF25123B52009AF510 /* LogsSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74309ABE25123B52009AF510 /* LogsSwitcher.swift */; };
 		74446EB72523BEBF006EB0E8 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74446EB62523BEBF006EB0E8 /* ColorExtension.swift */; };
+		74498FBF25430465007838E6 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74498FBE25430465007838E6 /* ProfileData.swift */; };
 		7484203F252B2EA100C2278D /* ThemesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7484203E252B2EA100C2278D /* ThemesViewController.storyboard */; };
 		74842041252B2EC900C2278D /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74842040252B2EC900C2278D /* ThemesViewController.swift */; };
 		7491D2CB2523AAE1008FACB9 /* MessageConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7491D2CA2523AAE1008FACB9 /* MessageConversationTableViewCell.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		74309ABE25123B52009AF510 /* LogsSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsSwitcher.swift; sourceTree = "<group>"; };
 		74446EB62523BEBF006EB0E8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		74498FBE25430465007838E6 /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
 		7484203E252B2EA100C2278D /* ThemesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThemesViewController.storyboard; sourceTree = "<group>"; };
 		74842040252B2EC900C2278D /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		7491D2CA2523AAE1008FACB9 /* MessageConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConversationTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				74A0FBDE252DC484005E9392 /* ThemeManager.swift */,
 				74A0FBE2252DE115005E9392 /* RootViewController.swift */,
 				74FB99CF250D39ED00478286 /* AppDelegate.swift */,
+				74498FBE25430465007838E6 /* ProfileData.swift */,
 				74FB99D3250D39ED00478286 /* ProfileViewController.swift */,
 				74FB99D5250D39ED00478286 /* ProfileViewController.storyboard */,
 				74C6A32A2534C60A00CF4051 /* GCDDataManager.swift */,
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74498FBF25430465007838E6 /* ProfileData.swift in Sources */,
 				749C0CF525221D9A00D1857E /* ConversationViewController.swift in Sources */,
 				7491D2CB2523AAE1008FACB9 /* MessageConversationTableViewCell.swift in Sources */,
 				749C0CF22521D7C800D1857E /* CustomTableViewCell.swift in Sources */,

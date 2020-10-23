@@ -35,7 +35,6 @@ class CustomTableViewCell: UITableViewCell,ConfigurableView {
     }
     @IBOutlet weak var imageIcon: UIImageView!{
         didSet{
-            print(imageIcon.bounds.width / 2.0)
             imageIcon.layer.cornerRadius = imageIcon.bounds.width / 2.0
         }
     }
