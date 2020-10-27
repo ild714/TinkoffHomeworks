@@ -35,7 +35,6 @@ class CustomTableViewCell: UITableViewCell,ConfigurableView {
     }
     @IBOutlet weak var imageIcon: UIImageView!{
         didSet{
-            print(imageIcon.bounds.width / 2.0)
             imageIcon.layer.cornerRadius = imageIcon.bounds.width / 2.0
         }
     }
@@ -51,8 +50,10 @@ class CustomTableViewCell: UITableViewCell,ConfigurableView {
             } else {
                 self.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
             }
+            self.nameLabel.textColor = .black
         } else {
             self.backgroundColor = .black
+            self.nameLabel.textColor = .white
         }
         
         let dayAgo = Calendar.current.date(byAdding: .day, value: -1, to: Date())

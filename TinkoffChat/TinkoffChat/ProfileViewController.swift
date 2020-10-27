@@ -98,6 +98,7 @@ class ProfileViewController: UIViewController{
         present(alertController,animated: true)
     }
     
+    
     static func storyboardInstance() -> ProfileViewController? {
         let storyboard = UIStoryboard(name: "ProfileViewController", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: String(describing: self)) as? ProfileViewController
@@ -106,7 +107,7 @@ class ProfileViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
-         ThemeManager().changeTheme(viewController: self, type: Theme.current)
+        ThemeManager().changeTheme(viewController: self, type: Theme.current)
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -16,7 +16,16 @@ class ThemeManager:ThemePickerDelegate {
     
     var settingColor = UIColor.white
     var profileColor = UIColor.white
-//    static let defaults = UserDefaults.standard
+    var themePicker: UIColor{
+        get{
+            if Theme.current == .day || Theme.current == .classic{
+                return .white
+            } else if Theme.current == .night{
+                return .black
+            }
+            return .white
+        }
+    }
     
     func changeTheme<T>(viewController:T,type: Theme,model: MessageCellModel? = .init(text: "", isIncoming: false)){
         switch viewController {
@@ -57,7 +66,7 @@ class ThemeManager:ThemePickerDelegate {
     }
     
     private func changeThemeVCNight(viewController:ThemesViewController){
-        viewController.navigationController?.navigationBar.barTintColor = .lightGray
+        viewController.navigationController?.navigationBar.barTintColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
     }
     
     private func changeThemeVCDay(viewController:ThemesViewController){
@@ -91,12 +100,12 @@ class ThemeManager:ThemePickerDelegate {
     }
 
     private func changeThemeForProfileViewController(viewController:ProfileViewController){
-                viewController.view.backgroundColor = .black
-                viewController.editButton.backgroundColor = .black
+                viewController.view.backgroundColor = themePicker
+                viewController.editButton.backgroundColor = themePicker
                 viewController.editButton.setTitleColor(.white, for: .normal)
-                viewController.fullName.backgroundColor = .black
+                viewController.fullName.backgroundColor = themePicker
                 viewController.fullName.textColor = .white
-                viewController.labelDetails.backgroundColor = .black
+                viewController.labelDetails.backgroundColor = themePicker
                 viewController.labelDetails.textColor = .white
                 viewController.saveButton.backgroundColor = UIColor(red: 0.106, green: 0.106, blue: 0.106, alpha: 1)
                 viewController.saveButton.setTitleColor(.white, for: .normal)
@@ -106,7 +115,7 @@ class ThemeManager:ThemePickerDelegate {
     func changeThemeForFooter(viewController:ConversationsListViewController,view: UIView){
         
         if  Theme.current == .night{
-            view.tintColor = UIColor.black
+            view.tintColor = themePicker
             if let header = view as? UITableViewHeaderFooterView{
                 header.textLabel?.textColor = UIColor.white
             }
@@ -119,32 +128,28 @@ class ThemeManager:ThemePickerDelegate {
     }
 
 
-    func changeThemeToNight(viewController:ConversationsListViewController) {
-//        viewController.backgroundColorOfOnlineCell = UIColor.black
-//        viewController.backgroundColorOfofflineCell = UIColor.black
+    func changeThemeToNight(viewController: ConversationsListViewController) {
         viewController.messageLabelColor = .gray
         viewController.nameLabelColor = .white
         viewController.navigationController?.navigationBar.barTintColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
         viewController.settingButton.tintColor = settingColor
         viewController.profileButton.tintColor = profileColor
-         viewController.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        viewController.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         viewController.view.backgroundColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
-        viewController.tableView.backgroundColor = .black
+        viewController.tableView.backgroundColor = themePicker
     }
 
     func changeThemeToClassic(viewController:ConversationsListViewController){
-//        viewController.backgroundColorOfOnlineCell = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
-//        viewController.backgroundColorOfofflineCell = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         viewController.messageLabelColor = .gray
         viewController.nameLabelColor = .black
-        viewController.navigationController?.navigationBar.barTintColor = .white
+        viewController.navigationController?.navigationBar.barTintColor = themePicker
         viewController.settingButton.tintColor = .black
         viewController.profileButton.tintColor = .black
         viewController.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        viewController.view.backgroundColor = .white
-        viewController.tableView.backgroundColor = .white
+        viewController.view.backgroundColor = themePicker
+        viewController.tableView.backgroundColor = themePicker
     }
     
 }
@@ -167,8 +172,8 @@ enum Theme:Int {
     func apply(){
         if self == .night{
             UserDefaults.standard.set(self.rawValue,forKey: Keys.selectedTheme)
-            UserDefaults.standard.synchronize()
-            UITableViewCell.appearance().backgroundColor = .black
+//            UserDefaults.standard.synchronize()
+//            UITableViewCell.appearance().backgroundColor = .black
             
 //            UINavigationBar.appearance().barTintColor = .lightGray
 //            UINavigationBar.appearance().tintColor = .white
@@ -177,9 +182,9 @@ enum Theme:Int {
             
         } else if self == .day || self == .classic {
             UserDefaults.standard.set(self.rawValue,forKey: Keys.selectedTheme)
-            UserDefaults.standard.synchronize()
+//            UserDefaults.standard.synchronize()
 //            UINavigationBar.appearance().barStyle = .default
-            UITableViewCell.appearance().backgroundColor = .white
+//            UITableViewCell.appearance().backgroundColor = .white
         }
     }
 }
