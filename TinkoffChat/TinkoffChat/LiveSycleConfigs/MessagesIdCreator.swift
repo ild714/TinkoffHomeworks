@@ -15,17 +15,10 @@ class MessagesIdCreator {
         if let id = id {
             return id
         } else {
-            print("incorrect id")
-            return ""
-        }
-    }
-    
-    static func createId() {
-        if UserDefaults.standard.value(forKey: "firstLauching") == nil {
             let userIdForMessages = UUID().uuidString
             UserDefaults.standard.set(false, forKey: "firstLauching")
             UserDefaults.standard.set(userIdForMessages, forKey: "userIdForMessages")
-        } 
+            return userIdForMessages
+        }
     }
-    
 }

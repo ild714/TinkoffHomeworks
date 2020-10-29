@@ -11,7 +11,7 @@ import Firebase
 
 struct Channel {
     let name: String
-    let lastMessage: String
+    let lastMessage: String?
     let lastActivity: Date?
     let identifier: String
     

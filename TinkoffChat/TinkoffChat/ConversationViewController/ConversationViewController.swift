@@ -11,10 +11,13 @@ import FirebaseFirestore
 
 class ConversationViewController: UIViewController {
     
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    var coreDataStack: CoreDataStack?
     var channelId: String = ""
     var messages = [Message]()
     var titleName: String?
     var db: Firestore!
+    var channels = [Channel]()
     
     private let cellIdentifier = String(describing: MessageConversationTableViewCell.self)
     
@@ -36,10 +39,20 @@ class ConversationViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
+    lazy var messagesFireStore: MessagesFireStore = {
+        let channelFireSore = MessagesFireStore()
+        channelFireSore.delegate = self
+        return channelFireSore
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         setupTableView()
+        
+        if let appDelegate = appDelegate {
+            self.coreDataStack = appDelegate.coreDataStack
+        }
         
         navigationItem.largeTitleDisplayMode = .never
         
@@ -49,8 +62,7 @@ class ConversationViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plus"), style: .plain, target: self, action: #selector(newMessage))
         
-        db = Firestore.firestore()
-        db.collection("channels").document(channelId).collection("messages").addSnapshotListener { (dataSnapshot, error) in
+        messagesFireStore.db.collection("channels").document(channelId).collection("messages").addSnapshotListener { (dataSnapshot, error) in
             guard error == nil else {
                 print(error?.localizedDescription ?? "error")
                 return
@@ -70,14 +82,14 @@ class ConversationViewController: UIViewController {
     
     @objc func newMessage() {
         let alertController = UIAlertController(title: "Add message", message: nil, preferredStyle: .alert)
-        let db = MessagesFireStore()
+
         alertController.addTextField { (textField) in
             textField.placeholder = "Message"
         }
         alertController.addAction(UIAlertAction(title: "Create", style: .default, handler: {[weak self] (_) in
             if let text = alertController.textFields?.first?.text {
                 if let channelId = self?.channelId {
-                    db.addMessage(message: text, id: channelId)
+                    self?.messagesFireStore.addMessage(message: text, id: channelId)
                 }
             }
         }))
@@ -93,15 +105,29 @@ class ConversationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "com.app.serial3")
+        
+        group.enter()
         let db = MessagesFireStore()
         db.loadInitiaData(channelId: channelId) {[weak self] in
             self?.messages = db.messagesArray
             self?.tableView.reloadData()
+            group.leave()
         }
+        
+        group.notify(queue: queue) {
+            if let coreDataStack = self.coreDataStack {
+                let messagesRequest = MessagesRequest(coreDataStack: coreDataStack)
+                messagesRequest.makeRequest(messages: self.messages, id: self.channelId, channels: self.channels)
+            }
+        }
+        
         ThemeManager().changeTheme(viewController: self, type: Theme.current)
     }
 }
 
+// MARK: - ConversationViewController delegate methods
 extension ConversationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
@@ -119,4 +145,14 @@ extension ConversationViewController: UITableViewDataSource {
         return UITableViewCell()
     }
     
+}
+
+// MARK: - ConversationViewController delegate methods
+extension ConversationViewController: ChannnelFireStoreError {
+    func showError() {
+        let alertController = UIAlertController(title: "Error", message: "Empty message", preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(alertController, animated: true)
+    }
 }

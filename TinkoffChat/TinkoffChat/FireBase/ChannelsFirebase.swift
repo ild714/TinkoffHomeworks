@@ -9,9 +9,15 @@
 import Foundation
 import Firebase
 
+protocol ChannnelFireStoreError: class {
+    func showError()
+}
+
 class ChannelsFireStore {
     var db: Firestore!
     var channelsArray = [Channel]()
+    
+    weak var delegate: ChannnelFireStoreError?
     
     init() {
         db = Firestore.firestore()
@@ -37,14 +43,18 @@ class ChannelsFireStore {
     
     func addChannel(name: String) {
         var ref: DocumentReference?
-        ref = db.collection("channels").addDocument(data: [
-            "name": name,
-            "lastMessage": "No recent message"
-        ]) { error in
-            if let error = error {
-                print("Error adding document: \(error)")
-            } else {
-                print("Document added with Id: \(ref!.documentID)")
+        if name == ""{
+            delegate?.showError()
+        } else {
+            ref = db.collection("channels").addDocument(data: [
+                "name": name,
+                "lastMessage": "No recent message"
+            ]) { error in
+                if let error = error {
+                    print("Error adding document: \(error)")
+                } else {
+                    print("Document added with Id: \(ref?.documentID ?? "No reference to message")")
+                }
             }
         }
     }

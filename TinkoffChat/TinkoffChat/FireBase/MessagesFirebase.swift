@@ -13,6 +13,8 @@ class MessagesFireStore {
     var db: Firestore!
     var messagesArray = [Message]()
     
+    weak var delegate: ChannnelFireStoreError?
+    
     init() {
         db = Firestore.firestore()
     }
@@ -37,16 +39,20 @@ class MessagesFireStore {
     
     func addMessage(message: String, id: String) {
         var ref: DocumentReference?
-        ref = db.collection("channels").document(id).collection("messages").addDocument(data: [
-            "content": message,
-            "created": Timestamp(date: Date()),
-            "senderName": "Ildar",
-            "senderId": MessagesIdCreator.idUser
-        ]) { error in
-            if let error = error {
-                print("Error adding document: \(error)")
-            } else {
-                print("Document added with Id: \(ref!.documentID)")
+        if message == ""{
+            delegate?.showError()
+        } else {
+            ref = db.collection("channels").document(id).collection("messages").addDocument(data: [
+                "content": message,
+                "created": Timestamp(date: Date()),
+                "senderName": "Ildar",
+                "senderId": MessagesIdCreator.idUser
+            ]) { error in
+                if let error = error {
+                    print("Error adding document: \(error)")
+                } else {
+                    print("Document added with Id: \(ref?.documentID ?? "No reference to message")")
+                }
             }
         }
     }

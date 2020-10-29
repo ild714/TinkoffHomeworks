@@ -8,13 +8,14 @@
 
 import UIKit
 import FirebaseFirestore
+import CoreData
 
 class ConversationsListViewController: UIViewController {
-    
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    var coreDataStack: CoreDataStack?
     var nameLabelColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     var messageLabelColor = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
 
-    var db: Firestore!
     var safeArea: UILayoutGuide!
     var channels: [Channel] = []
     
@@ -33,8 +34,18 @@ class ConversationsListViewController: UIViewController {
         return tableView
     }()
     
+    lazy var channelFireStore: ChannelsFireStore = {
+        let channelFireSore = ChannelsFireStore()
+        channelFireSore.delegate = self
+        return channelFireSore
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let appDelegate = appDelegate {
+            self.coreDataStack = appDelegate.coreDataStack
+        }
         
         safeArea = view.layoutMarginsGuide
         setupTableView()
@@ -47,8 +58,7 @@ class ConversationsListViewController: UIViewController {
         let buttonChannels = UIBarButtonItem(image: UIImage(named: "plus"), style: .plain, target: self, action: #selector(newChannels))
         navigationItem.setRightBarButtonItems([buttonChannels, buttonProfile], animated: true)
         
-        db = Firestore.firestore()
-        db.collection("channels").addSnapshotListener { (dataSnapshot, error) in
+        channelFireStore.db.collection("channels").addSnapshotListener { (dataSnapshot, error) in
             guard error == nil else {
                 print(error?.localizedDescription ?? "error")
                 return
@@ -98,9 +108,24 @@ class ConversationsListViewController: UIViewController {
         ThemeManager().changeTheme(viewController: self, type: Theme.current)
         
         let db = ChannelsFireStore()
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "com.app.serial1")
+        
+        group.enter()
         db.loadInitiaData {[weak self] in
             self?.channels = db.channelsArray
             self?.tableView.reloadData()
+//            print("1")
+            group.leave()
+        }
+        
+        group.notify(queue: queue) {
+//            print("2")
+            if let coreDataStack = self.coreDataStack {
+                let chanelsAndMessages = ChannelRequest(coreDataStack: coreDataStack)
+                chanelsAndMessages.makeRequest(channels: self.channels )
+            }
         }
         
         if let index = self.tableView.indexPathForSelectedRow {
@@ -115,13 +140,13 @@ class ConversationsListViewController: UIViewController {
     
     @objc func newChannels() {
         let alertController = UIAlertController(title: "Add channel", message: nil, preferredStyle: .alert)
-        let db = ChannelsFireStore()
+
         alertController.addTextField { (textField) in
             textField.placeholder = "Channel"
         }
-        alertController.addAction(UIAlertAction(title: "Create", style: .default, handler: {_ in
+        alertController.addAction(UIAlertAction(title: "Create", style: .default, handler: {[weak self] _ in
             if let text = alertController.textFields?.first?.text {
-                db.addChannel(name: text)
+                self?.channelFireStore.addChannel(name: text)
             }
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -156,7 +181,18 @@ extension ConversationsListViewController: UITableViewDelegate {
         if let conversationViewController = ConversationViewController.storyboardInstance() {
             conversationViewController.titleName = channel.name
             conversationViewController.channelId = channel.identifier
+            conversationViewController.channels = self.channels
             navigationController?.pushViewController(conversationViewController, animated: true)
         }
+    }
+}
+
+// MARK: - ChannnelFireStoreError delegate methods
+extension ConversationsListViewController: ChannnelFireStoreError {
+    func showError() {
+        let alertController = UIAlertController(title: "Error", message: "Empty channel", preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(alertController, animated: true)
     }
 }

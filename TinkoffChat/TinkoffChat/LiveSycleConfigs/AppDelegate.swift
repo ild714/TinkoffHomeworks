@@ -13,6 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var coreDataStack = CoreDataStack()
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         LogsSwitcher.switchState(switchOn: false)
@@ -25,6 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LogsSwitcher.printLogs(function: #function, additionText: "Application moved from <Not running> to <Inactive>: ")
         
         FirebaseApp.configure()
+        coreDataStack.didUpdateDataBase = { stack in
+            stack.printDataBaseInfo()
+        }
+        self.coreDataStack.enableObservers()
         
         RootViewController.createRootViewController(window: window)
         
@@ -33,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         LogsSwitcher.printLogs(function: #function, additionText: "Application moved from <Inactive> -> <Active>: ")
-        MessagesIdCreator.createId()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
