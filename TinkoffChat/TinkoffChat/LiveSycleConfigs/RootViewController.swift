@@ -17,6 +17,7 @@ class RootViewController {
                 navigationController.viewControllers = [conversationsListViewController]
                 window?.rootViewController = navigationController
                 window?.makeKeyAndVisible()
+                
             }
         }
     }

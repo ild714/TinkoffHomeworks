@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		198176B795DABEABE4C50411 /* Pods_TinkoffChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CFB71624039AF39EEEB4C88 /* Pods_TinkoffChat.framework */; };
+		740DEA02254DDF89009D4008 /* ChannelsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740DEA01254DDF89009D4008 /* ChannelsRequest.swift */; };
 		74309ABF25123B52009AF510 /* LogsSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74309ABE25123B52009AF510 /* LogsSwitcher.swift */; };
 		74446EB72523BEBF006EB0E8 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74446EB62523BEBF006EB0E8 /* ColorExtension.swift */; };
 		74496248253DDBF4006D894D /* MessagesFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74496247253DDBF4006D894D /* MessagesFirebase.swift */; };
@@ -33,8 +34,6 @@
 		74B4D21E25483E110068D2FF /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74B4D21C25483E110068D2FF /* Chat.xcdatamodeld */; };
 		74B4D2202548412E0068D2FF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B4D21F2548412E0068D2FF /* CoreDataStack.swift */; };
 		74B4D2222548442F0068D2FF /* ObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B4D2212548442F0068D2FF /* ObjectExtensions.swift */; };
-		74B4D22425485C990068D2FF /* ChannelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B4D22325485C990068D2FF /* ChannelRequest.swift */; };
-		74B4D226254A2AC90068D2FF /* MessagesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B4D225254A2AC90068D2FF /* MessagesRequest.swift */; };
 		74B4D22C254B0F7D0068D2FF /* ChannelDb+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B4D228254B0F7C0068D2FF /* ChannelDb+CoreDataProperties.swift */; };
 		74B4D22D254B0F7D0068D2FF /* MessageDb+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B4D229254B0F7C0068D2FF /* MessageDb+CoreDataClass.swift */; };
 		74B4D22E254B0F7D0068D2FF /* MessageDb+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B4D22A254B0F7D0068D2FF /* MessageDb+CoreDataProperties.swift */; };
@@ -64,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		2CFB71624039AF39EEEB4C88 /* Pods_TinkoffChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinkoffChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		740DEA01254DDF89009D4008 /* ChannelsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsRequest.swift; sourceTree = "<group>"; };
 		74309ABE25123B52009AF510 /* LogsSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsSwitcher.swift; sourceTree = "<group>"; };
 		74446EB62523BEBF006EB0E8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		74496247253DDBF4006D894D /* MessagesFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesFirebase.swift; sourceTree = "<group>"; };
@@ -87,8 +87,6 @@
 		74B4D21D25483E110068D2FF /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
 		74B4D21F2548412E0068D2FF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		74B4D2212548442F0068D2FF /* ObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectExtensions.swift; sourceTree = "<group>"; };
-		74B4D22325485C990068D2FF /* ChannelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequest.swift; sourceTree = "<group>"; };
-		74B4D225254A2AC90068D2FF /* MessagesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRequest.swift; sourceTree = "<group>"; };
 		74B4D228254B0F7C0068D2FF /* ChannelDb+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChannelDb+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		74B4D229254B0F7C0068D2FF /* MessageDb+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MessageDb+CoreDataClass.swift"; sourceTree = "<group>"; };
 		74B4D22A254B0F7D0068D2FF /* MessageDb+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MessageDb+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -230,8 +228,7 @@
 				74B4D21C25483E110068D2FF /* Chat.xcdatamodeld */,
 				74B4D21F2548412E0068D2FF /* CoreDataStack.swift */,
 				74B4D2212548442F0068D2FF /* ObjectExtensions.swift */,
-				74B4D22325485C990068D2FF /* ChannelRequest.swift */,
-				74B4D225254A2AC90068D2FF /* MessagesRequest.swift */,
+				740DEA01254DDF89009D4008 /* ChannelsRequest.swift */,
 			);
 			path = CoreDatas;
 			sourceTree = "<group>";
@@ -445,14 +442,13 @@
 				74B4D2202548412E0068D2FF /* CoreDataStack.swift in Sources */,
 				74309ABF25123B52009AF510 /* LogsSwitcher.swift in Sources */,
 				74B4D21E25483E110068D2FF /* Chat.xcdatamodeld in Sources */,
-				74B4D226254A2AC90068D2FF /* MessagesRequest.swift in Sources */,
 				74496248253DDBF4006D894D /* MessagesFirebase.swift in Sources */,
 				74A0FBE1252DC92E005E9392 /* Channels.swift in Sources */,
 				74842041252B2EC900C2278D /* ThemesViewController.swift in Sources */,
-				74B4D22425485C990068D2FF /* ChannelRequest.swift in Sources */,
 				74FB99D0250D39ED00478286 /* AppDelegate.swift in Sources */,
 				74446EB72523BEBF006EB0E8 /* ColorExtension.swift in Sources */,
 				74B4D2222548442F0068D2FF /* ObjectExtensions.swift in Sources */,
+				740DEA02254DDF89009D4008 /* ChannelsRequest.swift in Sources */,
 				74B4D22E254B0F7D0068D2FF /* MessageDb+CoreDataProperties.swift in Sources */,
 				7449624A253DDD37006D894D /* Message.swift in Sources */,
 				74A0FBDF252DC484005E9392 /* ThemeManager.swift in Sources */,

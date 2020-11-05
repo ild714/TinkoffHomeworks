@@ -13,7 +13,7 @@ class ThemeManager: ThemePickerDelegate {
     var settingColor = UIColor.white
     var profileColor = UIColor.white
     
-    func changeTheme<T>(viewController: T, type: Theme, model: Message? = nil) {
+    func changeTheme<T>(viewController: T, type: Theme, model: MessageDb? = nil) {
         switch viewController {
         case let viewController as ConversationsListViewController:
             if type == .night {
@@ -60,7 +60,7 @@ class ThemeManager: ThemePickerDelegate {
         viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     }
     
-    private func changeThemeForMessageConversationTableViewCellNight(cell: MessageConversationTableViewCell, model: Message?) {
+    private func changeThemeForMessageConversationTableViewCellNight(cell: MessageConversationTableViewCell, model: MessageDb?) {
         cell.messageLabel.textColor = .white
         if let model = model {
             cell.bubbleBackgroundView.backgroundColor = model.senderId == MessagesIdCreator.idUser ?
@@ -70,7 +70,7 @@ class ThemeManager: ThemePickerDelegate {
         }
     }
 
-    private func changeThemeForMessageConversationTableViewCellDay(cell: MessageConversationTableViewCell, model: Message?) {
+    private func changeThemeForMessageConversationTableViewCellDay(cell: MessageConversationTableViewCell, model: MessageDb?) {
         if let model = model {
             cell.bubbleBackgroundView.backgroundColor = model.senderId == MessagesIdCreator.idUser ? UIColor(red: 223, green: 223, blue: 223)
                 :
@@ -79,7 +79,7 @@ class ThemeManager: ThemePickerDelegate {
         }
     }
 
-    private func changeThemeForMessageConversationTableViewCellClassic(cell: MessageConversationTableViewCell, model: Message?) {
+    private func changeThemeForMessageConversationTableViewCellClassic(cell: MessageConversationTableViewCell, model: MessageDb?) {
         if let model = model {
         cell.bubbleBackgroundView.backgroundColor = model.senderId == MessagesIdCreator.idUser ?
             UIColor(red: 223, green: 223, blue: 223)
@@ -122,8 +122,6 @@ class ThemeManager: ThemePickerDelegate {
     }
 
     func changeThemeToNight(viewController: ConversationsListViewController) {
-        viewController.messageLabelColor = .gray
-        viewController.nameLabelColor = .white
         viewController.navigationController?.navigationBar.barTintColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
          viewController.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -132,8 +130,6 @@ class ThemeManager: ThemePickerDelegate {
     }
 
     func changeThemeToClassic(viewController: ConversationsListViewController) {
-        viewController.messageLabelColor = .gray
-        viewController.nameLabelColor = .black
         viewController.navigationController?.navigationBar.barTintColor = .white
         viewController.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
@@ -161,13 +157,13 @@ enum Theme: Int {
     func apply() {
         if self == .night {
             UserDefaults.standard.set(self.rawValue, forKey: Keys.selectedTheme)
-            UserDefaults.standard.synchronize()
-            UITableViewCell.appearance().backgroundColor = .black
+//            UserDefaults.standard.synchronize()
+//            UITableViewCell.appearance().backgroundColor = .black
             
         } else if self == .day || self == .classic {
             UserDefaults.standard.set(self.rawValue, forKey: Keys.selectedTheme)
-            UserDefaults.standard.synchronize()
-            UITableViewCell.appearance().backgroundColor = .white
+//            UserDefaults.standard.synchronize()
+//            UITableViewCell.appearance().backgroundColor = .white
         }
     }
 }

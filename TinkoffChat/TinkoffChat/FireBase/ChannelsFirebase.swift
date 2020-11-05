@@ -58,4 +58,15 @@ class ChannelsFireStore {
             }
         }
     }
+    
+//    func deleteChannel(id: String) {
+//
+//        db.collection("channels").document("\(id)").delete() { err in
+//            if let err = err {
+//                print("Error removing document: \(err)")
+//            } else {
+//                print("Document successfully removed!")
+//            }
+//        }
+//    }
 }

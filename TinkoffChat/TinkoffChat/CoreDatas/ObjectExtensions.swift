@@ -20,8 +20,11 @@ extension ChannelDb {
     
     var about: String {
         let description = "\(String(describing: name))--- Chanel Name\n"
-        let messages = self.messages?.allObjects.compactMap { $0 as? MessageDb}.map {"\t\($0.about)"}.joined(separator: "\n") ?? ""
-        return description + messages 
+        if self.messages != nil {
+            return description + "messages"
+        } else {
+            return description
+        }
     }
 }
 
@@ -35,6 +38,6 @@ extension MessageDb {
     }
     
     var about: String {
-        return self.content
+        return self.content 
     }
 }

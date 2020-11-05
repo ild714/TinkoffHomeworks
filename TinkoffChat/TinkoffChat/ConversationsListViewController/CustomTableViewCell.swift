@@ -19,7 +19,7 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(with model: Channel) {
+    func configure(with model: ChannelDb) {
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         var dateString: String = ""
@@ -33,13 +33,14 @@ class CustomTableViewCell: UITableViewCell {
         }
         
         let dayAgo = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-        if let date = model.lastActivity {
-            if date < dayAgo! {
+        
+        if let lastActivity = model.lastActivity {
+            if lastActivity < dayAgo! {
                 formatter.dateFormat = "d MMM"
-                dateString = formatter.string(from: date)
+                dateString = formatter.string(from: lastActivity)
             } else {
                 formatter.dateFormat = "HH:mm"
-                dateString = formatter.string(from: date)
+                dateString = formatter.string(from: lastActivity)
             }
         }
         

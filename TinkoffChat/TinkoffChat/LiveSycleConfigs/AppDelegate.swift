@@ -13,7 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var coreDataStack = CoreDataStack()
+    var coreData = ModernCoreDataStack()
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         LogsSwitcher.switchState(switchOn: false)
@@ -26,10 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LogsSwitcher.printLogs(function: #function, additionText: "Application moved from <Not running> to <Inactive>: ")
         
         FirebaseApp.configure()
-        coreDataStack.didUpdateDataBase = { stack in
-            stack.printDataBaseInfo()
-        }
-        self.coreDataStack.enableObservers()
+
+//        self.coreData.container.per
         
         RootViewController.createRootViewController(window: window)
         
@@ -56,4 +54,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LogsSwitcher.printLogs(function: #function, additionText: "Application moved from <Background> -> <Suspended> -> <Not running> or <Suspended> -> <Not running>: ")
     }
 
+}
+
+extension AppDelegate {
+    static var shared: AppDelegate? {
+        if let result = UIApplication.shared.delegate as? AppDelegate {
+            return result
+        } else {
+            print("Error with AppDelegate")
+            return nil
+        }
+    }
 }

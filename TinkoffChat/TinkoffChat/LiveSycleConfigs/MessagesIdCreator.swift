@@ -16,7 +16,6 @@ class MessagesIdCreator {
             return id
         } else {
             let userIdForMessages = UUID().uuidString
-            UserDefaults.standard.set(false, forKey: "firstLauching")
             UserDefaults.standard.set(userIdForMessages, forKey: "userIdForMessages")
             return userIdForMessages
         }

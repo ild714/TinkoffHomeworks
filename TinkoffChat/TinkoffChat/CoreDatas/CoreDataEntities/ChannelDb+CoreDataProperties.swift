@@ -11,14 +11,14 @@ import CoreData
 
 extension ChannelDb {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ChannelDb> {
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<ChannelDb> {
         return NSFetchRequest<ChannelDb>(entityName: "ChannelDb")
     }
 
-    @NSManaged public var identifier: String?
-    @NSManaged public var lastActivity: Date
-    @NSManaged public var lastMessage: String
-    @NSManaged public var name: String?
+    @NSManaged public var identifier: String
+    @NSManaged public var lastActivity: Date?
+    @NSManaged public var lastMessage: String?
+    @NSManaged public var name: String
     @NSManaged public var messages: NSSet?
 
 }

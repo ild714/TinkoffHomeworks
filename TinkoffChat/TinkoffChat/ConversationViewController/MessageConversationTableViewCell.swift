@@ -62,12 +62,12 @@ class MessageConversationTableViewCell: UITableViewCell {
         topToMessageLabel = bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -10)
     }
     
-    func configure(with model: Message) {
+    func configure(with model: MessageDb?) {
         
         ThemeManager().changeTheme(viewController: self, type: Theme.current, model: model)
         
-        self.messageLabel.text = model.content
-        if model.senderId == MessagesIdCreator.idUser {
+        self.messageLabel.text = model?.content
+        if model?.senderId == MessagesIdCreator.idUser {
             trailingConstraints.isActive = true
             leadingConstraints.isActive = false
             trailingConstraintsName.isActive = true
@@ -76,7 +76,7 @@ class MessageConversationTableViewCell: UITableViewCell {
             topToMessageLabel.isActive = true
         } else {
             topToNameMessage.isActive = true
-            nameMessage.text = model.senderName
+            nameMessage.text = model?.senderName
             leadingConstraints.isActive = true
             trailingConstraints.isActive = false
             trailingConstraintsName.isActive = false

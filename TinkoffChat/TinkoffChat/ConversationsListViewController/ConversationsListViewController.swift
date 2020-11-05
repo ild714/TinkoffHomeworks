@@ -11,10 +11,7 @@ import FirebaseFirestore
 import CoreData
 
 class ConversationsListViewController: UIViewController {
-    let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    var coreDataStack: CoreDataStack?
-    var nameLabelColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-    var messageLabelColor = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
+    var coreData: ModernCoreDataStack? = AppDelegate.shared?.coreData
 
     var safeArea: UILayoutGuide!
     var channels: [Channel] = []
@@ -40,14 +37,26 @@ class ConversationsListViewController: UIViewController {
         return channelFireSore
     }()
     
+    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<ChannelDb>? = {
+        let context = coreData?.container.viewContext
+        let request = ChannelDb.createFetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        if let context = context {
+            let fetchResult = NSFetchedResultsController(fetchRequest: request,
+                                                         managedObjectContext: context,
+                                                         sectionNameKeyPath: nil,
+                                                         cacheName: nil)
+            fetchResult.delegate = self
+            return fetchResult
+        } else {
+            return nil
+        }
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let appDelegate = appDelegate {
-            self.coreDataStack = appDelegate.coreDataStack
-        }
-        
-        safeArea = view.layoutMarginsGuide
         setupTableView()
         
         title = "Channels"
@@ -71,7 +80,16 @@ class ConversationsListViewController: UIViewController {
                         self.channels.append(chanel)
                     }
                 }
-                self.tableView.reloadData()
+
+                let channelRequest = ChannelsRequest(coreData: self.coreData)
+                channelRequest.saveChannels(channels: self.channels) {
+                    do {
+                        try self.fetchedResultsController?.performFetch()
+                        self.tableView.reloadData()
+                    } catch {
+                        print("Fetch failed")
+                    }
+                }
             }
         }
     }
@@ -96,6 +114,7 @@ class ConversationsListViewController: UIViewController {
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        safeArea = view.layoutMarginsGuide
         
         tableView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -107,24 +126,30 @@ class ConversationsListViewController: UIViewController {
         super.viewWillAppear(true)
         ThemeManager().changeTheme(viewController: self, type: Theme.current)
         
-        let db = ChannelsFireStore()
-        
-        let group = DispatchGroup()
-        let queue = DispatchQueue(label: "com.app.serial1")
-        
-        group.enter()
-        db.loadInitiaData {[weak self] in
-            self?.channels = db.channelsArray
-            self?.tableView.reloadData()
-//            print("1")
-            group.leave()
+        do {
+            try self.fetchedResultsController?.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("Fetch failed")
         }
         
-        group.notify(queue: queue) {
-//            print("2")
-            if let coreDataStack = self.coreDataStack {
-                let chanelsAndMessages = ChannelRequest(coreDataStack: coreDataStack)
-                chanelsAndMessages.makeRequest(channels: self.channels )
+        let db = ChannelsFireStore()
+        let group1 = DispatchGroup()
+        
+        group1.enter()
+        db.loadInitiaData {[weak self] in
+            self?.channels = db.channelsArray
+            group1.leave()
+        }
+        group1.notify(queue: .main) {
+            let channelRequest = ChannelsRequest(coreData: self.coreData)
+            channelRequest.saveChannels(channels: self.channels) {
+               do {
+                    try self.fetchedResultsController?.performFetch()
+                    self.tableView.reloadData()
+                } catch {
+                    print("Fetch failed")
+                }
             }
         }
         
@@ -158,30 +183,53 @@ class ConversationsListViewController: UIViewController {
 extension ConversationsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        channels.count
+        guard let channels = fetchedResultsController?.fetchedObjects else {return 0}
+        print(channels.count)
+        return channels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let channel = channels[indexPath.row]
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CustomTableViewCell else {
             return UITableViewCell()
         }
+        if let channel = fetchedResultsController?.object(at: indexPath) {
+        
         cell.configure(with: channel)
+        }
+        
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // В данном случае происходит удаление каналов, которые не были открыты.
+        // При переходе к сообщениям и последующем удалении канала возникает ошибка. Что может быть причиной данной проблемы? 
+        
+        if editingStyle == .delete {
+            guard let channel = fetchedResultsController?.object(at: indexPath) else { return }
+            if let coreData = coreData {
+                coreData.container.viewContext.delete(channel)
+                if coreData.container.viewContext.hasChanges {
+                    do {
+                        try coreData.container.viewContext.save()
+                    } catch {
+                        print("An error occured while saving: \(error)")
+                    }
+                }
+            }
+
+//            let db = ChannelsFireStore()
+//            db.deleteChannel(id: channel.identifier)
+        }
+    }
 }
 
 // MARK: - ConversationsListViewController delegate methods
 extension ConversationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let channel = channels[indexPath.row]
-        
+        let channel = fetchedResultsController?.object(at: indexPath)
         if let conversationViewController = ConversationViewController.storyboardInstance() {
-            conversationViewController.titleName = channel.name
-            conversationViewController.channelId = channel.identifier
-            conversationViewController.channels = self.channels
+            conversationViewController.titleName = channel?.name
+            conversationViewController.channelId = channel?.identifier ?? ""
             navigationController?.pushViewController(conversationViewController, animated: true)
         }
     }
@@ -194,5 +242,58 @@ extension ConversationsListViewController: ChannnelFireStoreError {
         
         alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         self.present(alertController, animated: true)
+    }
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("\(#function)")
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            print("\(#function) -type: Insert")
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            } else {
+                print("error with indexPath")
+            }
+        case .move:
+            print("\(#function) -type: move")
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            } else {
+                print("error with indexPath")
+            }
+        case .update:
+            print("\(#function) -type: update")
+            if let indexPath = indexPath {
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            } else {
+                print("error with indexPath")
+            }
+        case .delete:
+            print("\(#function) -type: delete")
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            } else {
+                print("error with indexPath")
+            }
+        default:
+           break
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("\(#function)")
+        self.tableView.endUpdates()
     }
 }
