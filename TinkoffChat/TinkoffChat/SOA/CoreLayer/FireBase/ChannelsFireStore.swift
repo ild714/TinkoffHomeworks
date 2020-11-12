@@ -13,9 +13,15 @@ protocol ChannnelFireStoreError: class {
     func showError()
 }
 
-class ChannelsFireStore {
+protocol ChannelsFireStoreProtocolol {
+    var channelsArray: [ChannelData] { get }
+    func loadInitiaData(completed: @escaping () -> Void)
+    func addChannel(name: String)
+}
+
+class ChannelsFireStore: ChannelsFireStoreProtocolol {
     var db: Firestore!
-    var channelsArray = [Channel]()
+    var channelsArray = [ChannelData]()
     
     weak var delegate: ChannnelFireStoreError?
     
@@ -30,7 +36,7 @@ class ChannelsFireStore {
             } else {
                 if let dataSnapshot = dataSnapshot {
                     for document in dataSnapshot.documents {
-                        let chanel = Channel(dictionary: document.data(), id: document.documentID)
+                        let chanel = ChannelData(dictionary: document.data(), id: document.documentID)
                         if let chanel = chanel {
                             self.channelsArray.append(chanel)
                         }

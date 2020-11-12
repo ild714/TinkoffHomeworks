@@ -25,10 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LogsSwitcher.printLogs(function: #function, additionText: "Application moved from <Not running> to <Inactive>: ")
         
-        FirebaseApp.configure()
-
-//        self.coreData.container.per
-        
+        FirebaseApp.configure()        
         RootViewController.createRootViewController(window: window)
         
         return true

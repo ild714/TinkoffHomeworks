@@ -31,7 +31,6 @@ class MessageConversationTableViewCell: UITableViewCell {
         addSubview(bubbleBackgroundView)
         addSubview(nameMessage)
         addSubview(messageLabel)
-//        messageLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         messageLabel.numberOfLines = 0
         
         bubbleBackgroundView.translatesAutoresizingMaskIntoConstraints = false

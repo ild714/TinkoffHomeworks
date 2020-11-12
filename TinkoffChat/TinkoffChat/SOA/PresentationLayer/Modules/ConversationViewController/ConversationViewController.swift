@@ -10,18 +10,14 @@ import UIKit
 import FirebaseFirestore
 import CoreData
 
-// В данном месте возникла проблема fetchedResultsController.
-// При добавлении собщения не просходит сохранения и fetchedResultsController?.fetchedObjects
-// возвращает объекты без последних изменений. После повторного запуска приложения все сообщения появляются.
-// Возник вопрос в чем может быть причина такого поведения в приложении?
-
 class ConversationViewController: UIViewController {
     
-    var coreData = AppDelegate.shared?.coreData
+    var messagesService: (MessagesServiceProtocol & MessagesServiceNetworkProtocol)?
+    var container: NSPersistentContainer?
     var channelId: String = ""
-    var messages = [Message]()
+    var messages = [MessageData]()
     var titleName: String?
-    var db: Firestore!
+    var fetchedResultsController: NSFetchedResultsController<ChannelDb>?
     
     private let cellIdentifier = String(describing: MessageConversationTableViewCell.self)
     
@@ -48,23 +44,6 @@ class ConversationViewController: UIViewController {
         return channelFireSore
     }()
     
-    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<ChannelDb>? = {
-        let context = coreData?.container.viewContext
-        let request = ChannelDb.createFetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "lastActivity", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-        if let context = context {
-            let fetchResult = NSFetchedResultsController(fetchRequest: request,
-                                                         managedObjectContext: context,
-                                                         sectionNameKeyPath: nil,
-                                                         cacheName: nil)
-            fetchResult.delegate = self
-            return fetchResult
-        } else {
-            return nil
-        }
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
@@ -86,16 +65,15 @@ class ConversationViewController: UIViewController {
             if let dataSnapshot = dataSnapshot {
                 self.messages = []
                 for document in dataSnapshot.documents {
-                    let message = Message(dictionary: document.data())
+                    let message = MessageData(dictionary: document.data())
                     if let message = message {
                         self.messages.append(message)
                     }
                 }
-               
-                let channelRequest = ChannelsRequest(coreData: self.coreData)
-                channelRequest.saveMessages(messages: self.messages, id: self.channelId) {
+//                print(self.messages)
+                
+                self.messagesService?.save(messages: self.messages, id: self.channelId) {
                     do {
-                        print(self.messages)
                         try self.fetchedResultsController?.performFetch()
                         self.tableView.reloadData()
                     } catch {
@@ -115,7 +93,8 @@ class ConversationViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Create", style: .default, handler: {[weak self] (_) in
             if let text = alertController.textFields?.first?.text {
                 if let channelId = self?.channelId {
-                    self?.messagesFireStore.addMessage(message: text, id: channelId)
+                    self?.messagesService?.addMessage(message: text, id: channelId)
+//                    self?.messagesFireStore.addMessage(message: text, id: channelId)
                 }
             }
         }))
@@ -131,29 +110,19 @@ class ConversationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        let group = DispatchGroup()
-        let db = MessagesFireStore()
-        
-        group.enter()
-        db.loadInitiaData(channelId: channelId) {[weak self] in
-            self?.messages = db.messagesArray
-            group.leave()
-        }
-        
-        group.notify(queue: .main) {
-            let channelRequest = ChannelsRequest(coreData: self.coreData)
-            channelRequest.saveMessages(messages: self.messages, id: self.channelId) {
-               do {
+        self.messagesService?.load(channelId: self.channelId, completion: { (messages) in
+            self.messagesService?.save(messages: messages, id: self.channelId) {
+                do {
                     try self.fetchedResultsController?.performFetch()
                     self.tableView.reloadData()
                 } catch {
                     print("Fetch failed")
                 }
             }
-        }
+        })
+        
         ThemeManager().changeTheme(viewController: self, type: Theme.current)
     }
-    
 }
 
 // MARK: - ConversationViewController delegate methods
@@ -175,7 +144,6 @@ extension ConversationViewController: UITableViewDataSource {
             for channelFromDb in channels where self.channelId == channelFromDb.identifier {
                 
                 channelFromDb.messages?.sortedArray(using: [NSSortDescriptor(key: "created", ascending: true)])
-                //                        print(channelFromDb.messages?.allObjects[indexPath.row])
                 cell.configure(with: channelFromDb.messages?.allObjects[indexPath.row] as? MessageDb)
             }
             return cell
@@ -197,6 +165,7 @@ extension ConversationViewController: ChannnelFireStoreError {
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
+
 extension ConversationViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         print("\(#function)")

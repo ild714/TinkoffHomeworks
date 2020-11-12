@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-struct Channel {
+struct ChannelData {
     let name: String
     let lastMessage: String?
     let lastActivity: Date?

@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct Message {
+struct MessageData {
     let content: String
     let created: Date
     let senderId: String

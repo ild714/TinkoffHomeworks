@@ -157,13 +157,9 @@ enum Theme: Int {
     func apply() {
         if self == .night {
             UserDefaults.standard.set(self.rawValue, forKey: Keys.selectedTheme)
-//            UserDefaults.standard.synchronize()
-//            UITableViewCell.appearance().backgroundColor = .black
             
         } else if self == .day || self == .classic {
             UserDefaults.standard.set(self.rawValue, forKey: Keys.selectedTheme)
-//            UserDefaults.standard.synchronize()
-//            UITableViewCell.appearance().backgroundColor = .white
         }
     }
 }

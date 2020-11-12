@@ -9,9 +9,15 @@
 import Foundation
 import Firebase
 
-class MessagesFireStore {
+protocol MessagesFireStoreProtocolol {
+    var messagesArray: [MessageData] { get }
+    func loadInitialData(channelId: String, completed: @escaping () -> Void)
+    func addMessage(message: String, id: String)
+}
+
+class MessagesFireStore: MessagesFireStoreProtocolol {
     var db: Firestore!
-    var messagesArray = [Message]()
+    var messagesArray = [MessageData]()
     
     weak var delegate: ChannnelFireStoreError?
     
@@ -19,21 +25,21 @@ class MessagesFireStore {
         db = Firestore.firestore()
     }
     
-    func loadInitiaData(channelId: String, completed: @escaping () -> Void) {
+    func loadInitialData(channelId: String, completed: @escaping () -> Void) {
         db.collection("channels").document(channelId).collection("messages").getDocuments { (dataSnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
                 if let dataSnapshot = dataSnapshot {
                     for document in dataSnapshot.documents {
-                        let message = Message(dictionary: document.data())
+                        let message = MessageData(dictionary: document.data())
                         if let message = message {
                             self.messagesArray.append(message)
                         }
                     }
                 }
+                completed()
             }
-            completed()
         }
     }
     
