@@ -8,12 +8,26 @@
 
 import UIKit
 
-class ThemeManager: ThemePickerDelegate {
+
+protocol ThemeManagerProtocol {
+}
+
+class ThemeManager {
     
-    var settingColor = UIColor.white
-    var profileColor = UIColor.white
+    static var settingColor = UIColor.white
+    static var profileColor = UIColor.white
+    static var themePicker: UIColor{
+        get{
+            if Theme.current == .day || Theme.current == .classic{
+                return .white
+            } else if Theme.current == .night{
+                return .black
+            }
+            return .white
+        }
+    }
     
-    func changeTheme<T>(viewController: T, type: Theme, model: MessageDb? = nil) {
+    static func changeTheme<T>(viewController:T,type: Theme,model: MessageDb? ){
         switch viewController {
         case let viewController as ConversationsListViewController:
             if type == .night {
@@ -51,16 +65,18 @@ class ThemeManager: ThemePickerDelegate {
         type.apply()
     }
     
-    private func changeThemeVCNight(viewController: ThemesViewController) {
-        viewController.navigationController?.navigationBar.barTintColor = .lightGray
+
+    private static func changeThemeVCNight(viewController:ThemesViewController){
+        viewController.navigationController?.navigationBar.barTintColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
     }
     
-    private func changeThemeVCDay(viewController: ThemesViewController) {
+    private static func changeThemeVCDay(viewController:ThemesViewController){
         viewController.navigationController?.navigationBar.barTintColor = .white
         viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     }
     
-    private func changeThemeForMessageConversationTableViewCellNight(cell: MessageConversationTableViewCell, model: MessageDb?) {
+
+    private static func changeThemeForMessageConversationTableViewCellNight(cell:MessageConversationTableViewCell,model:MessageDb?){
         cell.messageLabel.textColor = .white
         if let model = model {
             cell.bubbleBackgroundView.backgroundColor = model.senderId == MessagesIdCreator.idUser ?
@@ -70,47 +86,43 @@ class ThemeManager: ThemePickerDelegate {
         }
     }
 
-    private func changeThemeForMessageConversationTableViewCellDay(cell: MessageConversationTableViewCell, model: MessageDb?) {
-        if let model = model {
-            cell.bubbleBackgroundView.backgroundColor = model.senderId == MessagesIdCreator.idUser ? UIColor(red: 223, green: 223, blue: 223)
-                :
-                UIColor(red: 0.263, green: 0.537, blue: 0.976, alpha: 1)
+    private static func changeThemeForMessageConversationTableViewCellDay(cell:MessageConversationTableViewCell,model:MessageDb?){
+        if let model = model{
+            cell.bubbleBackgroundView.backgroundColor = model.senderId == MessagesIdCreator.idUser ? UIColor(red: 223, green: 223, blue: 223) : UIColor(red: 0.263, green: 0.537, blue: 0.976, alpha: 1)
             cell.messageLabel.textColor = model.senderId == MessagesIdCreator.idUser ? .black : .white
         }
     }
 
-    private func changeThemeForMessageConversationTableViewCellClassic(cell: MessageConversationTableViewCell, model: MessageDb?) {
-        if let model = model {
-        cell.bubbleBackgroundView.backgroundColor = model.senderId == MessagesIdCreator.idUser ?
-            UIColor(red: 223, green: 223, blue: 223)
-            :
-            UIColor(red: 220, green: 247, blue: 197)
+    private static func changeThemeForMessageConversationTableViewCellClassic(cell:MessageConversationTableViewCell,model:MessageDb?){
+        if let model = model{
+        cell.bubbleBackgroundView.backgroundColor = model.senderId == MessagesIdCreator.idUser ? UIColor(red: 223, green: 223, blue: 223) : UIColor(red: 220, green: 247, blue: 197)
         }
     }
 
-    private func changeThemeForConversationViewController(viewController: ConversationViewController) {
+    private static func changeThemeForConversationViewController(viewController: ConversationViewController){
         viewController.view.backgroundColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
         viewController.tableView.backgroundColor = .black
     }
 
-    private func changeThemeForProfileViewController(viewController: ProfileViewController) {
-                viewController.view.backgroundColor = .black
-                viewController.editButton.backgroundColor = .black
-                viewController.editButton.setTitleColor(.white, for: .normal)
-                viewController.fullName.backgroundColor = .black
-                viewController.fullName.textColor = .white
-                viewController.labelDetails.backgroundColor = .black
-                viewController.labelDetails.textColor = .white
-                viewController.saveButton.backgroundColor = UIColor(red: 0.106, green: 0.106, blue: 0.106, alpha: 1)
-                viewController.saveButton.setTitleColor(.white, for: .normal)
-                viewController.navigationController?.navigationBar.barTintColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
+
+    private static func changeThemeForProfileViewController(viewController:ProfileViewController){
+        viewController.view.backgroundColor = .black
+        
+        viewController.nameTextField.backgroundColor = .lightGray
+        viewController.detailsTextView.backgroundColor = .lightGray
+        viewController.detailsTextView.layer.cornerRadius = 5
+        viewController.nameTextField.textColor = .black
+        viewController.detailsTextView.textColor = .black
+        viewController.editButton.backgroundColor = .black
+        viewController.editButton.setTitleColor(.none, for: .normal)
+        viewController.navigationController?.navigationBar.barTintColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
     }
 
-    func changeThemeForFooter(viewController: ConversationsListViewController, view: UIView) {
+    static func changeThemeForFooter(viewController:ConversationsListViewController,view: UIView){
         
-        if  Theme.current == .night {
-            view.tintColor = UIColor.black
-            if let header = view as? UITableViewHeaderFooterView {
+        if  Theme.current == .night{
+            view.tintColor = themePicker
+            if let header = view as? UITableViewHeaderFooterView{
                 header.textLabel?.textColor = UIColor.white
             }
         } else {
@@ -121,22 +133,25 @@ class ThemeManager: ThemePickerDelegate {
         }
     }
 
-    func changeThemeToNight(viewController: ConversationsListViewController) {
+    
+    private static func changeThemeToNight(viewController:ConversationsListViewController) {
+
         viewController.navigationController?.navigationBar.barTintColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
-         viewController.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//        viewController.settingButton.tintColor = settingColor
+//        viewController.profileButton.tintColor = profileColor
+        viewController.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         viewController.view.backgroundColor = UIColor(red: 0.118, green: 0.118, blue: 0.118, alpha: 1)
-        viewController.tableView.backgroundColor = .black
+        viewController.tableView.backgroundColor = themePicker
     }
 
-    func changeThemeToClassic(viewController: ConversationsListViewController) {
+    private static func changeThemeToClassic(viewController:ConversationsListViewController){
         viewController.navigationController?.navigationBar.barTintColor = .white
         viewController.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        viewController.view.backgroundColor = .white
-        viewController.tableView.backgroundColor = .white
+        viewController.view.backgroundColor = themePicker
+        viewController.tableView.backgroundColor = themePicker
     }
-    
 }
 
 enum Theme: Int {
@@ -154,12 +169,23 @@ enum Theme: Int {
         return Theme(rawValue: storedTheme) ?? .default
     }
     
-    func apply() {
-        if self == .night {
-            UserDefaults.standard.set(self.rawValue, forKey: Keys.selectedTheme)
+
+    func apply(){
+        if self == .night{
+            UserDefaults.standard.set(self.rawValue,forKey: Keys.selectedTheme)
+//            UserDefaults.standard.synchronize()
+//            UITableViewCell.appearance().backgroundColor = .black
+            
+//            UINavigationBar.appearance().barTintColor = .lightGray
+//            UINavigationBar.appearance().tintColor = .white
+//            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//            UINavigationBar.appearance().isTranslucent = false
             
         } else if self == .day || self == .classic {
-            UserDefaults.standard.set(self.rawValue, forKey: Keys.selectedTheme)
+            UserDefaults.standard.set(self.rawValue,forKey: Keys.selectedTheme)
+//            UserDefaults.standard.synchronize()
+//            UINavigationBar.appearance().barStyle = .default
+//            UITableViewCell.appearance().backgroundColor = .white
         }
     }
 }

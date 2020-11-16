@@ -63,7 +63,7 @@ class MessageConversationTableViewCell: UITableViewCell {
     
     func configure(with model: MessageDb?) {
         
-        ThemeManager().changeTheme(viewController: self, type: Theme.current, model: model)
+        ThemeManager.changeTheme(viewController: self, type: Theme.current, model: model)
         
         self.messageLabel.text = model?.content
         if model?.senderId == MessagesIdCreator.idUser {

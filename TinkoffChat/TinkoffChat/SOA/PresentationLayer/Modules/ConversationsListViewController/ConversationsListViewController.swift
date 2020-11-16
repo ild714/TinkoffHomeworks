@@ -131,7 +131,7 @@ class ConversationsListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        ThemeManager().changeTheme(viewController: self, type: Theme.current)
+        ThemeManager.changeTheme(viewController: self, type: Theme.current, model: nil)
         
         do {
             self.fetchedResultsController?.delegate = self
@@ -163,7 +163,7 @@ class ConversationsListViewController: UIViewController {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
-        ThemeManager().changeThemeForFooter(viewController: self, view: view)
+        ThemeManager.changeThemeForFooter(viewController: self, view: view)
     }
     
     @objc func newChannels() {

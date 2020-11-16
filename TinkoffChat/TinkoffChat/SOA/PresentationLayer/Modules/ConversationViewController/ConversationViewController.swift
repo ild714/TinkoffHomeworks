@@ -132,7 +132,7 @@ class ConversationViewController: UIViewController {
             })
 //        }
         
-        ThemeManager().changeTheme(viewController: self, type: Theme.current)
+        ThemeManager.changeTheme(viewController: self, type: Theme.current, model: nil)
     }
     
     func performFetch() {
