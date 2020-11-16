@@ -15,7 +15,8 @@ class ConversationViewController: UIViewController {
     var messagesService: (MessagesServiceProtocol & MessagesServiceNetworkProtocol)?
     var container: NSPersistentContainer?
     var channelId: String = ""
-    var messages = [MessageData]()
+    var messagesData = [MessageData]()
+    var messagesDb = [MessageDb]()
     var titleName: String?
     var fetchedResultsController: NSFetchedResultsController<ChannelDb>?
     
@@ -38,6 +39,23 @@ class ConversationViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
+    fileprivate lazy var fetchedResultsControllerMessage: NSFetchedResultsController<MessageDb>? = {
+        let context = self.container?.viewContext
+        let request = MessageDb.createFetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "created", ascending: false)
+        request.sortDescriptors = [sortDescriptor]
+        if let context = context {
+            let fetchResult = NSFetchedResultsController(fetchRequest: request,
+                                                         managedObjectContext: context,
+                                                         sectionNameKeyPath: nil,
+                                                         cacheName: nil)
+            fetchResult.delegate = self
+            return fetchResult
+        } else {
+            return nil
+        }
+    }()
+    
     lazy var messagesFireStore: MessagesFireStore = {
         let channelFireSore = MessagesFireStore()
         channelFireSore.delegate = self
@@ -57,28 +75,21 @@ class ConversationViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plus"), style: .plain, target: self, action: #selector(newMessage))
         
-        messagesFireStore.db.collection("channels").document(channelId).collection("messages").addSnapshotListener { (dataSnapshot, error) in
+        messagesFireStore.db.collection("channels").document(channelId).collection("messages").addSnapshotListener { [weak self] (dataSnapshot, error) in
             guard error == nil else {
                 print(error?.localizedDescription ?? "error")
                 return
             }
             if let dataSnapshot = dataSnapshot {
-                self.messages = []
+                self?.messagesData = []
                 for document in dataSnapshot.documents {
                     let message = MessageData(dictionary: document.data())
                     if let message = message {
-                        self.messages.append(message)
+                        self?.messagesData.append(message)
                     }
                 }
-//                print(self.messages)
-                
-                self.messagesService?.save(messages: self.messages, id: self.channelId) {
-                    do {
-                        try self.fetchedResultsController?.performFetch()
-                        self.tableView.reloadData()
-                    } catch {
-                        print("Fetch failed")
-                    }
+                self?.messagesService?.save(messages: self?.messagesData ?? [], id: self?.channelId ?? "") {
+                    self?.performFetch()
                 }
             }
         }
@@ -94,7 +105,6 @@ class ConversationViewController: UIViewController {
             if let text = alertController.textFields?.first?.text {
                 if let channelId = self?.channelId {
                     self?.messagesService?.addMessage(message: text, id: channelId)
-//                    self?.messagesFireStore.addMessage(message: text, id: channelId)
                 }
             }
         }))
@@ -110,42 +120,81 @@ class ConversationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.messagesService?.load(channelId: self.channelId, completion: { (messages) in
-            self.messagesService?.save(messages: messages, id: self.channelId) {
-                do {
-                    try self.fetchedResultsController?.performFetch()
-                    self.tableView.reloadData()
-                } catch {
-                    print("Fetch failed")
+//        self.deleteAllMessages {
+            self.messagesService?.load(channelId: self.channelId, completion: {[weak self] (messages) in
+                if UserDefaults.standard.integer(forKey: "firstOpen") == self?.channelId.hashValue {
+                    self?.performFetch()
+                } else {
+                    self?.messagesService?.save(messages: messages, id: self?.channelId ?? "") {
+                        self?.performFetch()
+                    }
                 }
-            }
-        })
+            })
+//        }
         
         ThemeManager().changeTheme(viewController: self, type: Theme.current)
     }
+    
+    func performFetch() {
+        do {
+            try self.fetchedResultsControllerMessage?.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("Fetch failed")
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        UserDefaults.standard.set(self.channelId.hashValue, forKey: "firstOpen")
+    }
+    
+    func deleteAllMessages(completion: @escaping () -> Void) {
+        container?.performBackgroundTask({ (back) in
+            do {
+                let messages = try back.fetch(MessageDb.createFetchRequest())
+                for message in messages {
+                    back.delete(message as NSManagedObject)
+                }
+                do {
+                    try back.save()
+                } catch {
+                    print("error with saving")
+                }
+                completion()
+            } catch {
+                print("error with fetch")
+            }
+        })
+    }
+
 }
 
 // MARK: - ConversationViewController delegate methods
 extension ConversationViewController: UITableViewDataSource {
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let channels = fetchedResultsController?.fetchedObjects else {return 0}
-        for channelFromDb in channels where self.channelId == channelFromDb.identifier {
-//            print(channelFromDb.messages?.count)
-            return channelFromDb.messages?.count ?? 0
+
+        guard let messages = fetchedResultsControllerMessage?.fetchedObjects else {return 0}
+        
+        self.messagesDb.removeAll()
+
+        for message in messages {
+            if let channel = message.channel {
+                if channel.identifier == self.channelId {
+                    self.messagesDb.append(message)
+                }
+            }
         }
-        return 0
+//        messages.map{print($0.channel?.identifier)}
+        return self.messagesDb.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MessageConversationTableViewCell {
             
-            guard let channels = fetchedResultsController?.fetchedObjects else {return UITableViewCell()}
-            for channelFromDb in channels where self.channelId == channelFromDb.identifier {
-                
-                channelFromDb.messages?.sortedArray(using: [NSSortDescriptor(key: "created", ascending: true)])
-                cell.configure(with: channelFromDb.messages?.allObjects[indexPath.row] as? MessageDb)
-            }
+            cell.configure(with: messagesDb[indexPath.row])
+            
             return cell
         }
         

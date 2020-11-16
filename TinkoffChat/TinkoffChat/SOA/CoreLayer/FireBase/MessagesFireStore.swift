@@ -26,6 +26,7 @@ class MessagesFireStore: MessagesFireStoreProtocolol {
     }
     
     func loadInitialData(channelId: String, completed: @escaping () -> Void) {
+        self.messagesArray.removeAll()
         db.collection("channels").document(channelId).collection("messages").getDocuments { (dataSnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
@@ -35,6 +36,7 @@ class MessagesFireStore: MessagesFireStoreProtocolol {
                         let message = MessageData(dictionary: document.data())
                         if let message = message {
                             self.messagesArray.append(message)
+//                            print(message.content)
                         }
                     }
                 }

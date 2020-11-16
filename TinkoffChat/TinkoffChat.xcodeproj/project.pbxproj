@@ -736,7 +736,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2NR48U86L7;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = TinkoffChat/Configs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -757,7 +757,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2NR48U86L7;
 				"EXCLUDED_ARCHS[sdk=*]" = "";
 				INFOPLIST_FILE = TinkoffChat/Configs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

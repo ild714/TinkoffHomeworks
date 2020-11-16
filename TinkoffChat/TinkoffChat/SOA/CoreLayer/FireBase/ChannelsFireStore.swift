@@ -43,7 +43,9 @@ class ChannelsFireStore: ChannelsFireStoreProtocolol {
                     }
                 }
             }
-            completed()
+            DispatchQueue.main.async {
+                completed()
+            }
         }
     }
     

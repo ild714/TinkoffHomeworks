@@ -11,7 +11,7 @@ import CoreData
 
 extension MessageDb {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<MessageDb> {
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<MessageDb> {
         return NSFetchRequest<MessageDb>(entityName: "MessageDb")
     }
 

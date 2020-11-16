@@ -18,6 +18,12 @@
         <attribute name="senderId" optional="YES" attributeType="String"/>
         <attribute name="senderName" optional="YES" attributeType="String"/>
         <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChannelDb" inverseName="messages" inverseEntity="ChannelDb"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint/>
+            <uniquenessConstraint>
+                <constraint value="created"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="ChannelDb" positionX="-242.1015625" positionY="-39.0859375" width="128" height="118"/>

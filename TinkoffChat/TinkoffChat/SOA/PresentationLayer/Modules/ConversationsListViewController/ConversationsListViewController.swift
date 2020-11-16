@@ -130,6 +130,7 @@ class ConversationsListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         ThemeManager().changeTheme(viewController: self, type: Theme.current)
         
         do {
@@ -140,19 +141,23 @@ class ConversationsListViewController: UIViewController {
             print("Fetch failed")
         }
         
-        self.channelsService?.load(completion: { (channels) in
-            self.channelsService?.save(channels: channels) {
-                do {
-                    try self.fetchedResultsController?.performFetch()
-                    self.tableView.reloadData()
-                } catch {
-                    print("Fetch failed")
-                }
+        self.channelsService?.load(completion: {[weak self] (channels) in
+            self?.channelsService?.save(channels: channels) {
+                self?.performFetch()
             }
         })
         
         if let index = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: index, animated: true)
+        }
+    }
+    
+    func performFetch() {
+        do {
+            try self.fetchedResultsController?.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("Fetch failed")
         }
     }
     

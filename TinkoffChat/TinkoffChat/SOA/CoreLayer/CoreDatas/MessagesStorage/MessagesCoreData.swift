@@ -36,15 +36,18 @@ class MessagesCoreData: MessageStorageProtcol {
             container.performBackgroundTask { (backgroundContext) in
                 
                 for message in messages {
-                    
+                    backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
                     let message = MessageDb(content: message.content, created: message.created, senderId: message.senderId, senderName: message.senderName, in: backgroundContext)
                     messagesFromDb.append(message)
                 }
                 if let objectId = channel?.objectID {
                     
-                    let channel = backgroundContext.object(with: objectId) as? ChannelDb
-                    channel?.messages = nil
-                    messagesFromDb.forEach {channel?.addToMessages($0)}
+                    let channel1 = backgroundContext.object(with: objectId) as? ChannelDb
+//                    channel?.messages = nil
+                    messagesFromDb.forEach {channel1?.addToMessages($0)}
+                    for message in messagesFromDb {
+                        print(message.content)
+                    }
                 }
                 if backgroundContext.hasChanges {
                     do {
