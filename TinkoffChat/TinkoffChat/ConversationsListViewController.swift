@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class ConversationsListViewController: UIViewController,ThemePickerDelegate,ThemeManagerProtocol {
     //1
         func themeViewController(closure: () -> ThemesViewController) {
@@ -26,7 +25,6 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
     
     //2
 //    let defaults = UserDefaults.standard
-
     var safeArea: UILayoutGuide!
     let headerTitles = ["Online","History"]
     var peopleSort: [TypesMessages] = []
@@ -54,6 +52,7 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
         peopleSort = SortedPeople.returnPeople()
         
         title = "Tinkoff Chat"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     
@@ -68,8 +67,12 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
     
     @IBAction func showThemesSettings(_ sender: Any) {
         if let themesViewController = ThemesViewController.storyboardInstance(){
-            
-            navigationController?.pushViewController(themesViewController, animated: true)
+            themesViewController.delegate = self
+//            2
+//            themesViewController.closure = {(typeTheme: ThemeType) in
+//                self.defaults.set(typeTheme.rawValue,forKey: "ThemeType")
+//            }
+        navigationController?.pushViewController(themesViewController, animated: true)
         }
     }
     
@@ -86,7 +89,8 @@ class ConversationsListViewController: UIViewController,ThemePickerDelegate,Them
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-         ThemeManager().changeTheme(viewController: self, type: Theme.current)
+        
+        ThemeManager.changeTheme(viewController: self, type: Theme.current)
         
         if let index = self.tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: index, animated: true)

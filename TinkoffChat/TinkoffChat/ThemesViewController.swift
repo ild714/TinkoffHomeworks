@@ -9,16 +9,37 @@
 import UIKit
 
 
-protocol ThemePickerDelegate: class {
-    func changeTheme<T>(viewController:T,type: Theme,model: MessageCellModel?)
+import UIKit
+
+// Retain cycle может возникнуть в следующем случае:
+// ConversationsListViewController держит ThemesViewController, а тот в свою очередь получает замыкание с ConversationsListViewController. В данном случае объекты ссылаются друг на друга.
+// 1
+protocol ThemePickerDelegate {
+    func themeViewController(closure: () -> ThemesViewController)
+}
+
+//2
+//protocol ThemePickerDelegate {
+//    func themeViewController(closure: (ThemeType) -> (),typeOfTheme: ThemeType)
+//}
+enum ThemeType: String {
+    case none = "Empty"
+    case classic = "Classic"
+    case day = "Day"
+    case night = "Night"
 }
 
 class ThemesViewController: UIViewController {
     
-    var delegate = ThemeManager()
+    //1
+    var delegate: ThemePickerDelegate?
+    
+    //2
+//    var delegate: ThemePickerDelegate?
+//    var closure: ((ThemeType) -> ())?
     
     var color = UIColor.green
-    var typeOfTheme: Theme = .default
+    var typeOfTheme: ThemeType = .none
     private let borderColorOfButtonTheme = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
     private let cornerRadiusOfButtonTheme = CGFloat(14)
     private let borderWidhtOfButtonTheme = CGFloat(3)
@@ -43,36 +64,53 @@ class ThemesViewController: UIViewController {
         
         title = "Settings"
         navigationItem.largeTitleDisplayMode = .never
-
     }
     
     @IBAction func classicStyleSelected(_ sender: Any) {
-        if typeOfTheme == .default || typeOfTheme == .night || typeOfTheme == .day {
+        if typeOfTheme == .none || typeOfTheme == .night || typeOfTheme == .day {
             themeClassicButton.layer.borderWidth = borderWidhtOfButtonTheme
             themeDayButton.layer.borderWidth = 0
             themeNightButton.layer.borderWidth = 0
             typeOfTheme = .classic
-            delegate?.changeTheme(viewController: self, type: typeOfTheme)
+            //1
+            delegate?.themeViewController(closure: {() in
+                return self })
+//            2
+//            if let closure = closure{
+//                delegate?.themeViewController(closure: closure, typeOfTheme: .classic)
+//            }
         }
     }
     
     @IBAction func dayStyleSelected(_ sender: Any) {
-        if typeOfTheme == .default || typeOfTheme == .night || typeOfTheme == .classic {
+        if typeOfTheme == .none || typeOfTheme == .night || typeOfTheme == .classic {
             themeDayButton.layer.borderWidth = borderWidhtOfButtonTheme
             themeClassicButton.layer.borderWidth = 0
             themeNightButton.layer.borderWidth = 0
             typeOfTheme = .day
-            delegate.changeTheme(viewController: self, type: typeOfTheme)
+            //1
+            delegate?.themeViewController(closure: {() in
+                return self })
+//            2
+//            if let closure = closure{
+//                delegate?.themeViewController(closure: closure, typeOfTheme: .day)
+//            }
         }
     }
     
     @IBAction func nightStyleSelected(_ sender: Any) {
-        if typeOfTheme == .default || typeOfTheme == .classic || typeOfTheme == .day {
+        if typeOfTheme == .none || typeOfTheme == .classic || typeOfTheme == .day {
             themeNightButton.layer.borderWidth = borderWidhtOfButtonTheme
             themeClassicButton.layer.borderWidth = 0
             themeDayButton.layer.borderWidth = 0
             typeOfTheme = .night
-            delegate.changeTheme(viewController: self, type: typeOfTheme)
+            //1
+            delegate?.themeViewController(closure: {() in
+                return self })
+            //2
+//            if let closure = closure{
+//                delegate?.themeViewController(closure: closure, typeOfTheme: .night)
+//            }
         }
     }
     

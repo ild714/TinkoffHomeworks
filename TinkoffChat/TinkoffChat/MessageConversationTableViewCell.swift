@@ -51,7 +51,7 @@ class MessageConversationTableViewCell: UITableViewCell,ConfigurableView {
     
     func configure(with model: MessageCellModel) {
         
-        ThemeManager().changeTheme(viewController: self, type: Theme.current, model: model)
+        ThemeManager.changeTheme(viewController: self, type: Theme.current, model: model)
         
         self.messageLabel.text = model.text
         

@@ -102,7 +102,7 @@ class ProfileViewController: UIViewController{
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
 
         
-        ThemeManager.changeTheme(viewController: self)
+        ThemeManager.changeTheme(viewController: self, type: Theme.current)
         
         detailsTextView.textColor = .black
         

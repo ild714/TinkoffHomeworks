@@ -8,9 +8,8 @@
 
 import UIKit
 
-//protocol ThemeManagerVC:class {
-//    func updateTheme()
-//}
+protocol ThemeManagerProtocol {
+}
 
 class ThemeManager {
     
