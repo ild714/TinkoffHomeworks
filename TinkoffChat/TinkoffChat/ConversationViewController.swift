@@ -66,7 +66,7 @@ class ConversationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        ThemeManager().changeTheme(viewController: self, type: Theme.current)
+        ThemeManager.changeTheme(viewController: self, type: Theme.current)
     }
     
 }

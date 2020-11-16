@@ -52,7 +52,7 @@ class ThemesViewController: UIViewController {
             themeDayButton.layer.borderWidth = 0
             themeNightButton.layer.borderWidth = 0
             typeOfTheme = .classic
-            delegate.changeTheme(viewController: self, type: typeOfTheme)
+            delegate?.changeTheme(viewController: self, type: typeOfTheme)
         }
     }
     

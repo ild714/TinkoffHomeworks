@@ -8,21 +8,15 @@
 
 import Foundation
 
-extension Optional where Wrapped == String {
+extension String {
     func initialsGetter() -> String{
-        if let text = self {
-            
             let formatter = PersonNameComponentsFormatter()
             
-            if let components = formatter.personNameComponents(from: text){
+            if let components = formatter.personNameComponents(from: self){
                 formatter.style = .abbreviated
                 return formatter.string(from: components)
             } else {
              return ""
          }
-            
-        } else {
-            return ""
-        }
     }
 }

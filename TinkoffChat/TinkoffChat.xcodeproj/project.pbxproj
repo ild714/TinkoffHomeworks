@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		74309ABF25123B52009AF510 /* LogsSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74309ABE25123B52009AF510 /* LogsSwitcher.swift */; };
 		74446EB72523BEBF006EB0E8 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74446EB62523BEBF006EB0E8 /* ColorExtension.swift */; };
+		74498FBF25430465007838E6 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74498FBE25430465007838E6 /* ProfileData.swift */; };
 		7484203F252B2EA100C2278D /* ThemesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7484203E252B2EA100C2278D /* ThemesViewController.storyboard */; };
 		74842041252B2EC900C2278D /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74842040252B2EC900C2278D /* ThemesViewController.swift */; };
 		7491D2CB2523AAE1008FACB9 /* MessageConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7491D2CA2523AAE1008FACB9 /* MessageConversationTableViewCell.swift */; };
@@ -21,6 +22,10 @@
 		74A0FBE3252DE115005E9392 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0FBE2252DE115005E9392 /* RootViewController.swift */; };
 		74A0FBDF252DC484005E9392 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0FBDE252DC484005E9392 /* ThemeManager.swift */; };
 		74A0FBE1252DC92E005E9392 /* SortedPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0FBE0252DC92E005E9392 /* SortedPeople.swift */; };
+		74A0FBE3252DE115005E9392 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0FBE2252DE115005E9392 /* RootViewController.swift */; };
+		74C6A32B2534C60A00CF4051 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6A32A2534C60A00CF4051 /* GCDDataManager.swift */; };
+		74C6A32D2534CB8E00CF4051 /* AlertPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6A32C2534CB8E00CF4051 /* AlertPhoto.swift */; };
+		74C6A32F2534F81600CF4051 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6A32E2534F81600CF4051 /* OperationDataManager.swift */; };
 		74C6DC48251B548B00B64690 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6DC47251B548B00B64690 /* StringExtension.swift */; };
 		74FB99D0250D39ED00478286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FB99CF250D39ED00478286 /* AppDelegate.swift */; };
 		74FB99D4250D39ED00478286 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FB99D3250D39ED00478286 /* ProfileViewController.swift */; };
@@ -32,6 +37,7 @@
 /* Begin PBXFileReference section */
 		74309ABE25123B52009AF510 /* LogsSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsSwitcher.swift; sourceTree = "<group>"; };
 		74446EB62523BEBF006EB0E8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		74498FBE25430465007838E6 /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
 		7484203E252B2EA100C2278D /* ThemesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThemesViewController.storyboard; sourceTree = "<group>"; };
 		74842040252B2EC900C2278D /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		7491D2CA2523AAE1008FACB9 /* MessageConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConversationTableViewCell.swift; sourceTree = "<group>"; };
@@ -44,6 +50,10 @@
 		74A0FBE2252DE115005E9392 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		74A0FBDE252DC484005E9392 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		74A0FBE0252DC92E005E9392 /* SortedPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedPeople.swift; sourceTree = "<group>"; };
+		74A0FBE2252DE115005E9392 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		74C6A32A2534C60A00CF4051 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
+		74C6A32C2534CB8E00CF4051 /* AlertPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPhoto.swift; sourceTree = "<group>"; };
+		74C6A32E2534F81600CF4051 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
 		74C6DC47251B548B00B64690 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		74FB99CC250D39ED00478286 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74FB99CF250D39ED00478286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,8 +99,11 @@
 				74A0FBE0252DC92E005E9392 /* SortedPeople.swift */,
 				74A0FBDE252DC484005E9392 /* ThemeManager.swift */,
 				74FB99CF250D39ED00478286 /* AppDelegate.swift */,
+				74498FBE25430465007838E6 /* ProfileData.swift */,
 				74FB99D3250D39ED00478286 /* ProfileViewController.swift */,
 				74FB99D5250D39ED00478286 /* ProfileViewController.storyboard */,
+				74C6A32A2534C60A00CF4051 /* GCDDataManager.swift */,
+				74C6A32E2534F81600CF4051 /* OperationDataManager.swift */,
 				749C0CE625212D7C00D1857E /* ConversationsListViewController.swift */,
 				749C0CEA252135A700D1857E /* ConversationsListViewController.storyboard */,
 				749C0CF02521D7C800D1857E /* CustomTableViewCell.swift */,
@@ -104,6 +117,7 @@
 				74446EB62523BEBF006EB0E8 /* ColorExtension.swift */,
 				74309ABE25123B52009AF510 /* LogsSwitcher.swift */,
 				74C6DC47251B548B00B64690 /* StringExtension.swift */,
+				74C6A32C2534CB8E00CF4051 /* AlertPhoto.swift */,
 				74FB99DA250D39F000478286 /* LaunchScreen.storyboard */,
 				74FB99DD250D39F000478286 /* Info.plist */,
 				74FB99CD250D39ED00478286 /* Products */,
@@ -193,17 +207,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74498FBF25430465007838E6 /* ProfileData.swift in Sources */,
 				749C0CF525221D9A00D1857E /* ConversationViewController.swift in Sources */,
 				7491D2CB2523AAE1008FACB9 /* MessageConversationTableViewCell.swift in Sources */,
 				749C0CF22521D7C800D1857E /* CustomTableViewCell.swift in Sources */,
 				74A0FBE3252DE115005E9392 /* RootViewController.swift in Sources */,
+				74C6A32B2534C60A00CF4051 /* GCDDataManager.swift in Sources */,
 				74C6DC48251B548B00B64690 /* StringExtension.swift in Sources */,
 				749C0CE725212D7C00D1857E /* ConversationsListViewController.swift in Sources */,
 				74FB99D4250D39ED00478286 /* ProfileViewController.swift in Sources */,
 				74309ABF25123B52009AF510 /* LogsSwitcher.swift in Sources */,
 				74A0FBE1252DC92E005E9392 /* SortedPeople.swift in Sources */,
 				74842041252B2EC900C2278D /* ThemesViewController.swift in Sources */,
+				74C6A32F2534F81600CF4051 /* OperationDataManager.swift in Sources */,
 				74FB99D0250D39ED00478286 /* AppDelegate.swift in Sources */,
+				74C6A32D2534CB8E00CF4051 /* AlertPhoto.swift in Sources */,
 				74446EB72523BEBF006EB0E8 /* ColorExtension.swift in Sources */,
 				74A0FBDF252DC484005E9392 /* ThemeManager.swift in Sources */,
 			);

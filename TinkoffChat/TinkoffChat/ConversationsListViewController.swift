@@ -8,26 +8,28 @@
 
 import UIKit
 
-class ConversationsListViewController: UIViewController {
 
+class ConversationsListViewController: UIViewController,ThemePickerDelegate,ThemeManagerProtocol {
+    //1
+        func themeViewController(closure: () -> ThemesViewController) {
+            let defaults = UserDefaults.standard
+            defaults.set(closure().typeOfTheme.rawValue,forKey: "ThemeType")
+        }
+    
+    //2
+//    func themeViewController(closure: (ThemeType) -> (), typeOfTheme: ThemeType) {
+//        closure(typeOfTheme)
+//    }
+    
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var profileButton: UIBarButtonItem!
     
-    
-//    var backgroundColorOfOnlineCell = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
-//    var backgroundColorOfofflineCell = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-    var nameLabelColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-    var messageLabelColor = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
+    //2
+//    let defaults = UserDefaults.standard
 
     var safeArea: UILayoutGuide!
     let headerTitles = ["Online","History"]
     var peopleSort: [TypesMessages] = []
-    
-    
-    static func storyboardInstance() -> ConversationsListViewController? {
-        let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: String(describing: self)) as? ConversationsListViewController
-    }
     
     private let cellIdentifier = String(describing: CustomTableViewCell.self)
     
@@ -91,9 +93,9 @@ class ConversationsListViewController: UIViewController {
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
-        ThemeManager().changeThemeForFooter(viewController: self,view: view)
+    static func storyboardInstance() -> ConversationsListViewController? {
+        let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: String(describing: self)) as? ConversationsListViewController
     }
 }
 
@@ -117,8 +119,6 @@ extension ConversationsListViewController: UITableViewDataSource {
         }
         
         cell.configure(with:.init(name: person.name, message: person.message, date: person.date, isOnline: person.isOnline, hasUnreadMessages: person.hasUnreadMessages,typeOfMessage: type.type))
-            
-
         
         return cell
     }
@@ -130,6 +130,10 @@ extension ConversationsListViewController: UITableViewDataSource {
         return nil
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        ThemeManager.changeThemeForFooter(viewController: self,view: view)
+    }
     
 }
 

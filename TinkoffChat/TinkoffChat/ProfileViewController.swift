@@ -14,6 +14,14 @@ class ProfileViewController: UIViewController{
     let editButtonColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1)
     let saveButtonColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1).cgColor
     let initialsLabelColor = UIColor(red: 0.212, green: 0.216, blue: 0.22, alpha: 1)
+    var placeholder = "Write profile infromations"
+    var gcdDataManager: GCDDataManager?
+    
+    
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var detailsTextView: UITextView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var imageView: UIImageView! {
         didSet{
@@ -21,81 +29,66 @@ class ProfileViewController: UIViewController{
             imageView.layer.backgroundColor = imageViewColor
         }
     }
-    @IBOutlet weak var editButton: UIButton! {
+    
+    @IBOutlet weak var gcdButton: UIButton! {
         didSet{
-            editButton.setTitleColor(editButtonColor, for: .normal)
+            gcdButton.layer.backgroundColor = saveButtonColor
+            gcdButton.layer.cornerRadius = 14
         }
     }
-    @IBOutlet weak var fullName: UILabel!
-    @IBOutlet weak var labelDetails: UILabel! {
-        didSet {
-            labelDetails.lineBreakMode = .byWordWrapping
-            labelDetails.numberOfLines = 0
-            labelDetails.text = "UX/UI designer, web-designer\nMoscow, Russia"
-        }
-    }
-    @IBOutlet weak var saveButton: UIButton! {
+    @IBOutlet weak var operationButton: UIButton!{
         didSet{
-            saveButton.layer.backgroundColor = saveButtonColor
-            saveButton.layer.cornerRadius = 14
-        }
-    }
-    @IBOutlet weak var initialsLabel: UILabel! {
-        didSet{
-            initialsLabel.textColor = initialsLabelColor
-            let text: String? = "Marina Dudarenko"
-            initialsLabel.text = text.initialsGetter()
+            operationButton.layer.backgroundColor = saveButtonColor
+            operationButton.layer.cornerRadius = 14
         }
     }
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        //Кнопка инициализируется после загрузки storyboard
-    }
+    @IBOutlet weak var initialsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        detailsTextView.delegate = self
+        nameTextField.delegate = self
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeTapped))
+        nameTextField.isEnabled = false
+        detailsTextView.isEditable = false
+        detailsTextView.text = placeholder
+        gcdButton.isEnabled = false
+        operationButton.isEnabled = false
+        
+        nameTextField.placeholder = "Name"
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editTapped))
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
         
-        //Frame из выбранного в сториборд устройстве
-//        print(editButton.frame)
+        initialsLabel.textColor = initialsLabelColor
+        self.activityIndicator.isHidden = true
+
+    }
+    @IBAction func editPhoto(_ sender: Any) {
+        AlertPhoto.showAlertChoosePhoto(viewController: self)
+    }
+    
+    @objc func editTapped() {
+        self.nameTextField.isEnabled = true
+        self.detailsTextView.isEditable = true
     }
     
     @objc func closeTapped(){
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func editPhoto(_ sender: Any) {
-        let alertController = UIAlertController(title: "Edit photo", message: nil, preferredStyle: .actionSheet)
+    @IBAction func saveDataProfile(_ sender: UIButton) {
+        emptyPhoto()
+        if sender == self.gcdButton {
+            gcdDataManager = GCDDataManager(dataForProfile: [ProfileDetail(fileDirectory: "name", previous: "", typeDocument: .txt, text: self.nameTextField.text ?? "", image: nil),ProfileDetail(fileDirectory: "details", previous: "", typeDocument: .txt, text: self.detailsTextView.text, image: nil),ProfileDetail(fileDirectory: "image", previous: "", typeDocument: .photo,image: self.imageView.image ?? UIImage()),ProfileDetail(fileDirectory: "initials", previous: "", typeDocument: .txt, text: self.initialsLabel.text, image: nil)])
+            gcdDataManager?.delegate = self
+            gcdDataManager?.writeData()
+        } else {
+            print("error with getting data from UI")
+        }
         
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        
-        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
-
-            if UIImagePickerController.isSourceTypeAvailable(.camera){
-                picker.sourceType = UIImagePickerController.SourceType.camera
-                self.present(picker,animated: true)
-            } else {
-                print("Run on real device")
-            }
-        }))
-        
-        alertController.addAction(UIAlertAction(title: "Photo Gallery", style: .default, handler: { (_) in
-            self.present(picker,animated: true)
-            
-        }))
-        
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        present(alertController,animated: true)
     }
     
     
@@ -107,39 +100,30 @@ class ProfileViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
-        ThemeManager().changeTheme(viewController: self, type: Theme.current)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
 
-        //Frame из симулятора
-//        print(editButton.frame)
+        
+        ThemeManager.changeTheme(viewController: self)
+        
+        detailsTextView.textColor = .black
+        
+        gcdDataManager = GCDDataManager(dataForProfile: [ProfileDetail(fileDirectory: "name", previous: "", typeDocument: .txt, text: self.nameTextField.text ?? "", image: nil),ProfileDetail(fileDirectory: "details", previous: "", typeDocument: .txt, text: self.detailsTextView.text, image: nil),ProfileDetail(fileDirectory: "image", previous: "", typeDocument: .photo,image: self.imageView.image ?? UIImage()),ProfileDetail(fileDirectory: "initials", previous: "", typeDocument: .txt, text: self.initialsLabel.text, image: nil)])
+        gcdDataManager?.delegate = self
+        gcdDataManager?.readData()
+
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        LogsSwitcher.printLogs(function: #function, additionText: "Root view is visible: ")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        LogsSwitcher.printLogs(function: #function, additionText: "Root view is visible: ")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
+    func emptyPhoto(){
+        if let _ = self.imageView.image{
+             self.initialsLabel.text = ""
+        }else {
+            if let text = self.nameTextField.text{
+                self.initialsLabel.text = text.initialsGetter()
+            }
+        }
     }
 }
 
-// MARK: - UIViewController delegate methods
+// MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
 extension ProfileViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -148,8 +132,116 @@ extension ProfileViewController : UIImagePickerControllerDelegate & UINavigation
         self.initialsLabel.text = ""
         self.imageView.image = image
         
+        self.gcdButton.isEnabled = true
+        self.operationButton.isEnabled = true
         dismiss(animated: true)
     }
-    
 }
 
+// MARK: - UITextViewDelegate
+extension ProfileViewController: UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .lightGray{
+            textView.text = ""
+            textView.textColor = .black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Profile infromations"
+            textView.textColor = UIColor.lightGray
+            placeholder = ""
+        } else {
+            placeholder = textView.text
+            textView.textColor = .black
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        placeholder = textView.text
+        gcdButton.isEnabled = true
+        operationButton.isEnabled = true
+    }
+
+}
+
+// MARK: - UITextFieldDelegate
+extension ProfileViewController: UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        gcdButton.isEnabled = true
+        operationButton.isEnabled = true
+    }
+}
+
+// MARK: - UIMultithreadingDelegate
+extension ProfileViewController: UIMultithreadingDelegate{
+    func getSavingData(data: [ProfileDetail]?) {
+        if let data = data {
+            for detail in data {
+                if detail.fileDirectory == "name"{
+                    self.nameTextField.text = detail.text
+                } else if detail.fileDirectory == "details"{
+                    self.detailsTextView.text = detail.text
+                } else if detail.fileDirectory == "image"{
+                    self.imageView.image = detail.image
+                } else {
+                    self.initialsLabel.text = detail.text
+                }
+            }
+        } else {
+            let ac = UIAlertController(title: "Ошибка", message: "Не удалось сохранить данные или извлечь данные", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(ac,animated: true)
+        }
+    }
+    
+    func savingSuccess() {
+        let ac = UIAlertController(title: "Данные сохранены", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(ac,animated: true)
+    }
+    
+    func enableTexts() {
+        self.nameTextField.isEnabled = false
+        self.detailsTextView.isEditable = false
+    }
+    
+    func errorWithSavingFile() {
+        let ac = UIAlertController(title: "Ошибка", message: "Не удалось сохранить данные", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        ac.addAction(UIAlertAction(title: "Повтороить", style: .default, handler: {_ in
+            self.saveDataProfile(self.gcdButton)
+        }))
+        
+        self.present(ac,animated: true)
+    }
+    
+    func errorWithReadingFile() {
+        let ac = UIAlertController(title: "Ошибка", message: "Не удалось считать данные с диска", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(ac,animated: true)
+    }
+    
+    func stopActivityIndicator() {
+        self.activityIndicator.isHidden = true
+        self.activityIndicator.stopAnimating()
+    }
+    
+    func startActivityIndicator() {
+        self.activityIndicator.startAnimating()
+        self.activityIndicator.isHidden = false
+    }
+    
+    func disableButtons() {
+        self.gcdButton.isEnabled = false
+        self.operationButton.isEnabled = false
+    }
+    
+    func enableButtons(){
+        self.gcdButton.isEnabled = true
+        self.operationButton.isEnabled = true
+    }
+}
