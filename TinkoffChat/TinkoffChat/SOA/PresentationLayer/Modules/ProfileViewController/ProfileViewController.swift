@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     let initialsLabelColor = UIColor(red: 0.212, green: 0.216, blue: 0.22, alpha: 1)
     var placeholder = "Write profile infromations"
     var gcdDataManager: GCDDataManager?
-    
+    var presentationAssembly: PresentationAssemblyProtocol?
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
@@ -29,16 +29,15 @@ class ProfileViewController: UIViewController {
             imageView.layer.backgroundColor = imageViewColor
         }
     }
-
     
     @IBOutlet weak var gcdButton: UIButton! {
-        didSet{
+        didSet {
             gcdButton.layer.backgroundColor = saveButtonColor
             gcdButton.layer.cornerRadius = 14
         }
     }
-    @IBOutlet weak var operationButton: UIButton!{
-        didSet{
+    @IBOutlet weak var operationButton: UIButton! {
+        didSet {
             operationButton.layer.backgroundColor = saveButtonColor
             operationButton.layer.cornerRadius = 14
         }
@@ -79,7 +78,6 @@ class ProfileViewController: UIViewController {
     @objc func closeTapped() {
         self.dismiss(animated: true, completion: nil)
     }
-    
 
     @IBAction func saveDataProfile(_ sender: UIButton) {
         emptyPhoto()
@@ -89,12 +87,12 @@ class ProfileViewController: UIViewController {
                 previous: "",
                 typeDocument: .txt,
                 text: self.nameTextField.text ?? "",
-                image: nil),ProfileDetail(
+                image: nil), ProfileDetail(
                     fileDirectory: "details",
                     previous: "",
                     typeDocument: .txt,
                     text: self.detailsTextView.text,
-                    image: nil),ProfileDetail(
+                    image: nil), ProfileDetail(
                         fileDirectory: "image",
                         previous: "",
                         typeDocument: .photo,
@@ -112,7 +110,6 @@ class ProfileViewController: UIViewController {
         
     }
     
-    
     static func storyboardInstance() -> ProfileViewController? {
         let storyboard = UIStoryboard(name: "ProfileViewController", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: String(describing: self)) as? ProfileViewController
@@ -121,7 +118,6 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
-
         
         ThemeManager.changeTheme(viewController: self, type: Theme.current, model: nil)
         
@@ -132,12 +128,12 @@ class ProfileViewController: UIViewController {
         previous: "",
         typeDocument: .txt,
         text: self.nameTextField.text ?? "",
-        image: nil),ProfileDetail(
+        image: nil), ProfileDetail(
             fileDirectory: "details",
             previous: "",
             typeDocument: .txt,
             text: self.detailsTextView.text,
-            image: nil),ProfileDetail(
+            image: nil), ProfileDetail(
                 fileDirectory: "image",
                 previous: "",
                 typeDocument: .photo,
@@ -152,20 +148,19 @@ class ProfileViewController: UIViewController {
 
     }
     
-    func emptyPhoto(){
-        if let _ = self.imageView.image{
+    func emptyPhoto() {
+        if self.imageView.image != nil {
              self.initialsLabel.text = ""
-        }else {
-            if let text = self.nameTextField.text{
+        } else {
+            if let text = self.nameTextField.text {
                 self.initialsLabel.text = text.initialsGetter()
             }
         }
     }
 }
 
-
 // MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
-extension ProfileViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else {return}
@@ -181,9 +176,9 @@ extension ProfileViewController : UIImagePickerControllerDelegate & UINavigation
 }
 
 // MARK: - UITextViewDelegate
-extension ProfileViewController: UITextViewDelegate{
+extension ProfileViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == .lightGray{
+        if textView.textColor == .lightGray {
             textView.text = ""
             textView.textColor = .black
         }
@@ -209,7 +204,7 @@ extension ProfileViewController: UITextViewDelegate{
 }
 
 // MARK: - UITextFieldDelegate
-extension ProfileViewController: UITextFieldDelegate{
+extension ProfileViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         gcdButton.isEnabled = true
         operationButton.isEnabled = true
@@ -217,7 +212,7 @@ extension ProfileViewController: UITextFieldDelegate{
 }
 
 // MARK: - UIMultithreadingDelegate
-extension ProfileViewController: UIMultithreadingDelegate{
+extension ProfileViewController: UIMultithreadingDelegate {
     func getSavingData(data: [ProfileDetail]?) {
         if let data = data {
             for detail in data {
@@ -234,14 +229,14 @@ extension ProfileViewController: UIMultithreadingDelegate{
         } else {
             let ac = UIAlertController(title: "Ошибка", message: "Не удалось сохранить данные или извлечь данные", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(ac,animated: true)
+            self.present(ac, animated: true)
         }
     }
     
     func savingSuccess() {
         let ac = UIAlertController(title: "Данные сохранены", message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(ac,animated: true)
+        self.present(ac, animated: true)
     }
     
     func enableTexts() {
@@ -257,14 +252,14 @@ extension ProfileViewController: UIMultithreadingDelegate{
             self.saveDataProfile(self.gcdButton)
         }))
         
-        self.present(ac,animated: true)
+        self.present(ac, animated: true)
     }
     
     func errorWithReadingFile() {
         let ac = UIAlertController(title: "Ошибка", message: "Не удалось считать данные с диска", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
-        self.present(ac,animated: true)
+        self.present(ac, animated: true)
     }
     
     func stopActivityIndicator() {
@@ -282,8 +277,18 @@ extension ProfileViewController: UIMultithreadingDelegate{
         self.operationButton.isEnabled = false
     }
     
-    func enableButtons(){
+    func enableButtons() {
         self.gcdButton.isEnabled = true
         self.operationButton.isEnabled = true
     }
 }
+
+// MARK: - PhotoLoaderViewControllerDelegate
+extension ProfileViewController: PhotoLoaderViewControllerDelegate {
+    func update(photo: UIImage) {
+        self.imageView.image = photo
+        self.gcdButton.isEnabled = true
+        self.operationButton.isEnabled = true
+    }
+}
+ 

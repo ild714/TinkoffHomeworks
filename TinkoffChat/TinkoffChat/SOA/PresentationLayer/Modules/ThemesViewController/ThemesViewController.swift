@@ -8,20 +8,6 @@
 
 import UIKit
 
-
-import UIKit
-
-// Retain cycle может возникнуть в следующем случае:
-// ConversationsListViewController держит ThemesViewController, а тот в свою очередь получает замыкание с ConversationsListViewController. В данном случае объекты ссылаются друг на друга.
-// 1
-protocol ThemePickerDelegate {
-    func themeViewController(closure: () -> ThemesViewController)
-}
-
-//2
-//protocol ThemePickerDelegate {
-//    func themeViewController(closure: (ThemeType) -> (),typeOfTheme: ThemeType)
-//}
 enum ThemeType: String {
     case none = "Empty"
     case classic = "Classic"
@@ -30,13 +16,6 @@ enum ThemeType: String {
 }
 
 class ThemesViewController: UIViewController {
-    
-    //1
-    var delegate: ThemePickerDelegate?
-    
-    //2
-//    var delegate: ThemePickerDelegate?
-//    var closure: ((ThemeType) -> ())?
     
     var color = UIColor.green
     var typeOfTheme: ThemeType = .none
@@ -72,13 +51,7 @@ class ThemesViewController: UIViewController {
             themeDayButton.layer.borderWidth = 0
             themeNightButton.layer.borderWidth = 0
             typeOfTheme = .classic
-            //1
-            delegate?.themeViewController(closure: {() in
-                return self })
-//            2
-//            if let closure = closure{
-//                delegate?.themeViewController(closure: closure, typeOfTheme: .classic)
-//            }
+            ThemeManager.changeTheme(viewController: self, type: Theme.classic)
         }
     }
     
@@ -88,13 +61,7 @@ class ThemesViewController: UIViewController {
             themeClassicButton.layer.borderWidth = 0
             themeNightButton.layer.borderWidth = 0
             typeOfTheme = .day
-            //1
-            delegate?.themeViewController(closure: {() in
-                return self })
-//            2
-//            if let closure = closure{
-//                delegate?.themeViewController(closure: closure, typeOfTheme: .day)
-//            }
+            ThemeManager.changeTheme(viewController: self, type: Theme.day)
         }
     }
     
@@ -104,13 +71,7 @@ class ThemesViewController: UIViewController {
             themeClassicButton.layer.borderWidth = 0
             themeDayButton.layer.borderWidth = 0
             typeOfTheme = .night
-            //1
-            delegate?.themeViewController(closure: {() in
-                return self })
-            //2
-//            if let closure = closure{
-//                delegate?.themeViewController(closure: closure, typeOfTheme: .night)
-//            }
+            ThemeManager.changeTheme(viewController: self, type: Theme.night)
         }
     }
     

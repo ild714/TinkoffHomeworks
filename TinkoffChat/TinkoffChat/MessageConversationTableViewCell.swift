@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageConversationTableViewCell: UITableViewCell,ConfigurableView {
+class MessageConversationTableViewCell: UITableViewCell, ConfigurableView {
 
     let messageLabel = UILabel()
     let bubbleBackgroundView = UIView()
@@ -17,7 +17,7 @@ class MessageConversationTableViewCell: UITableViewCell,ConfigurableView {
     var trailingConstraints: NSLayoutConstraint!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style,reuseIdentifier: reuseIdentifier)
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = .clear
         bubbleBackgroundView.layer.cornerRadius = 10
@@ -32,20 +32,20 @@ class MessageConversationTableViewCell: UITableViewCell,ConfigurableView {
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints = [
-            messageLabel.topAnchor.constraint(equalTo: topAnchor,constant: 20),
-            messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -20),
+            messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: (self.bounds.width / 4.0) * 2.5),
             
-            bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor,constant: -10),
-            bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor,constant: 10),
-            bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor,constant: -10),
-            bubbleBackgroundView.bottomAnchor.constraint(equalTo:  messageLabel.bottomAnchor,constant: 10)
+            bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -10),
+            bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 10),
+            bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -10),
+            bubbleBackgroundView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 10)
         ]
         
         NSLayoutConstraint.activate(constraints)
         
-        leadingConstraints = messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 25)
-        trailingConstraints = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -25)
+        leadingConstraints = messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25)
+        trailingConstraints = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
         
     }
     

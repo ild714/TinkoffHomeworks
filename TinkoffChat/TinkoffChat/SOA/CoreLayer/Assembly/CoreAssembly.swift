@@ -13,6 +13,7 @@ protocol CoreAssemblyProtocol {
     var storageMessages: MessageStorageProtcol { get }
     var fireStoreChannels: ChannelsFireStoreProtocolol { get }
     var fireStoreMessages: MessagesFireStoreProtocolol { get }
+    var requestSender: RequestSenderProtocol { get }
 }
 
 class CoreAssembly: CoreAssemblyProtocol {
@@ -22,4 +23,5 @@ class CoreAssembly: CoreAssemblyProtocol {
     lazy var storageMessages: MessageStorageProtcol = MessagesCoreData(container: container)
     lazy var fireStoreChannels: ChannelsFireStoreProtocolol = ChannelsFireStore()
     lazy var fireStoreMessages: MessagesFireStoreProtocolol = MessagesFireStore()
+    lazy var requestSender: RequestSenderProtocol = RequestSender(session: URLSession.shared)
 }

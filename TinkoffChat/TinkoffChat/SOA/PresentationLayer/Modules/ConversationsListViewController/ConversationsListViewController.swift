@@ -55,6 +55,7 @@ class ConversationsListViewController: UIViewController {
                                                          managedObjectContext: context,
                                                          sectionNameKeyPath: nil,
                                                          cacheName: nil)
+            fetchResult?.delegate = self
             return fetchResult
         } else {
             return nil
@@ -89,7 +90,6 @@ class ConversationsListViewController: UIViewController {
                 }
                 self.channelsService?.save(channels: self.channels) {
                     do {
-                        self.fetchedResultsController?.delegate = self
                         try self.fetchedResultsController?.performFetch()
                         self.tableView.reloadData()
                     } catch {
@@ -103,6 +103,7 @@ class ConversationsListViewController: UIViewController {
     @objc func showProfileInfo() {
         
         if let profileViewController = ProfileViewController.storyboardInstance() {
+            profileViewController.presentationAssembly = self.presentationAssembly
             let navigationController = UINavigationController()
             navigationController.viewControllers = [profileViewController]
             present(navigationController, animated: true, completion: nil)
@@ -134,7 +135,6 @@ class ConversationsListViewController: UIViewController {
         ThemeManager.changeTheme(viewController: self, type: Theme.current, model: nil)
         
         do {
-            self.fetchedResultsController?.delegate = self
             try self.fetchedResultsController?.performFetch()
             self.tableView.reloadData()
         } catch {
@@ -142,14 +142,43 @@ class ConversationsListViewController: UIViewController {
         }
         
         self.channelsService?.load(completion: {[weak self] (channels) in
-            self?.channelsService?.save(channels: channels) {
+            if UserDefaults.standard.bool(forKey: "firstChannelOpen") != false {
+                self?.channelsService?.save(channels: channels) {
+                    self?.performFetch()
+                }
+            } else {
                 self?.performFetch()
             }
         })
-        
+
         if let index = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: index, animated: true)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        UserDefaults.standard.set(false, forKey: "firstChannelOpen")
+    }
+        
+    func deleteAllChannels(completion: @escaping () -> Void) {
+        container?.performBackgroundTask({ (back) in
+            do {
+                let messages = try back.fetch(ChannelDb.createFetchRequest())
+                for message in messages {
+                    back.delete(message as NSManagedObject)
+                }
+                do {
+                    try back.save()
+                } catch {
+                    print("error with saving")
+                }
+                completion()
+            } catch {
+                print("error with fetch")
+            }
+        })
     }
     
     func performFetch() {

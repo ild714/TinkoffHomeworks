@@ -11,6 +11,7 @@ import UIKit
 protocol PresentationAssemblyProtocol {
     func converstationsListViewController() -> ConversationsListViewController?
     func conversationViewController() -> ConversationViewController?
+    func photoLoaderViewController() -> PhotoLoaderViewController?
 }
 
 class PresentationAssembly: PresentationAssemblyProtocol {
@@ -19,6 +20,20 @@ class PresentationAssembly: PresentationAssemblyProtocol {
     
     init(serviceAssembly: ServicesAssemblyProtocol) {
         self.serviceAssembly = serviceAssembly
+    }
+    
+    func photoLoaderViewController() -> PhotoLoaderViewController? {
+        if let imageLoader = PhotoLoaderViewController.storyboardInstance() {
+            let model = imagesModel()
+            imageLoader.model = model
+            model.delegate = imageLoader
+            return imageLoader
+        }
+        return nil
+    }
+    
+    private func imagesModel() -> ImagesModel {
+        return ImagesModel(imageService: self.serviceAssembly.imagesService)
     }
     
     func converstationsListViewController() -> ConversationsListViewController? {

@@ -11,6 +11,7 @@ import UIKit
 protocol ServicesAssemblyProtocol {
     var channelService: ChannelServiceStorageProtocol & ChannelServiceNetworkProtocol { get }
     var messagesService: MessagesServiceProtocol & MessagesServiceNetworkProtocol { get }
+    var imagesService: ImageServiceProtocol { get }
 }
 
 class ServiceAssembly: ServicesAssemblyProtocol {
@@ -27,4 +28,5 @@ class ServiceAssembly: ServicesAssemblyProtocol {
     lazy var messagesService: MessagesServiceProtocol & MessagesServiceNetworkProtocol = MessagesService(
         messageStorage: self.coreAssembly.storageMessages,
         messagesFireStore: self.coreAssembly.fireStoreMessages)
+    lazy var imagesService: ImageServiceProtocol = ImageService(requestSender: self.coreAssembly.requestSender)
 }

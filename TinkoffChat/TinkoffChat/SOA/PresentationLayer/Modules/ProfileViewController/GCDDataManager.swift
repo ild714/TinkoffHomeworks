@@ -13,7 +13,7 @@ enum Type {
     case operation
 }
 
-protocol UIMultithreadingDelegate:class{
+protocol UIMultithreadingDelegate: class {
     func disableButtons()
     func enableButtons()
     func enableTexts()
@@ -29,11 +29,11 @@ class GCDDataManager {
     weak var delegate: UIMultithreadingDelegate?
     let profileData: ProfileData?
     
-    init(dataForProfile: [ProfileDetail]){
+    init(dataForProfile: [ProfileDetail]) {
         self.profileData = ProfileData(details: dataForProfile)
     }
     
-    func writeData(){
+    func writeData() {
         let serialQueue = DispatchQueue(label: "com.writeQueue.serial")
         
         let group = DispatchGroup()
@@ -46,7 +46,7 @@ class GCDDataManager {
             
             group.leave()
         }
-        group.notify(queue: .main){[weak self] in
+        group.notify(queue: .main) {[weak self] in
             self?.delegate?.enableButtons()
             self?.delegate?.enableTexts()
             self?.delegate?.stopActivityIndicator()
@@ -54,11 +54,11 @@ class GCDDataManager {
         }
     }
     
-    func readData(){
+    func readData() {
         let serialQueue = DispatchQueue(label: "com.readQueue.serial")
         let group = DispatchGroup()
         
-        var savedData:[ProfileDetail]?
+        var savedData: [ProfileDetail]?
         
         group.enter()
         serialQueue.async {[weak self] in
@@ -67,11 +67,9 @@ class GCDDataManager {
             group.leave()
         }
         
-        group.notify(queue: .main){[weak self] in
-            self?.delegate?.getSavingData(data:savedData)
+        group.notify(queue: .main) {[weak self] in
+            self?.delegate?.getSavingData(data: savedData)
 
         }
     }
 }
-
-

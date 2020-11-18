@@ -8,12 +8,11 @@
 
 import Foundation
 
-
 extension String {
-    func initialsGetter() -> String{
+    func initialsGetter() -> String {
             let formatter = PersonNameComponentsFormatter()
             
-            if let components = formatter.personNameComponents(from: self){
+            if let components = formatter.personNameComponents(from: self) {
                 formatter.style = .abbreviated
                 return formatter.string(from: components)
             } else {

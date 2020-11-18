@@ -120,17 +120,15 @@ class ConversationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-//        self.deleteAllMessages {
-            self.messagesService?.load(channelId: self.channelId, completion: {[weak self] (messages) in
-                if UserDefaults.standard.integer(forKey: "firstOpen") == self?.channelId.hashValue {
+        self.messagesService?.load(channelId: self.channelId, completion: {[weak self] (messages) in
+            if UserDefaults.standard.integer(forKey: "firstOpen") == self?.channelId.hashValue {
+                self?.performFetch()
+            } else {
+                self?.messagesService?.save(messages: messages, id: self?.channelId ?? "") {
                     self?.performFetch()
-                } else {
-                    self?.messagesService?.save(messages: messages, id: self?.channelId ?? "") {
-                        self?.performFetch()
-                    }
                 }
-            })
-//        }
+            }
+        })
         
         ThemeManager.changeTheme(viewController: self, type: Theme.current, model: nil)
     }

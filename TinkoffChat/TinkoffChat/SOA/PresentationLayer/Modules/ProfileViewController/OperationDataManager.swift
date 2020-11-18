@@ -8,12 +8,11 @@
 
 import UIKit
 
-
-class ProfileWriteDataOperation: Operation{
+class ProfileWriteDataOperation: Operation {
     
     var viewController: ProfileViewController?
     
-    func writeData(viewController: ProfileViewController){
+    func writeData(viewController: ProfileViewController) {
         
         var isProfileChanged = true
         let text = viewController.nameTextField.text
@@ -33,20 +32,19 @@ class ProfileWriteDataOperation: Operation{
         
         var namePrevious = ""
         var detailsPrevious = ""
-        var imagePrevious: UIImage? = nil
+        var imagePrevious: UIImage?
         var initialsPrevious = ""
         if let fileName = self.fileDirectory(file: fileName),
             let fileDetails = self.fileDirectory(file: fileDetails),
             let fileImage = self.fileDirectory(file: fileImage),
-            let fileInitials = self.fileDirectory(file: fileInitials){
+            let fileInitials = self.fileDirectory(file: fileInitials) {
             
-            do{
+            do {
                 namePrevious = try String(contentsOf: fileName, encoding: .utf8)
-                detailsPrevious = try String(contentsOf: fileDetails,encoding: .utf8)
+                detailsPrevious = try String(contentsOf: fileDetails, encoding: .utf8)
                 imagePrevious = UIImage(contentsOfFile: fileImage.path)
-                initialsPrevious = try String(contentsOf: fileInitials,encoding: .utf8)
-            }
-            catch {
+                initialsPrevious = try String(contentsOf: fileInitials, encoding: .utf8)
+            } catch {
                 print("error with reading files")
             }
         }
@@ -54,17 +52,17 @@ class ProfileWriteDataOperation: Operation{
         if let fileName = self.fileDirectory(file: fileName),
             let fileDetails = self.fileDirectory(file: fileDetails),
             let fileImage = self.fileDirectory(file: fileImage),
-            let fileInitials = self.fileDirectory(file: fileInitials){
+            let fileInitials = self.fileDirectory(file: fileInitials) {
             do {
                 
                 var checkPhoto = false
-                if let imagePrevious = imagePrevious{
-                    if imagePrevious == photo{
+                if let imagePrevious = imagePrevious {
+                    if imagePrevious == photo {
                         checkPhoto = true
                     }
                 }
                 
-                if namePrevious == text && detailsPrevious == details && checkPhoto && initialsPrevious == initials  {
+                if namePrevious == text && detailsPrevious == details && checkPhoto && initialsPrevious == initials {
                     isProfileChanged = false
                 } else {
                     
@@ -72,22 +70,22 @@ class ProfileWriteDataOperation: Operation{
 //                        ActivityIndicator.startAnimation(viewController: viewController)
 //                    }
                     
-                    if namePrevious != text{
+                    if namePrevious != text {
                         try text?.write(to: fileName, atomically: false, encoding: .utf8)
                     }
                     
-                    if detailsPrevious != details{
+                    if detailsPrevious != details {
                         try details?.write(to: fileDetails, atomically: false, encoding: .utf8)
                     }
                     
-                    if initialsPrevious != initials{
-                        try initials?.write(to: fileInitials,atomically: false,encoding: .utf8)
+                    if initialsPrevious != initials {
+                        try initials?.write(to: fileInitials, atomically: false, encoding: .utf8)
                     }
                     
-                    if let imagePrevious = imagePrevious{
+                    if let imagePrevious = imagePrevious {
                         if imagePrevious.jpegData(compressionQuality: 1) != photo?.jpegData(compressionQuality: 1) {
                             if let data = photo?.jpegData(compressionQuality: 1) {
-                                try data.write(to: fileImage,options: .atomic)
+                                try data.write(to: fileImage, options: .atomic)
                             }
                         }
                     } else {
@@ -96,8 +94,7 @@ class ProfileWriteDataOperation: Operation{
                         }
                     }
                 }
-            }
-            catch{
+            } catch {
                 DispatchQueue.main.async {
 //                    let ac = UIAlertController(title: "Данные сохранены", message: "Не удалось сохранить данные", preferredStyle: .alert)
 //                    ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -120,34 +117,34 @@ class ProfileWriteDataOperation: Operation{
             viewController.detailsTextView.isEditable = false
 //            ActivityIndicator.stopAnimation(viewController: viewController)
             
-            if isProfileChanged == false{
+            if isProfileChanged == false {
                 return
             }
             
-            viewController.present(ac,animated: true)
+            viewController.present(ac, animated: true)
         }
     }
     
-    func fileDirectory(file: String) -> URL?{
-        if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
+    func fileDirectory(file: String) -> URL? {
+        if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             return directory.appendingPathComponent(file)
         } else {
             return nil
         }
     }
     
-    override func main(){
-        if let viewController = viewController{
+    override func main() {
+        if let viewController = viewController {
             self.writeData(viewController: viewController)
         }
     }
 }
 
-class ProfileReadDataOperation: Operation{
+class ProfileReadDataOperation: Operation {
     
     var viewController: ProfileViewController?
     
-    private func readData(viewController: ProfileViewController){
+    private func readData(viewController: ProfileViewController) {
         let fileName = "fileName.txt"
         let fileDetails = "fileDetails.txt"
         let fileImage = "fileImage"
@@ -162,14 +159,13 @@ class ProfileReadDataOperation: Operation{
             if let fileName = self.fileDirectory(file: fileName),
                 let fileDetails = self.fileDirectory(file: fileDetails),
                 let fileImage = self.fileDirectory(file: fileImage),
-                let fileInitials = self.fileDirectory(file: fileInitials){
+                let fileInitials = self.fileDirectory(file: fileInitials) {
                 savedName = try String(contentsOf: fileName, encoding: .utf8)
-                savedDetails = try String(contentsOf: fileDetails,encoding: .utf8)
+                savedDetails = try String(contentsOf: fileDetails, encoding: .utf8)
                 savedImage = UIImage(contentsOfFile: fileImage.path)
-                savedInitials = try String(contentsOf: fileInitials,encoding: .utf8)
+                savedInitials = try String(contentsOf: fileInitials, encoding: .utf8)
             }
-        }
-        catch {
+        } catch {
             print("error with reading file")
         }
         
@@ -181,36 +177,33 @@ class ProfileReadDataOperation: Operation{
         }
     }
     
-    private func fileDirectory(file: String) -> URL?{
-        if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
+    private func fileDirectory(file: String) -> URL? {
+        if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             return directory.appendingPathComponent(file)
         } else {
             return nil
         }
     }
     
-    override func main(){
-        if let viewController = viewController{
+    override func main() {
+        if let viewController = viewController {
             self.readData(viewController: viewController)
         }
     }
 }
 
-class OperationDataManager{
+class OperationDataManager {
     
-    enum Operation{
+    enum Operation {
         case readOperation
         case writeOperation
     }
     
     func returnOperation<T>(typeOfoperation: Operation) -> T? {
-        if typeOfoperation == .readOperation{
+        if typeOfoperation == .readOperation {
             return ProfileReadDataOperation() as? T
         } else {
             return ProfileWriteDataOperation() as? T
         }
     }
-    
 }
-
-

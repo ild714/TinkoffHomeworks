@@ -23,18 +23,18 @@ struct Model {
     let typeOfMessage: String
 }
 
-class CustomTableViewCell: UITableViewCell,ConfigurableView {
+class CustomTableViewCell: UITableViewCell, ConfigurableView {
     typealias ConfigurationModel = Model
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!{
-        didSet{
+    @IBOutlet weak var dateLabel: UILabel! {
+        didSet {
             dateLabel.textColor = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
         }
     }
-    @IBOutlet weak var imageIcon: UIImageView!{
-        didSet{
+    @IBOutlet weak var imageIcon: UIImageView! {
+        didSet {
             imageIcon.layer.cornerRadius = imageIcon.bounds.width / 2.0
         }
     }
@@ -43,7 +43,6 @@ class CustomTableViewCell: UITableViewCell,ConfigurableView {
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         var dateString: String = ""
-        
 
         let defaults = UserDefaults.standard
         let savedTypeTheme = defaults.object(forKey: "ThemeType") as? String
@@ -52,7 +51,7 @@ class CustomTableViewCell: UITableViewCell,ConfigurableView {
             self.messageLabel.textColor = .gray
             self.nameLabel.textColor = .white
             self.backgroundColor = .black
-        } else if model.typeOfMessage == "online"  {
+        } else if model.typeOfMessage == "online" {
             self.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.11, alpha: 0.1)
             self.nameLabel.textColor = .black
         } else {
@@ -74,7 +73,7 @@ class CustomTableViewCell: UITableViewCell,ConfigurableView {
             messageLabel.text = "No messages yet"
             dateLabel.text = ""
             messageLabel.textColor = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.6)
-        } else if model.hasUnreadMessages == true{
+        } else if model.hasUnreadMessages == true {
             messageLabel.font = UIFont.boldSystemFont(ofSize: 13)
             messageLabel.text = model.message
             dateLabel.text = dateString

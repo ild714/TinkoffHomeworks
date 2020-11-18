@@ -8,12 +8,12 @@
 
 import UIKit
 
-enum TypesDocument{
+enum TypesDocument {
     case txt
     case photo
 }
 
-struct ProfileDetail{
+struct ProfileDetail {
     var fileDirectory = ""
     var fileDirectoryUrl: URL?
     var previous = ""
@@ -21,7 +21,7 @@ struct ProfileDetail{
     var text: String? = ""
     var image: UIImage? = UIImage()
     
-    init(fileDirectory: String, previous: String = "", typeDocument: TypesDocument,text: String? = "", image: UIImage? = UIImage()){
+    init(fileDirectory: String, previous: String = "", typeDocument: TypesDocument, text: String? = "", image: UIImage? = UIImage()) {
         self.fileDirectory = fileDirectory
         self.fileDirectoryUrl = self.fileDirectory(file: fileDirectory)
         self.previous = previous
@@ -30,8 +30,8 @@ struct ProfileDetail{
         self.image = image
     }
     
-    func fileDirectory(file: String) -> URL?{
-           if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
+    func fileDirectory(file: String) -> URL? {
+           if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                return directory.appendingPathComponent(file)
            } else {
                return nil
@@ -39,42 +39,41 @@ struct ProfileDetail{
        }
 }
 
-class ProfileData{
+class ProfileData {
     
     var detailsArray = [ProfileDetail]()
     
-    init(details: [ProfileDetail]){
-        for detail in details{
+    init(details: [ProfileDetail]) {
+        for detail in details {
             detailsArray.append(detail)
         }
     }
     
-    func save(){
-        for detail in detailsArray{
-            if let url = detail.fileDirectoryUrl{
+    func save() {
+        for detail in detailsArray {
+            if let url = detail.fileDirectoryUrl {
                 do {
-                    if detail.typeDocument == .txt{
+                    if detail.typeDocument == .txt {
                         try detail.text?.write(to: url, atomically: false, encoding: .utf8)
                     } else {
                         if let data = detail.image?.jpegData(compressionQuality: 1) {
                             try data.write(to: url)
                         }
                     }
-                }
-                catch{
+                } catch {
                     print("error with reading file 1 or first opening VC")
                 }
             }
         }
     }
     
-    func load() -> [ProfileDetail]?{
+    func load() -> [ProfileDetail]? {
 
         var details = [ProfileDetail]()
         do {
-            for detail in detailsArray{
-                if let url = detail.fileDirectoryUrl{
-                    if detail.typeDocument == .txt{
+            for detail in detailsArray {
+                if let url = detail.fileDirectoryUrl {
+                    if detail.typeDocument == .txt {
                         let savedTxt = try String(contentsOf: url, encoding: .utf8)
                         details.append(.init(fileDirectory: detail.fileDirectory, previous: "", typeDocument: .txt, text: savedTxt))
                     } else {
@@ -84,8 +83,7 @@ class ProfileData{
                 }
             }
             return details
-        }
-        catch {
+        } catch {
             return nil
         }
     }
