@@ -67,6 +67,8 @@ class ConversationViewController: UIViewController {
         view.addSubview(tableView)
         setupTableView()
         
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressed(_:)))
+        self.tableView.addGestureRecognizer(tap)
         navigationItem.largeTitleDisplayMode = .never
         
         if let titleName = titleName {
@@ -93,6 +95,13 @@ class ConversationViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func longPressed(_ sender: UILongPressGestureRecognizer? = nil) {
+        guard let point = sender?.location(in: self.tableView) else { return }
+        let touchAnimation = TouchAnimation()
+        touchAnimation.delegate = self
+        touchAnimation.showTinkoff(location: point)
     }
     
     @objc func newMessage() {
@@ -262,5 +271,12 @@ extension ConversationViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         print("\(#function)")
         self.tableView.endUpdates()
+    }
+}
+
+// MARK: - TouchAnimationDelegate
+extension ConversationViewController: TouchAnimationProtocol {
+    func addSublayer(layer: CAEmitterLayer) {
+        self.tableView.layer.addSublayer(layer)
     }
 }

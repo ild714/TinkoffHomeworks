@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var editButtonProfile: UIButton!
     let imageViewColor = UIColor(red: 0.894, green: 0.908, blue: 0.17, alpha: 1).cgColor
     let editButtonColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1)
     let saveButtonColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1).cgColor
@@ -17,6 +18,7 @@ class ProfileViewController: UIViewController {
     var placeholder = "Write profile infromations"
     var gcdDataManager: GCDDataManager?
     var presentationAssembly: PresentationAssemblyProtocol?
+    var editSate = true
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
@@ -47,6 +49,11 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressed(_:)))
+        self.view.addGestureRecognizer(tap)
+        
+        editButtonProfile.layer.cornerRadius = 10
         detailsTextView.delegate = self
         nameTextField.delegate = self
         
@@ -58,24 +65,39 @@ class ProfileViewController: UIViewController {
         
         nameTextField.placeholder = "Name"
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editTapped))
         LogsSwitcher.printLogs(function: #function, additionText: "Root view is not visible: ")
         
         initialsLabel.textColor = initialsLabelColor
         self.activityIndicator.isHidden = true
 
     }
+    
+    @objc func longPressed(_ sender: UILongPressGestureRecognizer? = nil) {
+        guard let point = sender?.location(in: self.view) else { return }
+        let touchAnimation = TouchAnimation()
+        touchAnimation.delegate = self
+        touchAnimation.showTinkoff(location: point)
+    }
+    
     @IBAction func editPhoto(_ sender: Any) {
         AlertPhoto.showAlertChoosePhoto(viewController: self)
     }
     
-    @objc func editTapped() {
-        self.nameTextField.isEnabled = true
-        self.detailsTextView.isEditable = true
+    @IBAction func editTapped(_ sender: Any) {
+        if editSate == true {
+            self.nameTextField.isEnabled = true
+            self.detailsTextView.isEditable = true
+            self.animation()
+            editSate = false
+        } else {
+            self.nameTextField.isEnabled = false
+            self.detailsTextView.isEditable = false
+            self.editButtonProfile.layer.removeAllAnimations()
+            editSate = true
+        }
     }
     
-    @objc func closeTapped() {
+    @IBAction func closeTapped() {
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -292,3 +314,51 @@ extension ProfileViewController: PhotoLoaderViewControllerDelegate {
     }
 }
  
+// MARK: - Animations
+extension ProfileViewController {
+    func animation() {
+        
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [.repeat, .allowUserInteraction, .autoreverse], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.15) {
+                        self.editButtonProfile.transform = CGAffineTransform(rotationAngle: CGFloat(-0.31))
+                    }
+                    UIView.addKeyframe(withRelativeStartTime: 0.15, relativeDuration: 0.15) {
+                       self.editButtonProfile.transform = CGAffineTransform(rotationAngle: CGFloat(0.31))
+                    }
+                    UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.05) {
+                        self.editButtonProfile.transform = CGAffineTransform(translationX: 5, y: 0)
+                    }
+                    UIView.addKeyframe(withRelativeStartTime: 0.05, relativeDuration: 0.05) {
+                       self.editButtonProfile.transform = CGAffineTransform(translationX: -5, y: 0)
+                    }
+                    UIView.addKeyframe(withRelativeStartTime: 0.1, relativeDuration: 0.1) {
+                        self.editButtonProfile.transform = CGAffineTransform(translationX: 0, y: 5)
+                    }
+                    UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 0.1) {
+                     self.editButtonProfile.transform = CGAffineTransform(translationX: 0, y: -5)
+                    }
+        
+                }, completion: nil)
+    }
+}
+
+// MARK: - TouchAnimationDelegate
+extension ProfileViewController: TouchAnimationProtocol {
+    func addSublayer(layer: CAEmitterLayer) {
+        self.view.layer.addSublayer(layer)
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension ProfileViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return AnimationController(animationDuration: 3.5, animationType: .present)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return AnimationController(animationDuration: 3.5, animationType: .dismiss)
+    }
+}

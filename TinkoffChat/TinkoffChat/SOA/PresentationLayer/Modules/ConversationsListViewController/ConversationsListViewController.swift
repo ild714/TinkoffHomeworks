@@ -67,6 +67,9 @@ class ConversationsListViewController: UIViewController {
         
         setupTableView()
         
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressed(_:)))
+        self.tableView.addGestureRecognizer(tap)
+        
         title = "Channels"
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -100,13 +103,22 @@ class ConversationsListViewController: UIViewController {
         }
     }
     
+    @objc func longPressed(_ sender: UILongPressGestureRecognizer? = nil) {
+        guard let point = sender?.location(in: self.tableView) else { return }
+        let touchAnimation = TouchAnimation()
+        touchAnimation.delegate = self
+        touchAnimation.showTinkoff(location: point)
+    }
+    
     @objc func showProfileInfo() {
         
         if let profileViewController = ProfileViewController.storyboardInstance() {
             profileViewController.presentationAssembly = self.presentationAssembly
-            let navigationController = UINavigationController()
-            navigationController.viewControllers = [profileViewController]
-            present(navigationController, animated: true, completion: nil)
+            profileViewController.modalPresentationStyle = .custom
+            profileViewController.transitioningDelegate = profileViewController
+//            let navigationController = UINavigationController()
+//            navigationController.viewControllers = [profileViewController]
+            present(profileViewController, animated: true, completion: nil)
         }
     }
     
@@ -329,14 +341,9 @@ extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
-// MARK: - NSFetchedResultsControllerDelegate
-//extension ConversationsListViewController: CoreDataUpdateDelegate {
-//    func update() {
-//        do {
-//            try self.fetchedResultsController?.performFetch()
-//            self.tableView.reloadData()
-//        } catch {
-//            print("Fetch failed")
-//        }
-//    }
-//}
+// MARK: - TouchAnimationDelegate
+extension ConversationsListViewController: TouchAnimationProtocol {
+    func addSublayer(layer: CAEmitterLayer) {
+        self.tableView.layer.addSublayer(layer)
+    }
+}

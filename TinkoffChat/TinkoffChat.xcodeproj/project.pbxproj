@@ -52,6 +52,8 @@
 		749C0CF72522201100D1857E /* ConversationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749C0CF62522201100D1857E /* ConversationViewController.storyboard */; };
 		74A0FBDF252DC484005E9392 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0FBDE252DC484005E9392 /* ThemeManager.swift */; };
 		74A0FBE3252DE115005E9392 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0FBE2252DE115005E9392 /* RootViewController.swift */; };
+		74A551AC2569350D00A562FB /* TouchAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A551AB2569350D00A562FB /* TouchAnimation.swift */; };
+		74A551AE2569379F00A562FB /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A551AD2569379F00A562FB /* AnimationController.swift */; };
 		74B32DEB255B432D0002A967 /* ChannelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B32DEA255B432D0002A967 /* ChannelExtension.swift */; };
 		74B32DED255B43560002A967 /* MessageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B32DEC255B43560002A967 /* MessageExtension.swift */; };
 		74B32DEF255B447C0002A967 /* ChannelsStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B32DEE255B447C0002A967 /* ChannelsStorageProtocol.swift */; };
@@ -132,6 +134,8 @@
 		749C0CF62522201100D1857E /* ConversationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationViewController.storyboard; sourceTree = "<group>"; };
 		74A0FBDE252DC484005E9392 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		74A0FBE2252DE115005E9392 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		74A551AB2569350D00A562FB /* TouchAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchAnimation.swift; sourceTree = "<group>"; };
+		74A551AD2569379F00A562FB /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		74B32DEA255B432D0002A967 /* ChannelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelExtension.swift; sourceTree = "<group>"; };
 		74B32DEC255B43560002A967 /* MessageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageExtension.swift; sourceTree = "<group>"; };
 		74B32DEE255B447C0002A967 /* ChannelsStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsStorageProtocol.swift; sourceTree = "<group>"; };
@@ -388,6 +392,7 @@
 		749752442559FA2200B88A21 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				74A551AA256934E700A562FB /* Animations */,
 				74790F97256294C100A5CB97 /* PhotoLoader */,
 				7449624C253DDE16006D894D /* ConversationsListViewController */,
 				74496250253DDEC4006D894D /* ConversationViewController */,
@@ -429,6 +434,15 @@
 				740DEA01254DDF89009D4008 /* ChannelsCoreData.swift */,
 			);
 			path = ChannelStorage;
+			sourceTree = "<group>";
+		};
+		74A551AA256934E700A562FB /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				74A551AB2569350D00A562FB /* TouchAnimation.swift */,
+				74A551AD2569379F00A562FB /* AnimationController.swift */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		74B32DE9255B42F10002A967 /* ObjectExtensions */ = {
@@ -658,10 +672,12 @@
 				746BB86F25627D5C00CAEFAB /* GCDDataManager.swift in Sources */,
 				749752492559FDD200B88A21 /* ServicesAssembly.swift in Sources */,
 				74B4D22F254B0F7D0068D2FF /* ChannelDb+CoreDataClass.swift in Sources */,
+				74A551AE2569379F00A562FB /* AnimationController.swift in Sources */,
 				749C0CF525221D9A00D1857E /* ConversationViewController.swift in Sources */,
 				7491D2CB2523AAE1008FACB9 /* MessageConversationTableViewCell.swift in Sources */,
 				74790FAC2562DBBF00A5CB97 /* ParserProtocol.swift in Sources */,
 				74790FA92562DB0900A5CB97 /* RequestSenderProtocol.swift in Sources */,
+				74A551AC2569350D00A562FB /* TouchAnimation.swift in Sources */,
 				74B32DEB255B432D0002A967 /* ChannelExtension.swift in Sources */,
 				74790F9E2562BAAF00A5CB97 /* PhotoLoaderCollectionViewCell.swift in Sources */,
 				74790FA52562D8D600A5CB97 /* ImagesRequest.swift in Sources */,

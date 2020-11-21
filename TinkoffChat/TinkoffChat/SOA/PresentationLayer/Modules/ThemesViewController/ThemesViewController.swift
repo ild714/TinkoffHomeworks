@@ -29,6 +29,9 @@ class ThemesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressed(_:)))
+        self.view.addGestureRecognizer(tap)
+        
         themeClassicButton.layer.cornerRadius = cornerRadiusOfButtonTheme
         themeClassicButton.imageView?.layer.cornerRadius = cornerRadiusOfButtonTheme
         themeClassicButton.layer.borderColor = borderColorOfButtonTheme
@@ -43,6 +46,13 @@ class ThemesViewController: UIViewController {
         
         title = "Settings"
         navigationItem.largeTitleDisplayMode = .never
+    }
+    
+    @objc func longPressed(_ sender: UILongPressGestureRecognizer? = nil) {
+        guard let point = sender?.location(in: self.view) else { return }
+        let touchAnimation = TouchAnimation()
+        touchAnimation.delegate = self
+        touchAnimation.showTinkoff(location: point)
     }
     
     @IBAction func classicStyleSelected(_ sender: Any) {
@@ -80,4 +90,11 @@ class ThemesViewController: UIViewController {
         return storyboard.instantiateViewController(withIdentifier: String(describing: self)) as? ThemesViewController
     }
     
+}
+
+// MARK: - TouchAnimationDelegate
+extension ThemesViewController: TouchAnimationProtocol {
+    func addSublayer(layer: CAEmitterLayer) {
+        self.view.layer.addSublayer(layer)
+    }
 }
