@@ -23,11 +23,10 @@ class ChannelsCoreData: ChannelsStorageProtcol {
                 group.enter()
                 container.performBackgroundTask { (backgroundContext) in
                     backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-                    let channelDb = ChannelDb(identifier: channel.identifier,
+                    _ = ChannelDb(identifier: channel.identifier,
                                               name: channel.name,
                                               lastMessage: channel.lastMessage,
                                               lastActivity: channel.lastActivity, in: backgroundContext)
-                    print(channelDb)
                     if backgroundContext.hasChanges {
                         do {
                             try backgroundContext.save()

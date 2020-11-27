@@ -24,7 +24,6 @@
 		745FA315253F65F900443306 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 745FA314253F65F900443306 /* GoogleService-Info.plist */; };
 		746BB86F25627D5C00CAEFAB /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BB86E25627D5C00CAEFAB /* GCDDataManager.swift */; };
 		746BB87125627D6D00CAEFAB /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BB87025627D6D00CAEFAB /* ProfileData.swift */; };
-		746BB87325627D7800CAEFAB /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BB87225627D7800CAEFAB /* OperationDataManager.swift */; };
 		746BB87525627E5A00CAEFAB /* ChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BB87425627E5A00CAEFAB /* ChannelData.swift */; };
 		74790F992562960900A5CB97 /* PhotoLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74790F982562960900A5CB97 /* PhotoLoaderViewController.swift */; };
 		74790F9B2562966400A5CB97 /* PhotoLoaderViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74790F9A2562966400A5CB97 /* PhotoLoaderViewController.storyboard */; };
@@ -105,7 +104,6 @@
 		745FA314253F65F900443306 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		746BB86E25627D5C00CAEFAB /* GCDDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		746BB87025627D6D00CAEFAB /* ProfileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
-		746BB87225627D7800CAEFAB /* OperationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
 		746BB87425627E5A00CAEFAB /* ChannelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelData.swift; sourceTree = "<group>"; };
 		74790F952562908300A5CB97 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74790F982562960900A5CB97 /* PhotoLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLoaderViewController.swift; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 				74C6A32C2534CB8E00CF4051 /* AlertPhoto.swift */,
 				746BB87025627D6D00CAEFAB /* ProfileData.swift */,
 				746BB86E25627D5C00CAEFAB /* GCDDataManager.swift */,
-				746BB87225627D7800CAEFAB /* OperationDataManager.swift */,
 				74FB99D3250D39ED00478286 /* ProfileViewController.swift */,
 				74FB99D5250D39ED00478286 /* ProfileViewController.storyboard */,
 			);
@@ -684,7 +681,6 @@
 				74B4D22C254B0F7D0068D2FF /* ChannelDb+CoreDataProperties.swift in Sources */,
 				74790FB52562EAA700A5CB97 /* RequestCreator.swift in Sources */,
 				749C0CF22521D7C800D1857E /* CustomTableViewCell.swift in Sources */,
-				746BB87325627D7800CAEFAB /* OperationDataManager.swift in Sources */,
 				74790FB32562E6F900A5CB97 /* ImageService.swift in Sources */,
 				74A0FBE3252DE115005E9392 /* RootViewController.swift in Sources */,
 				74C6DC48251B548B00B64690 /* StringExtension.swift in Sources */,

@@ -25,30 +25,18 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lPd-Md-Tyq">
-                                <rect key="frame" x="16" y="686" width="382" height="30"/>
+                                <rect key="frame" x="157" y="686" width="100" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0z-JC-Cqj">
-                                        <rect key="frame" x="0.0" y="0.0" width="187" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
                                         <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="B3T-fH-yhD"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="B3T-fH-yhD"/>
                                             <constraint firstAttribute="height" constant="30" id="H4w-P1-cDs"/>
                                         </constraints>
-                                        <state key="normal" title="GCD"/>
+                                        <state key="normal" title="Save"/>
                                         <connections>
                                             <action selector="saveDataProfile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nzp-Ws-njX"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVg-kv-7cv">
-                                        <rect key="frame" x="195" y="0.0" width="187" height="30"/>
-                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="jiB-68-uLW"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="xW5-f9-3AF"/>
-                                        </constraints>
-                                        <state key="normal" title="Operation"/>
-                                        <connections>
-                                            <action selector="saveDataProfile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PpH-Kp-YML"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -132,9 +120,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lPd-Md-Tyq" secondAttribute="trailing" constant="16" id="0a3-F0-7wp"/>
                             <constraint firstItem="lPd-Md-Tyq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3ze-KA-CNg"/>
-                            <constraint firstItem="lPd-Md-Tyq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="76Z-aL-KZN"/>
                             <constraint firstItem="iqX-Hx-k3l" firstAttribute="top" secondItem="LHp-dO-sA6" secondAttribute="bottom" constant="7" id="8sa-Lc-nYr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T5k-Sf-jdu" secondAttribute="trailing" constant="40" id="9GG-KD-hdV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="B3I-N5-Oem" secondAttribute="trailing" constant="19" id="9tf-dJ-q91"/>
@@ -144,6 +130,7 @@
                             <constraint firstItem="LHp-dO-sA6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Ga0-oP-DPl"/>
                             <constraint firstItem="iyY-wt-kVe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Gu9-Wt-3qA"/>
                             <constraint firstItem="iyY-wt-kVe" firstAttribute="top" secondItem="iqX-Hx-k3l" secondAttribute="bottom" constant="15" id="LPA-W2-LjH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="b0z-JC-Cqj" secondAttribute="bottom" constant="20" id="LWt-Ht-nRe"/>
                             <constraint firstItem="T5k-Sf-jdu" firstAttribute="top" secondItem="iyY-wt-kVe" secondAttribute="bottom" constant="7" id="Mxv-M9-3WL"/>
                             <constraint firstItem="XDa-vS-Kfw" firstAttribute="centerY" secondItem="hTS-Ql-nzI" secondAttribute="centerY" id="TGK-2T-Zkh"/>
                             <constraint firstItem="BlG-Uc-IOF" firstAttribute="top" secondItem="T5k-Sf-jdu" secondAttribute="bottom" constant="169.66666666666669" id="Utc-2V-sGv"/>
@@ -156,11 +143,13 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="iyY-wt-kVe" secondAttribute="trailing" constant="224" id="ivM-fS-N3m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="LHp-dO-sA6" secondAttribute="trailing" constant="133" id="kGb-3Z-bjc"/>
                             <constraint firstItem="B3I-N5-Oem" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="356" id="lj7-nS-bsr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b0z-JC-Cqj" secondAttribute="trailing" constant="157" id="pIO-GH-e48"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lPd-Md-Tyq" secondAttribute="bottom" constant="20" id="paU-Jl-sfl"/>
                             <constraint firstItem="BlG-Uc-IOF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rqW-0A-rFm"/>
                             <constraint firstItem="LHp-dO-sA6" firstAttribute="top" secondItem="hTS-Ql-nzI" secondAttribute="bottom" constant="15" id="stV-C0-tWN"/>
                             <constraint firstItem="B3I-N5-Oem" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="7" id="tQ3-10-l7Q"/>
                             <constraint firstItem="hTS-Ql-nzI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18.5" id="vDy-Fo-Efj"/>
+                            <constraint firstItem="b0z-JC-Cqj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="157" id="vJq-kJ-Ium"/>
                             <constraint firstItem="iqX-Hx-k3l" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="xUl-Ra-wLM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -175,7 +164,6 @@
                         <outlet property="imageView" destination="hTS-Ql-nzI" id="oDM-1m-RhF"/>
                         <outlet property="initialsLabel" destination="XDa-vS-Kfw" id="nC0-Xo-Nek"/>
                         <outlet property="nameTextField" destination="iqX-Hx-k3l" id="7oj-gU-KQq"/>
-                        <outlet property="operationButton" destination="AVg-kv-7cv" id="Gea-6x-4ug"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -56,6 +56,6 @@ class PhotoLoaderCollectionViewCell: UICollectionViewCell {
                 return(UIImage(data: imageData))
             }
         }
-        return(nil)
+        return(UIImage())
     }
 }

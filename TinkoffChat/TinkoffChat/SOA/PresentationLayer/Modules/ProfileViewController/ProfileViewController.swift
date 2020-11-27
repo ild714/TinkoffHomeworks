@@ -38,12 +38,6 @@ class ProfileViewController: UIViewController {
             gcdButton.layer.cornerRadius = 14
         }
     }
-    @IBOutlet weak var operationButton: UIButton! {
-        didSet {
-            operationButton.layer.backgroundColor = saveButtonColor
-            operationButton.layer.cornerRadius = 14
-        }
-    }
     
     @IBOutlet weak var initialsLabel: UILabel!
     
@@ -61,7 +55,6 @@ class ProfileViewController: UIViewController {
         detailsTextView.isEditable = false
         detailsTextView.text = placeholder
         gcdButton.isEnabled = false
-        operationButton.isEnabled = false
         
         nameTextField.placeholder = "Name"
         
@@ -191,7 +184,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationC
         self.imageView.image = image
         
         self.gcdButton.isEnabled = true
-        self.operationButton.isEnabled = true
         dismiss(animated: true)
     }
 
@@ -220,7 +212,6 @@ extension ProfileViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholder = textView.text
         gcdButton.isEnabled = true
-        operationButton.isEnabled = true
     }
 
 }
@@ -229,7 +220,6 @@ extension ProfileViewController: UITextViewDelegate {
 extension ProfileViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         gcdButton.isEnabled = true
-        operationButton.isEnabled = true
     }
 }
 
@@ -249,9 +239,7 @@ extension ProfileViewController: UIMultithreadingDelegate {
                 }
             }
         } else {
-            let ac = UIAlertController(title: "Ошибка", message: "Не удалось сохранить данные или извлечь данные", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(ac, animated: true)
+            print("Не удалось сохранить данные или извлечь данные")
         }
     }
     
@@ -296,12 +284,10 @@ extension ProfileViewController: UIMultithreadingDelegate {
     
     func disableButtons() {
         self.gcdButton.isEnabled = false
-        self.operationButton.isEnabled = false
     }
     
     func enableButtons() {
         self.gcdButton.isEnabled = true
-        self.operationButton.isEnabled = true
     }
 }
 
@@ -310,7 +296,6 @@ extension ProfileViewController: PhotoLoaderViewControllerDelegate {
     func update(photo: UIImage) {
         self.imageView.image = photo
         self.gcdButton.isEnabled = true
-        self.operationButton.isEnabled = true
     }
 }
  
