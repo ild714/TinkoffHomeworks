@@ -8,12 +8,12 @@
 
 import UIKit
 @testable import TinkoffChat
-import Firebase
 
 final class ChannelServiceMock: ChannelServiceNetworkProtocol, ChannelServiceStorageProtocol {
     
     var callsCount = 0
     var callsCountSave = 0
+    var channels: [ChannelData] = []
     var loadChaneelsStub: ((([ChannelData]) -> Void) -> Void)!
     
     func load(completion: @escaping ([ChannelData]) -> Void) {
@@ -24,6 +24,7 @@ final class ChannelServiceMock: ChannelServiceNetworkProtocol, ChannelServiceSto
     
     func save(channels: [ChannelData], completion: @escaping () -> Void) {
         callsCountSave += 1
+        self.channels = channels
         print("Saved channels")
     }
     

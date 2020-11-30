@@ -33,7 +33,8 @@ class TinkoffChatTests: XCTestCase {
     
     func testChannelServiceSave() throws {
         // Arrange
-        let channels = [ChannelData(dictionary: ["name": "Travel", "lastMessage": "Hello", "lastActivity": Timestamp(date: Date())], id: "1")!]
+        let time = Date()
+        let channels = [ChannelData(dictionary: ["name": "Travel", "lastMessage": "Hello", "lastActivity": Timestamp(date: time)], id: "1")!]
         let channelServiceMock2 = ChannelServiceMock()
         channelServiceMock2.loadChaneelsStub = { completion in
             completion(channels)
@@ -48,5 +49,9 @@ class TinkoffChatTests: XCTestCase {
         
         // Assert
         XCTAssertEqual(channelServiceMock2.callsCountSave, 1)
+        XCTAssertEqual(channelServiceMock2.channels[0].identifier, "1")
+        XCTAssertEqual(channelServiceMock2.channels[0].lastActivity, Timestamp(date: time).dateValue())
+        XCTAssertEqual(channelServiceMock2.channels[0].lastMessage, "Hello")
+        XCTAssertEqual(channelServiceMock2.channels[0].name, "Travel")
     }
 }
