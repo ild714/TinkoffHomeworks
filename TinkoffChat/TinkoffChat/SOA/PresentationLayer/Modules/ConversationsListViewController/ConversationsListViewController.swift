@@ -64,7 +64,6 @@ class ConversationsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupTableView()
         
         let tap = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressed(_:)))
@@ -116,8 +115,6 @@ class ConversationsListViewController: UIViewController {
             profileViewController.presentationAssembly = self.presentationAssembly
             profileViewController.modalPresentationStyle = .custom
             profileViewController.transitioningDelegate = profileViewController
-//            let navigationController = UINavigationController()
-//            navigationController.viewControllers = [profileViewController]
             present(profileViewController, animated: true, completion: nil)
         }
     }
@@ -257,9 +254,6 @@ extension ConversationsListViewController: UITableViewDataSource {
                     }
                 }
             }
-
-//            let db = ChannelsFireStore()
-//            db.deleteChannel(id: channel.identifier)
         }
     }
 }

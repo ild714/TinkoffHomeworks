@@ -43,5 +43,4 @@ class ChannelService: ChannelServiceStorageProtocol, ChannelServiceNetworkProtoc
             completion()
         }
     }
-    
 }

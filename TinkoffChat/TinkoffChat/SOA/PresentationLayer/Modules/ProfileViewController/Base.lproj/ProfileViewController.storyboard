@@ -133,7 +133,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="b0z-JC-Cqj" secondAttribute="bottom" constant="20" id="LWt-Ht-nRe"/>
                             <constraint firstItem="T5k-Sf-jdu" firstAttribute="top" secondItem="iyY-wt-kVe" secondAttribute="bottom" constant="7" id="Mxv-M9-3WL"/>
                             <constraint firstItem="XDa-vS-Kfw" firstAttribute="centerY" secondItem="hTS-Ql-nzI" secondAttribute="centerY" id="TGK-2T-Zkh"/>
-                            <constraint firstItem="BlG-Uc-IOF" firstAttribute="top" secondItem="T5k-Sf-jdu" secondAttribute="bottom" constant="169.66666666666669" id="Utc-2V-sGv"/>
                             <constraint firstItem="5LU-MH-IN7" firstAttribute="bottom" secondItem="hTS-Ql-nzI" secondAttribute="bottom" id="VvE-Ug-vRJ"/>
                             <constraint firstItem="vic-L5-jb8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="abn-CT-G03"/>
                             <constraint firstItem="vic-L5-jb8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="alT-9X-c0N"/>
@@ -150,6 +149,7 @@
                             <constraint firstItem="B3I-N5-Oem" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="7" id="tQ3-10-l7Q"/>
                             <constraint firstItem="hTS-Ql-nzI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18.5" id="vDy-Fo-Efj"/>
                             <constraint firstItem="b0z-JC-Cqj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="157" id="vJq-kJ-Ium"/>
+                            <constraint firstItem="b0z-JC-Cqj" firstAttribute="top" secondItem="BlG-Uc-IOF" secondAttribute="bottom" constant="32" id="wGg-14-qfB"/>
                             <constraint firstItem="iqX-Hx-k3l" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="xUl-Ra-wLM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
