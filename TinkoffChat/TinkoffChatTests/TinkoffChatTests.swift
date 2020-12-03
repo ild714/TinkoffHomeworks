@@ -54,4 +54,30 @@ class TinkoffChatTests: XCTestCase {
         XCTAssertEqual(channelServiceMock2.channels[0].lastMessage, "Hello")
         XCTAssertEqual(channelServiceMock2.channels[0].name, "Travel")
     }
+    
+    func testCorrectChannelServiceLoad() {
+        // Arrange
+        let rootAssemblyMock = RootAssemblyMock()
+        let vc = rootAssemblyMock.presentationAssembly.converstationsListViewController()
+        
+        // Act
+        vc?.viewWillAppear(true)
+        
+        // Assert
+        XCTAssertEqual(rootAssemblyMock.coreAssembly.fireStoreChannels.channelsArray.count, 1)
+    }
+    
+    func testCorrectMessagesServiceLoad() {
+        // Arrange
+        let rootAssemblyMock = RootAssemblyMock()
+        let vc = rootAssemblyMock.presentationAssembly.conversationViewController()
+        vc?.channelId = "1"
+        
+        // Act
+        vc?.viewWillAppear(true)
+        
+        // Assert
+        XCTAssertEqual(rootAssemblyMock.coreAssembly.fireStoreMessages.messagesArray.count, 1)
+        XCTAssertEqual(rootAssemblyMock.coreAssembly.fireStoreMessages.messagesArray[0].senderId, "1")
+    }
 }

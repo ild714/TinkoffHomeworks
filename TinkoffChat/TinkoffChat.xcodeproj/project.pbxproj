@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		740DEA02254DDF89009D4008 /* ChannelsCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740DEA01254DDF89009D4008 /* ChannelsCoreData.swift */; };
+		740F08B4257970D10099718F /* ChannelsFireStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740F08B3257970D10099718F /* ChannelsFireStoreMock.swift */; };
+		740F08B6257974090099718F /* CoreAssemblyMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740F08B5257974090099718F /* CoreAssemblyMock.swift */; };
+		740F08B8257974880099718F /* RootAssemblyMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740F08B7257974880099718F /* RootAssemblyMock.swift */; };
+		740F08BA2579775E0099718F /* MessagesFireStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740F08B92579775E0099718F /* MessagesFireStoreMock.swift */; };
 		74309ABF25123B52009AF510 /* LogsSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74309ABE25123B52009AF510 /* LogsSwitcher.swift */; };
 		74446EB72523BEBF006EB0E8 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74446EB62523BEBF006EB0E8 /* ColorExtension.swift */; };
 		7444EF33255BFDCB00A6326F /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444EF32255BFDCB00A6326F /* RootAssembly.swift */; };
@@ -17,8 +21,8 @@
 		7449624A253DDD37006D894D /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74496249253DDD37006D894D /* MessageData.swift */; };
 		74496254253E1E5D006D894D /* MessagesIdCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74496253253E1E5D006D894D /* MessagesIdCreator.swift */; };
 		7458FE4A253C619D00B31B0B /* ChannelsFireStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7458FE49253C619D00B31B0B /* ChannelsFireStore.swift */; };
-		745FA2FD253F545D00443306 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		745FA309253F603A00443306 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		745FA2FD253F545D00443306 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		745FA309253F603A00443306 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		745FA313253F65E300443306 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 745FA312253F65E300443306 /* Podfile.lock */; };
 		745FA315253F65F900443306 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 745FA314253F65F900443306 /* GoogleService-Info.plist */; };
 		746BB86F25627D5C00CAEFAB /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BB86E25627D5C00CAEFAB /* GCDDataManager.swift */; };
@@ -102,8 +106,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				745FA309253F603A00443306 /* BuildFile in Embed Frameworks */,
-				745FA2FD253F545D00443306 /* BuildFile in Embed Frameworks */,
+				745FA309253F603A00443306 /* (null) in Embed Frameworks */,
+				745FA2FD253F545D00443306 /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,6 +123,10 @@
 		654D20D2B7100DA15F9C2D56 /* Pods-TinkoffChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffChatTests.release.xcconfig"; path = "Target Support Files/Pods-TinkoffChatTests/Pods-TinkoffChatTests.release.xcconfig"; sourceTree = "<group>"; };
 		656C6235E2F8053F8D6836B6 /* Pods-TinkoffChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffChatUITests.release.xcconfig"; path = "Target Support Files/Pods-TinkoffChatUITests/Pods-TinkoffChatUITests.release.xcconfig"; sourceTree = "<group>"; };
 		740DEA01254DDF89009D4008 /* ChannelsCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsCoreData.swift; sourceTree = "<group>"; };
+		740F08B3257970D10099718F /* ChannelsFireStoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsFireStoreMock.swift; sourceTree = "<group>"; };
+		740F08B5257974090099718F /* CoreAssemblyMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssemblyMock.swift; sourceTree = "<group>"; };
+		740F08B7257974880099718F /* RootAssemblyMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssemblyMock.swift; sourceTree = "<group>"; };
+		740F08B92579775E0099718F /* MessagesFireStoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesFireStoreMock.swift; sourceTree = "<group>"; };
 		74309ABE25123B52009AF510 /* LogsSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsSwitcher.swift; sourceTree = "<group>"; };
 		74446EB62523BEBF006EB0E8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		7444EF32255BFDCB00A6326F /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
@@ -404,6 +412,10 @@
 			children = (
 				749148D52573F5BF00C81D69 /* TinkoffChatTests.swift */,
 				749148DD2573F63B00C81D69 /* ChannelServiceMock.swift */,
+				740F08B3257970D10099718F /* ChannelsFireStoreMock.swift */,
+				740F08B92579775E0099718F /* MessagesFireStoreMock.swift */,
+				740F08B5257974090099718F /* CoreAssemblyMock.swift */,
+				740F08B7257974880099718F /* RootAssemblyMock.swift */,
 				749148D72573F5BF00C81D69 /* Info.plist */,
 			);
 			path = TinkoffChatTests;
@@ -876,8 +888,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				740F08B6257974090099718F /* CoreAssemblyMock.swift in Sources */,
 				749148D62573F5BF00C81D69 /* TinkoffChatTests.swift in Sources */,
 				749148DE2573F63B00C81D69 /* ChannelServiceMock.swift in Sources */,
+				740F08BA2579775E0099718F /* MessagesFireStoreMock.swift in Sources */,
+				740F08B4257970D10099718F /* ChannelsFireStoreMock.swift in Sources */,
+				740F08B8257974880099718F /* RootAssemblyMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
