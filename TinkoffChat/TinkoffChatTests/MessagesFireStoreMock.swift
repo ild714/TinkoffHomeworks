@@ -14,7 +14,7 @@ class MessagesFireStoreMock: MessagesFireStoreProtocolol {
     var messagesArray: [MessageData] = []
     
     func loadInitialData(channelId: String, completed: @escaping () -> Void) {
-        messagesArray = [MessageData(dictionary: ["content": "test", "senderId": channelId, "senderName": "test","created": Timestamp(date: Date())])!]
+        messagesArray = [MessageData(dictionary: ["content": "test", "senderId": channelId, "senderName": "test", "created": Timestamp(date: Date())])!]
     }
     
     func addMessage(message: String, id: String) {
