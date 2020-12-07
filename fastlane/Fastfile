@@ -3,7 +3,7 @@ desc "Установка зависимостей, сборка с помощь�
 lane :build_for_testing do
   cocoapods(
     #clean_install: true,
-    podfile: "./Podfile"
+    podfile: "Podfile"
   )
   run_tests(
     build_for_testing: true
