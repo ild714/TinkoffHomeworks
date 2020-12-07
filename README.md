@@ -1,3 +1,2 @@
 # TinkoffHomework
-Для включения или отключения логов необходимо выполнить следущий шаг: 
-- В AppDelegate в строке с классом LogsSwitcher задать входное значение для метода switchState(switchOn: Bool).  Параметр true (предназначен для включении логов), а параметр false(предназначен для выключение логов).
+[![Build Status](https://travis-ci.com/ildar714/TinkoffHomeworks.svg?branch=master)](https://travis-ci.com/ildar714/TinkoffHomeworks)
