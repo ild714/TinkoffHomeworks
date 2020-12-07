@@ -21,8 +21,8 @@
 		7449624A253DDD37006D894D /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74496249253DDD37006D894D /* MessageData.swift */; };
 		74496254253E1E5D006D894D /* MessagesIdCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74496253253E1E5D006D894D /* MessagesIdCreator.swift */; };
 		7458FE4A253C619D00B31B0B /* ChannelsFireStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7458FE49253C619D00B31B0B /* ChannelsFireStore.swift */; };
-		745FA2FD253F545D00443306 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		745FA309253F603A00443306 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		745FA2FD253F545D00443306 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		745FA309253F603A00443306 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		745FA313253F65E300443306 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 745FA312253F65E300443306 /* Podfile.lock */; };
 		745FA315253F65F900443306 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 745FA314253F65F900443306 /* GoogleService-Info.plist */; };
 		746BB86F25627D5C00CAEFAB /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BB86E25627D5C00CAEFAB /* GCDDataManager.swift */; };
@@ -106,8 +106,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				745FA309253F603A00443306 /* (null) in Embed Frameworks */,
-				745FA2FD253F545D00443306 /* (null) in Embed Frameworks */,
+				745FA309253F603A00443306 /* BuildFile in Embed Frameworks */,
+				745FA2FD253F545D00443306 /* BuildFile in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,7 +652,7 @@
 				74C779F825753ACA0016F34A /* Sources */,
 				74C779F925753ACA0016F34A /* Frameworks */,
 				74C779FA25753ACA0016F34A /* Resources */,
-				972FDFB55413F08370992B75 /* [CP] Embed Pods Frameworks */,
+				8E4D33C7C9CD78559F8711D7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -674,7 +674,7 @@
 				74FB99CA250D39ED00478286 /* Resources */,
 				745FA2FE253F545D00443306 /* Embed Frameworks */,
 				743A4624253F773F008969DC /* ShellScript */,
-				06217AD587D0989B6396D1DB /* [CP] Embed Pods Frameworks */,
+				1BD96CAF793CB70E29496D6A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -764,23 +764,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		06217AD587D0989B6396D1DB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0B24AE048613E953EA91FED5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -801,6 +784,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1BD96CAF793CB70E29496D6A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		498D87359E75C9D689C29ED9 /* [CP] Check Pods Manifest.lock */ = {
@@ -842,7 +842,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
 		};
-		972FDFB55413F08370992B75 /* [CP] Embed Pods Frameworks */ = {
+		8E4D33C7C9CD78559F8711D7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

@@ -11,7 +11,7 @@ import UIKit
 protocol ConfigurableView {
     associatedtype ConfigurationModel
     
-    func configure(with model: ConfigurationModel)
+func configure(with model: ConfigurationModel)
 }
 
 struct Model {

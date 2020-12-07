@@ -1,0 +1,25 @@
+
+desc "Установка зависимостей, сборка с помощью scan"
+lane :build_for_testing do
+  cocoapods(
+    #clean_install: true,
+    podfile: "./Podfile"
+  )
+  run_tests(
+    build_for_testing: true
+  )
+end
+
+desc "Запуск тестов на уже скомпилированном приложении"
+lane :run_tests_1 do
+  run_tests(
+    test_without_building: true
+  )
+
+end
+
+desc "Вызов первых двух лейнов"
+lane :build_and_test do
+  build_for_testing
+  run_tests_1
+end
