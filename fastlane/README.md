@@ -30,6 +30,11 @@ fastlane run_tests_1
 fastlane build_and_test
 ```
 Вызов первых двух лейнов
+### build_for_test_main
+```
+fastlane build_for_test_main
+```
+Runs all the tests
 
 ----
 
