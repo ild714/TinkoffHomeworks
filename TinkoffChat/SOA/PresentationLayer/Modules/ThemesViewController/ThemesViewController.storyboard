@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Themes View Controller-->
+        <scene sceneID="M8Y-yL-uLf">
+            <objects>
+                <viewController storyboardIdentifier="ThemesViewController" id="kef-EW-eQd" customClass="ThemesViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DvO-vm-5kb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTV-EY-3DR">
+                                <rect key="frame" x="10" y="60" width="300" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="800" constant="300" id="ATl-NB-edq"/>
+                                    <constraint firstAttribute="width" secondItem="aTV-EY-3DR" secondAttribute="height" multiplier="100:19" id="ULN-wS-F6g"/>
+                                    <constraint firstAttribute="height" priority="800" constant="57" id="zwN-h8-g8R"/>
+                                </constraints>
+                                <state key="normal" image="messageClassic"/>
+                                <connections>
+                                    <action selector="classicStyleSelected:" destination="kef-EW-eQd" eventType="touchUpInside" id="azw-WB-Rcf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Tw-oO-uw9">
+                                <rect key="frame" x="120" y="137" width="80" height="50.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0Tw-oO-uw9" secondAttribute="height" multiplier="65:41" id="Xtu-BV-QvM"/>
+                                    <constraint firstAttribute="height" priority="800" constant="24" id="h7F-Js-Hnt"/>
+                                    <constraint firstAttribute="width" priority="850" constant="80" id="mZB-ZA-lwD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <state key="normal" title="Classic">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="classicStyleSelected:" destination="kef-EW-eQd" eventType="touchUpInside" id="T5S-bt-AZc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIf-Rx-3PU">
+                                <rect key="frame" x="10" y="385.5" width="300" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="800" constant="57" id="XJa-Ko-0N0"/>
+                                    <constraint firstAttribute="width" secondItem="JIf-Rx-3PU" secondAttribute="height" multiplier="100:19" id="ckg-MH-IPr"/>
+                                    <constraint firstAttribute="width" priority="800" constant="300" id="cxJ-kO-eiD"/>
+                                </constraints>
+                                <state key="normal" image="messageDark"/>
+                                <connections>
+                                    <action selector="nightStyleSelected:" destination="kef-EW-eQd" eventType="touchUpInside" id="RCa-T3-bDG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaG-9z-AwR">
+                                <rect key="frame" x="10" y="227.5" width="300" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="800" constant="57" id="0dT-LW-TzC"/>
+                                    <constraint firstAttribute="width" priority="800" constant="300" id="imx-fB-HeJ"/>
+                                </constraints>
+                                <state key="normal" image="messageDay"/>
+                                <connections>
+                                    <action selector="dayStyleSelected:" destination="kef-EW-eQd" eventType="touchUpInside" id="Xf3-xn-xKL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whT-VY-sVg">
+                                <rect key="frame" x="127.5" y="304.5" width="65" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="800" constant="65" id="2gV-El-FOu"/>
+                                    <constraint firstAttribute="width" secondItem="whT-VY-sVg" secondAttribute="height" multiplier="65:41" id="sas-Hg-RpX"/>
+                                    <constraint firstAttribute="height" priority="800" constant="41" id="vg7-Ls-Knv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <state key="normal" title="Day">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dayStyleSelected:" destination="kef-EW-eQd" eventType="touchUpInside" id="rc0-BN-Ncp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfC-5b-ivR">
+                                <rect key="frame" x="127.5" y="462.5" width="65" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="800" constant="41" id="1oA-HD-wd8"/>
+                                    <constraint firstAttribute="width" priority="800" constant="65" id="6xm-AJ-Jty"/>
+                                    <constraint firstAttribute="width" secondItem="bfC-5b-ivR" secondAttribute="height" multiplier="65:41" id="MJ1-zz-Tr5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <state key="normal" title="Night">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nightStyleSelected:" destination="kef-EW-eQd" eventType="touchUpInside" id="7zw-KW-9co"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.098039215686274508" green="0.21176470588235294" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="uaG-9z-AwR" firstAttribute="width" secondItem="uaG-9z-AwR" secondAttribute="height" multiplier="100:19" id="4X7-UJ-z1g"/>
+                            <constraint firstItem="aTV-EY-3DR" firstAttribute="centerX" secondItem="DvO-vm-5kb" secondAttribute="centerX" id="4pQ-4j-xLw"/>
+                            <constraint firstItem="JIf-Rx-3PU" firstAttribute="centerX" secondItem="DvO-vm-5kb" secondAttribute="centerX" id="5D3-4J-RSo"/>
+                            <constraint firstItem="whT-VY-sVg" firstAttribute="top" secondItem="uaG-9z-AwR" secondAttribute="bottom" constant="20" id="Bfu-Cf-VyX"/>
+                            <constraint firstItem="uaG-9z-AwR" firstAttribute="centerX" secondItem="DvO-vm-5kb" secondAttribute="centerX" id="Bos-LB-Pqi"/>
+                            <constraint firstItem="uaG-9z-AwR" firstAttribute="top" secondItem="0Tw-oO-uw9" secondAttribute="bottom" constant="40" id="DBd-gn-ugh"/>
+                            <constraint firstItem="bfC-5b-ivR" firstAttribute="centerX" secondItem="DvO-vm-5kb" secondAttribute="centerX" id="IZI-bP-14w"/>
+                            <constraint firstItem="whT-VY-sVg" firstAttribute="centerX" secondItem="DvO-vm-5kb" secondAttribute="centerX" id="JH7-hl-ArV"/>
+                            <constraint firstItem="JIf-Rx-3PU" firstAttribute="top" secondItem="whT-VY-sVg" secondAttribute="bottom" constant="40" id="WSq-md-n81"/>
+                            <constraint firstItem="whT-VY-sVg" firstAttribute="centerX" secondItem="DvO-vm-5kb" secondAttribute="centerX" id="Yzc-o5-yUZ"/>
+                            <constraint firstItem="0Tw-oO-uw9" firstAttribute="top" secondItem="aTV-EY-3DR" secondAttribute="bottom" constant="20" id="bTl-vX-OfF"/>
+                            <constraint firstItem="hWS-zF-fwU" firstAttribute="bottom" secondItem="bfC-5b-ivR" secondAttribute="bottom" priority="800" constant="71" id="ewA-Jk-mWJ"/>
+                            <constraint firstItem="bfC-5b-ivR" firstAttribute="top" secondItem="JIf-Rx-3PU" secondAttribute="bottom" constant="20" id="j9e-UG-6fH"/>
+                            <constraint firstItem="0Tw-oO-uw9" firstAttribute="centerX" secondItem="DvO-vm-5kb" secondAttribute="centerX" id="p3x-BI-EVL"/>
+                            <constraint firstItem="aTV-EY-3DR" firstAttribute="top" secondItem="hWS-zF-fwU" secondAttribute="top" constant="60" id="rL0-D7-EjV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hWS-zF-fwU"/>
+                    </view>
+                    <connections>
+                        <outlet property="themeClassicButton" destination="aTV-EY-3DR" id="8K8-Qa-zy5"/>
+                        <outlet property="themeDayButton" destination="uaG-9z-AwR" id="HKP-ko-amc"/>
+                        <outlet property="themeNightButton" destination="JIf-Rx-3PU" id="UwU-r7-EsW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SlO-sW-bwY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="23.188405797101453" y="157.33695652173915"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="messageClassic" width="434" height="84"/>
+        <image name="messageDark" width="339" height="66"/>
+        <image name="messageDay" width="347" height="68"/>
+    </resources>
+</document>
