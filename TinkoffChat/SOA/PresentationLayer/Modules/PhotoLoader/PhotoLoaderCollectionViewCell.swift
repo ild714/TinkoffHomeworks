@@ -31,12 +31,10 @@ class PhotoLoaderCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(imageString: String) {
-        let group = DispatchGroup()
         var imageDataResult: Data?
         if let imageURL = URL(string: imageString) {
             if let imageData = try? Data(contentsOf: imageURL) {
                 imageDataResult = imageData
-                group.leave()
             }
         }
         if let imageDataResult = imageDataResult {
