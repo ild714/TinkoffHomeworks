@@ -33,20 +33,15 @@ class PhotoLoaderCollectionViewCell: UICollectionViewCell {
     func configure(imageString: String) {
         let group = DispatchGroup()
         var imageDataResult: Data?
-        group.enter()
-        DispatchQueue.global().async {
-            if let imageURL = URL(string: imageString) {
-                if let imageData = try? Data(contentsOf: imageURL) {
-                    imageDataResult = imageData
-                    group.leave()
-                }
+        if let imageURL = URL(string: imageString) {
+            if let imageData = try? Data(contentsOf: imageURL) {
+                imageDataResult = imageData
+                group.leave()
             }
         }
-        group.notify(queue: .main) {
-            if let imageDataResult = imageDataResult {
-                self.image.image = UIImage(data: imageDataResult)
-                self.activityIndicator.stopAnimating()
-            }
+        if let imageDataResult = imageDataResult {
+            self.image.image = UIImage(data: imageDataResult)
+            self.activityIndicator.stopAnimating()
         }
     }
     
