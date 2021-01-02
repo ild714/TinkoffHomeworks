@@ -123,6 +123,7 @@
 		740F08B5257974090099718F /* CoreAssemblyMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssemblyMock.swift; sourceTree = "<group>"; };
 		740F08B7257974880099718F /* RootAssemblyMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssemblyMock.swift; sourceTree = "<group>"; };
 		740F08B92579775E0099718F /* MessagesFireStoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesFireStoreMock.swift; sourceTree = "<group>"; };
+		742822C1258B99C3008F6524 /* ImagesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagesRequest.swift; path = Requests/ImagesRequest.swift; sourceTree = "<group>"; };
 		74309ABE25123B52009AF510 /* LogsSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsSwitcher.swift; sourceTree = "<group>"; };
 		74446EB62523BEBF006EB0E8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		7444EF32255BFDCB00A6326F /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
@@ -360,6 +361,7 @@
 				74790FA72562DAED00A5CB97 /* RequestManager */,
 				74790FA12562D85300A5CB97 /* Requests */,
 				74790FB42562EAA700A5CB97 /* RequestCreator.swift */,
+				742822C1258B99C3008F6524 /* ImagesRequest.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -685,7 +687,7 @@
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = Tinkoff;
 				TargetAttributes = {
 					749148D22573F5BF00C81D69 = {
@@ -823,9 +825,11 @@
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1088,6 +1092,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1149,6 +1154,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1201,7 +1207,7 @@
 		};
 		74FB99E2250D39F000478286 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BFD5AD02E9B5602B6C0EDC7C /* Pods-TinkoffChat.debug.xcconfig */;
+			baseConfigurationReference = 9FF8FA3B9226A1367C98AF22 /* Pods-TinkoffChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
